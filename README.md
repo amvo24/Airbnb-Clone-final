@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users
+  * URL: /users/currentUser
   * Body: none
 
 * Successful Response
@@ -252,7 +252,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /spots/user
+  * URL: /users/currentUser/spots
   * Body: none
 
 * Successful Response
@@ -423,7 +423,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: /spots
+  * URL: /spots/:spotsId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /reviews/:id
+  * URL: /users/currentUser/reviews
   * Body: none
 
 * Successful Response
@@ -733,7 +733,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: spots/:id/reviews/:id
+  * URL: /reviews/:id
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -801,7 +801,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: spots/:id/reviews/:id
+  * URL: /reviews/:id
   * Body: none
 
 * Successful Response
@@ -837,7 +837,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /bookings/users
+  * URL: users/currentUser/bookings
   * Body: none
 
 * Successful Response
@@ -1142,7 +1142,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: /spots/:id
+  * URL: /spots/:id/addImage
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1189,7 +1189,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /reviews/:id
+  * URL: /reviews/:id/addImage
   * Headers:
     * Content-Type: application/json
   * Body:
