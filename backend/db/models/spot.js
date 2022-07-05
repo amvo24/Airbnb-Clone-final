@@ -2,8 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  class spot extends Model {
+  class Spot extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,23 +12,58 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Spot.belongsTo(
+        models.User, {foreignKey: 'ownerId'}
+      )
     }
   }
-  spot.init({
-    address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    country: DataTypes.STRING,
-    lat: DataTypes.DECIMAL,
-    lng: DataTypes.DECIMAL,
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    price: DataTypes.INTEGER,
-    previewImage: DataTypes.STRING,
-    ownerId: DataTypes.INTEGER
+  Spot.init({
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lat: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    lng: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    previewImage: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
-    modelName: 'spot',
+    modelName: 'Spot',
   });
-  return spot;
+  return Spot;
 };
