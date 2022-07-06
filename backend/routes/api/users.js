@@ -49,6 +49,7 @@ router.post(
 
 //get Current User
 router.get('/current-user', requireAuth, async (req, res) => {
+  const {id, firstName, lastName, email} = req.user
   return res.json(req.user)
 })
 
