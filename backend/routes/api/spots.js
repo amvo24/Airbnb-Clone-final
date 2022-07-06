@@ -59,11 +59,32 @@ router.get('/:id', async (req,res) => {
    res.json({message: 'Successfully created spot', newSpot})
  })
 
-//  // Edit a spot
-//  router.put('/:id', async (req, res) => {
-//   let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
-//     const edit = await Spot
-//  })
+ // Edit a spot
+ router.put('/:id', requireAuth, async (req, res) => {
+  let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
+    const spots = await Spot.findByPk(req.params.id)
+
+    if(!spots || spots !== req.user) {
+      res.status(404)
+      res.json( {
+        message: "invalid ownerId"
+      })
+    }
+         spots.ownerId = ownerId
+         spots.address = address
+         spots.city = city
+         spots.state = state
+         spots.country = country
+         spots.lat = lat
+         spots.lng = lng
+         spots.name = name
+         spots.description = description
+         spots.price = price
+
+      await spots.save()
+      return res.json(spots)
+  })
+
 
  //delete spot
   router.delete('/:id', async (req, res) => {
