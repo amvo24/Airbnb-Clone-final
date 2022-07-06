@@ -42,7 +42,7 @@ router.get('/', async (req,res) => {
     const spots = await Spot.findAll();
 
      res.json(spots);
-  })
+})
 
 // GET all spots based on user id
 router.get('/userSpots', requireAuth, async (req, res) => {
