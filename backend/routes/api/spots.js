@@ -89,7 +89,7 @@ router.get('/:id', async (req,res) => {
  })
 
  // Edit a spot
- router.put('/:id', requireAuth, async (req, res) => {
+ router.put('/:id', requireAuth, validateSpots, async (req, res) => {
   let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
     const spots = await Spot.findByPk(req.params.id)
 

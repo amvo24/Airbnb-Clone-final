@@ -16,6 +16,19 @@ module.exports = {
         description: 'Place where web developers are created',
         price: 123,
         previewImage: null,
+      },
+      {
+        ownerId: 2,
+        address: '124 Universal Studios',
+        city: 'Orlando',
+        state: 'Florida',
+        country: 'United States of America',
+        lat: 50.7645358,
+        lng: -150.4730327,
+        name: 'Universal Studios',
+        description: 'Fun place here',
+        price: 150,
+        previewImage: null,
       }
     ]);
   },
