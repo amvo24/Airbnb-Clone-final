@@ -35,7 +35,7 @@ router.post(
     try {
     const user = await User.signup({ email, username, password });
     } catch(error) {
-      return res.status(403).json({
+      return res.status(400).json({
         'message': error.message
       })
     }
@@ -47,11 +47,16 @@ router.post(
   }
 );
 
-//get Current User
-router.get('/current-user', requireAuth, async (req, res) => {
-  const {id, firstName, lastName, email} = req.user
-  return res.json(req.user)
-})
+// Get the Current User
+router.get("/currentUser", requireAuth, async (req, res) => {
+  const user = {
+    id: req.user.id,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email,
+  };
+  return res.json(user);
+});
 
 
 
