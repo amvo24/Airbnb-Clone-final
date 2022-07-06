@@ -54,7 +54,7 @@ router.get('/userSpots', requireAuth, async (req, res) => {
   res.json(places[0])
 });
 
-//find a spot by id
+// GET details by spot id
 router.get('/:id', async (req,res) => {
     const spots = await Spot.findByPk(req.params.id);
 

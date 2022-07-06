@@ -2,23 +2,26 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    return queryInterface.bulkInsert('Images', [
+      {
+        id: 1,
+        url: 'https://media.architecturaldigest.com/photos/568ef57c02bad8496774de87/16:9/w_4256,h_2394,c_limit/1_WebEstate_Kailua,%20Hawaii%20.jpg',
+        reviewId: 2,
+        spotId: 1
+      },
+      {
+        id: 2,
+        url: 'https://i.pinimg.com/originals/c7/58/43/c7584365f991ea6236fd1f19653f06a2.jpg',
+        reviewId: 1,
+        spotId: 2
+      }
+    ])
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete('Images', {
+      id: { [Op.in]: [1, 2] }
+    });
   }
 };

@@ -9,19 +9,23 @@ module.exports = {
         userId: 2,
         startDate: "2021-11-19",
         endDate: "2021-11-19",
-        createdAt: "2021-11-19 20:39:36",
-        updatedAt: "2021-11-20 10:06:40"
-      }
+
+      },
+      {
+        id: 2,
+        spotId: 2,
+        userId: 3,
+        startDate: "2020-10-20",
+        endDate: "2020-10-25",
+      },
 
     ])
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete('Bookings', {
+      id: { [Op.in]: [1, 2] }
+    });
   }
 };

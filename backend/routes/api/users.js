@@ -27,13 +27,10 @@ const validateSignup = [
 ];
 
 // Sign up
-router.post(
-  '/',
-  validateSignup,
-  async (req, res) => {
-    const { email, password, username } = req.body;
+router.post('/sign-up', validateSignup, async (req, res) => {
+    const { email, password, username, firstName, lastName } = req.body;
     try {
-    const user = await User.signup({ email, username, password });
+    const user = await User.signup({ email, username, password, firstName, lastName });
     } catch(error) {
       return res.status(400).json({
         'message': error.message
@@ -43,8 +40,7 @@ router.post(
 
     return res.json({
       User,
-    });
-  }
+    });  }
 );
 
 // Get the Current User

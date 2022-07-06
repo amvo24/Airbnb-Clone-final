@@ -35,11 +35,27 @@ router.post(
       return next(err);
     }
 
-    await setTokenCookie(res, user);
-    const token = setTokenCookie(res, user)
+    if (!req.body) {
+      res.json( {
+        message: "Validation error",
+        statusCode: 400,
+        errors: {
+          email: "Email is Required",
+          password: "Password is Required"
+        }
+      })
+    }
+
+    const token = await setTokenCookie(res, user)
+    const userRes = {
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+      token: token,
+    };
     return res.json({
-      user,
-      token
+    userRes
     });
   }
 );
