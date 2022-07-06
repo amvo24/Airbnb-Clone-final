@@ -8,17 +8,17 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
-// find allSpots
+// GET all spots
 router.get('/', async (req,res) => {
     const spots = await Spot.findAll();
 
      res.json(spots);
   })
 
-// get all spots based on user id
+// GET all spots based on user id
 router.get('/userSpots', requireAuth, async (req, res) => {
     const { id } = req.user
-      console.log(id)
+
       const places = await Spot.findAll({
           where: {ownerId: id}
       });
@@ -39,8 +39,8 @@ router.get('/:id', async (req,res) => {
   })
 
 
-  //post newSpot
-  router.post('/', async (req, res) => {
+  //Create a new Spot
+  router.post('/', requireAuth, async (req, res) => {
    let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
 
    const newSpot = await Spot.create({
@@ -58,6 +58,12 @@ router.get('/:id', async (req,res) => {
 
    res.json({message: 'Successfully created spot', newSpot})
  })
+
+//  // Edit a spot
+//  router.put('/:id', async (req, res) => {
+//   let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
+//     const edit = await Spot
+//  })
 
  //delete spot
   router.delete('/:id', async (req, res) => {
