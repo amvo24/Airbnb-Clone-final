@@ -32,16 +32,25 @@ router.post(
   validateSignup,
   async (req, res) => {
     const { email, password, username } = req.body;
+    try {
     const user = await User.signup({ email, username, password });
-
-    await setTokenCookie(res, user);
+    } catch(error) {
+      return res.status(403).json({
+        'message': error.message
+      })
+    }
+    await setTokenCookie(res, User);
 
     return res.json({
-      user,
+      User,
     });
   }
 );
 
+//get Current User
+router.get('/current-user', requireAuth, async (req, res) => {
+  return res.json(req.user)
+})
 
 
 
