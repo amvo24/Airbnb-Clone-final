@@ -7,24 +7,22 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 const validateSignup = [
-  check('email')
-    .exists({ checkFalsy: true })
-    .isEmail()
-    .withMessage('Please provide a valid email.'),
-  check('username')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
-  check('username')
-    .not()
-    .isEmail()
-    .withMessage('Username cannot be an email.'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
-  handleValidationErrors
-];
+    check('email')
+      .exists({ checkFalsy: true })
+      .isEmail()
+      .withMessage('Invalid email'),
+    check('firstName')
+     .exists({ checkFalsy: true })
+     .withMessage('First Name is required'),
+    check('lastName')
+     .exists({ checkFalsy: true })
+     .withMessage('last Name is required'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 6 })
+      .withMessage('Password must be 6 characters or more.'),
+    handleValidationErrors
+  ];
 
 // Sign up
 router.post("/sign-up", validateSignup, async (req, res) => {
@@ -49,12 +47,19 @@ router.post("/sign-up", validateSignup, async (req, res) => {
 
   if (!firstName) {
     res.status(400).json({
-      message: "First Name is required"
+      message: "Validation error",
+      statusCode: 400,
+      errors: {
+        firstName: 'First Name is required'
+      }
     })
-  }
-  if (!lastName) {
+  } else if (!lastName) {
     res.status(400).json({
-      message: "Last Name is required"
+      message: "Validation error",
+      statusCode: 400,
+      errors: {
+        lastName: 'Last Name is required'
+      }
     })
   }
 
