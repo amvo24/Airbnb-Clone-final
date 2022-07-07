@@ -7,13 +7,24 @@ const router = express.Router();
 
 
 // GET all reviews of the current user
-router.get('/users/:userId', requireAuth, async (req, res) => {
-    const {userId} = req.user
-    const review = await Review.findAll({
-        where: {id: userId}
-    })
-    res.json(review)
-})
+router.get('/user-reviews', requireAuth, async (req, res) => {
+    const { id } = req.user
+    console.log(id)
+    const reviews = await Review.findAll({
+        include: [
+            {
+                model: Spot
+            },
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            }
+        ],
+
+      where: { userId: id }
+    });
+    res.json(reviews[0])
+  });
 
 
 
