@@ -8,10 +8,10 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 const validateLogin = [
-  check('credential')
+  check('email')
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage('Please provide a valid credential.'),
+    .withMessage('Please provide a valid email.'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a password.'),
@@ -19,32 +19,29 @@ const validateLogin = [
 ];
 
 // Log in
-router.post(
-  '/',
-  validateLogin,
-  async (req, res, next) => {
-    const { credential, password } = req.body;
+router.post('/log-in', validateLogin, async (req, res, next) => {
+    const { email, password } = req.body;
 
-    const user = await User.login({ credential, password });
+    const user = await User.login({ email, password });
 
     if (!user) {
-      const err = new Error('Login failed');
+      const err = new Error('Invalid credentials');
       err.status = 401;
       err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
+      //err.errors = ['The provided email is invalid.'];
       return next(err);
     }
 
-    if (!req.body) {
-      res.json( {
-        message: "Validation error",
-        statusCode: 400,
-        errors: {
-          email: "Email is Required",
-          password: "Password is Required"
-        }
-      })
-    }
+    // if (!req.body) {
+    //   res.json({
+    //     message: "Validation error",
+    //     statusCode: 400,
+    //     errors: {
+    //       email: "Email is Required",
+    //       password: "Password is Required"
+    //     }
+    //   })
+    // }
 
     const token = await setTokenCookie(res, user)
     const userRes = {
@@ -54,16 +51,11 @@ router.post(
       email: req.user.email,
       token: token,
     };
-    return res.json({
-    userRes
-    });
+    return res.json(userRes);
   }
 );
 
-router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
+router.get('/', restoreUser, (req, res) => {
       const { user } = req;
       if (user) {
         return res.json({
@@ -73,9 +65,7 @@ router.get(
     }
 );
 // Log out
-router.delete(
-    '/',
-    (_req, res) => {
+router.delete('/', (_req, res) => {
       res.clearCookie('token');
       return res.json({ message: 'success' });
     }
