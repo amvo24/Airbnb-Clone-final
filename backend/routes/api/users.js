@@ -27,21 +27,39 @@ const validateSignup = [
 ];
 
 // Sign up
-router.post('/sign-up', validateSignup, async (req, res) => {
-    const { email, password, username, firstName, lastName } = req.body;
-    try {
-    const user = await User.signup({ email, username, password, firstName, lastName });
-    } catch(error) {
-      return res.status(400).json({
-        'message': error.message
-      })
-    }
-    await setTokenCookie(res, User);
+router.post("/sign-up", validateSignup, async (req, res) => {
+  const { firstName, lastName, email, password, username } = req.body;
 
-    return res.json({
-      User,
-    });  }
-);
+  const trackEmail = await User.findOne({
+    where: { email }
+  })
+  if (trackEmail) {
+    res.status(403);
+    res.json({
+      message: "User with that email already exists!"
+    })
+  }
+
+  const user = await User.signup({ firstName, lastName, email, username, password });
+
+  if (!firstName) {
+    res.status(400).json({
+      message: "First Name is required"
+    })
+  }
+  if (!lastName) {
+    res.status(400).json({
+      message: "Last Name is required"
+    })
+  }
+
+
+  await setTokenCookie(res, user);
+
+  return res.json({
+    user,
+  });
+});
 
 // Get the Current User
 router.get("/currentUser", requireAuth, async (req, res) => {

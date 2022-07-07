@@ -11,10 +11,10 @@ const validateLogin = [
   check('email')
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage('Please provide a valid email.'),
+    .withMessage('email: Email is required'),
   check('password')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a password.'),
+    .withMessage('password: Password is required'),
   handleValidationErrors
 ];
 
@@ -27,21 +27,10 @@ router.post('/log-in', validateLogin, async (req, res, next) => {
     if (!user) {
       const err = new Error('Invalid credentials');
       err.status = 401;
-      err.title = 'Login failed';
+      //err.title = 'Login failed';
       //err.errors = ['The provided email is invalid.'];
       return next(err);
     }
-
-    // if (!req.body) {
-    //   res.json({
-    //     message: "Validation error",
-    //     statusCode: 400,
-    //     errors: {
-    //       email: "Email is Required",
-    //       password: "Password is Required"
-    //     }
-    //   })
-    // }
 
     const token = await setTokenCookie(res, user)
     const userRes = {
