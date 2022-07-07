@@ -1,6 +1,6 @@
 const express = require('express');
 const {requireAuth } = require('../../utils/auth');
-const {Spot, Image, User} = require('../../db/models');
+const {Spot, Image, User, Review, sequelize} = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
@@ -56,16 +56,43 @@ router.get('/userSpots', requireAuth, async (req, res) => {
 
 // GET details by spot id
 router.get('/:id', async (req,res) => {
-    const spots = await Spot.findByPk(req.params.id);
+  const spots = await Spot.findByPk(req.params.id, {
+    include: [
+        {
+          model: Image,
+          as: 'images',
+          attributes: ['url']
+        },
+        {
+          model: User,
+          as: 'Owner',
+          attributes: ['id', 'firstName', 'lastName']
+      }]
+  });
 
+  const reviewsAggData = await Spot.findByPk(req.params.id, {
+    include: {
+        model: Review,
+        attributes: []
+    },
+    attributes: [
+        [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+        [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+      ],
+    raw: true
+});
 
-     if (!spots) {
-      res.status(404)
-      res.json({message: "Spot couldn't be found", statusCode: 404})
-     }
+const spotData = spots.toJSON()
+spotData.numReviews = reviewsAggData.numReviews
+spotData.avgStarRating = reviewsAggData.avgStarRating
 
-     res.json({spots})
-  })
+if (!spots) {
+  res.status(404)
+  res.json({message: "Spot couldn't be found", statusCode: 404})
+}
+
+  res.json(spotData)
+})
 
 
   //Create a new Spot
