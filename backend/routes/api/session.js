@@ -54,7 +54,7 @@ router.get('/', restoreUser, (req, res) => {
     }
 );
 // Log out
-router.delete('/', (_req, res) => {
+router.delete('/', (req, res) => {
       res.clearCookie('token');
       return res.json({ message: 'success' });
     }

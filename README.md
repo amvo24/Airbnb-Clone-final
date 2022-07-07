@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: api/users/currentUser
+  * URL: /api/users/currentUser
   * Body: none
 
 * Successful Response
@@ -76,7 +76,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: api/session/log-in
+  * URL: /api/session/log-in
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -142,7 +142,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: api/users/sign-up
+  * URL: /api/users/sign-up
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -213,7 +213,7 @@ Returns all the spots.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots
+  * URL: /api/spots
   * Body: none
 
 * Successful Response
@@ -252,7 +252,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/currentUser/spots
+  * URL: /api/spots/userSpots
   * Body: none
 
 * Successful Response
@@ -291,7 +291,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots/:id
+  * URL: /api/spots/:id
   * Body: none
 
 * Successful Response
@@ -348,7 +348,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /spots
+  * URL: /api/spots/
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -423,7 +423,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: /spots/:spotsId
+  * URL: /api/spots/:id
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -511,7 +511,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /spots/:id
+  * URL: /api/spots/:id
   * Body: none
 
 * Successful Response

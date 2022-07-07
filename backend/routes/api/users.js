@@ -43,28 +43,8 @@ router.post("/sign-up", validateSignup, async (req, res) => {
     })
   }
 
-  const user = await User.signup({ firstName, lastName, email, username, password});
-
-  if (!firstName) {
-    res.status(400).json({
-      message: "Validation error",
-      statusCode: 400,
-      errors: {
-        firstName: 'First Name is required'
-      }
-    })
-  } else if (!lastName) {
-    res.status(400).json({
-      message: "Validation error",
-      statusCode: 400,
-      errors: {
-        lastName: 'Last Name is required'
-      }
-    })
-  }
-
-
- const token = await setTokenCookie(res, user);
+const user = await User.signup({ firstName, lastName, email, username, password});
+const token = await setTokenCookie(res, user);
 
   return res.json({user, token});
 });
