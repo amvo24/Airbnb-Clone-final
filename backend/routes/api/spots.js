@@ -44,7 +44,7 @@ router.get('/', async (req,res) => {
      res.json(spots);
 })
 
-// GET all spots owned by the current user
+// GET all spots owned by the current user !!!!
 router.get('/userSpots', requireAuth, async (req, res) => {
     const { id } = req.user
 
@@ -70,6 +70,10 @@ router.get('/:id', async (req,res) => {
       }]
   });
 
+  if (!spots) {
+    res.status(404)
+    res.json({message: "Spot couldn't be found", statusCode: 404})
+  }
   const reviewsAggData = await Spot.findByPk(req.params.id, {
     include: {
         model: Review,
@@ -86,21 +90,17 @@ const spotData = spots.toJSON()
 spotData.numReviews = reviewsAggData.numReviews
 spotData.avgStarRating = reviewsAggData.avgStarRating
 
-if (!spots) {
-  res.status(404)
-  res.json({message: "Spot couldn't be found", statusCode: 404})
-}
 
   res.json(spotData)
 })
 
 
-  //Create a new Spot
+  //Create a new Spot !!!!!!! take out in body and put in back end??
   router.post('/', requireAuth, async (req, res) => {
    let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
 
    const newSpot = await Spot.create({
-    ownerId,
+    ownerId: req.user.id,
     address,
     city,
     state,
@@ -115,10 +115,14 @@ if (!spots) {
    res.json({message: 'Successfully created spot', newSpot})
  })
 
- // Edit a spot
+ // Edit a spot !!!!
  router.put('/:id', requireAuth, validateSpots, async (req, res) => {
-  let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
-    const spots = await Spot.findByPk(req.params.id)
+  let {address, city, state, country, lat, lng, name, description, price} = req.body
+    const spots = await Spot.findByPk(req.params.id, {
+      where: {
+        ownerId: req.params.id
+      }
+    })
 
     if(!spots || spots !== req.user) {
       res.status(404)

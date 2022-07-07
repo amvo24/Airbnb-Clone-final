@@ -29,6 +29,19 @@ module.exports = {
         description: 'Fun place here',
         price: 150,
         previewImage: null,
+      },
+      {
+        ownerId: 3,
+        address: '1234 tokyo dr',
+        city: 'Tokyo',
+        state: 'Japan',
+        country: 'Japan',
+        lat: 45.7645358,
+        lng: -250.4730327,
+        name: 'random place',
+        description: 'japanese place',
+        price: 200,
+        previewImage: null,
       }
     ]);
   },
