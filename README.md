@@ -599,7 +599,7 @@ Returns all the reviews that belong to a spot specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/:spotId/reviews
+  * URL: /api/reviews/:spotId/reviews
   * Body: none
 
 * Successful Response
