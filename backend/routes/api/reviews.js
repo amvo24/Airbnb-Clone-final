@@ -77,17 +77,23 @@ router.get('/:spotId/reviews', async (req, res) => {
   let reviews = await Review.findAll({
     where: {
       spotId: spotId,
-    }
+    }, include: [
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      },
+      {
+        model: Image,
+        as: 'images',
+        attributes: ['url']
+      },
+    ]
   });
 
-  let user = await User.findByPk(spot.ownerId);
-  let images = await Image.findByPk(spot.id)
 
 
   return res.json({
-    reviews,
-    user,
-    images
+    reviews
   });
 });
 
