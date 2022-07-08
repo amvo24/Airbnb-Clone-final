@@ -1,24 +1,29 @@
 'use strict';
-const { Model, Validator } = require('sequelize');
+const {
+  Model, Validator
+} = require('sequelize');
+
 const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
-      //const { id, username, email } = this; // context will be the User instance
-      const { id, email } = this
-      return { id, email };
+      const { id, username, email } = this; // context will be the User instance
+      return { id, username, email }
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
-    static async login({ email, password }) {
+    static getCurrentUserById(id) {
+      return User.scope("currentUser").findByPk(id);
+    }
+    static async login({ credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
         where: {
           [Op.or]: {
-            //username: credential,
-            email: email
+            username: credential,
+            email: credential
           }
         }
       });
@@ -26,12 +31,12 @@ module.exports = (sequelize, DataTypes) => {
         return await User.scope('currentUser').findByPk(user.id);
       }
     }
-    static async signup({ firstName, lastName, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
-        //username,
         firstName,
         lastName,
+        username,
         email,
         hashedPassword
       });
@@ -48,18 +53,18 @@ module.exports = (sequelize, DataTypes) => {
 
   User.init(
     {
-      // username: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     len: [4, 30],
-      //     isNotEmail(value) {
-      //       if (Validator.isEmail(value)) {
-      //         throw new Error("Cannot be an email.");
-      //       }
-      //     }
-      //   }
-      // },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [4, 30],
+          isNotEmail(value) {
+            if (Validator.isEmail(value)) {
+              throw new Error("Cannot be an email.");
+            }
+          }
+        }
+      },
       firstName: {
         type: DataTypes.STRING,
         allowNull: false

@@ -8,7 +8,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 const validateLogin = [
-  check('email')
+  check('credentials')
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage('email: Email is required'),
@@ -18,32 +18,57 @@ const validateLogin = [
   handleValidationErrors
 ];
 
-// Log in
-router.post('/log-in', validateLogin, async (req, res, next) => {
-    const { email, password } = req.body;
+// Log in original
+// router.post('/log-in', validateLogin, async (req, res, next) => {
+//     const { email, password } = req.body;
 
-    const user = await User.login({ email, password });
+//     const user = await User.login({ email, password });
 
-    if (!user) {
-      const err = new Error('Invalid credentials');
-      err.status = 401;
-      //err.title = 'Login failed';
-      //err.errors = ['The provided email is invalid.'];
-      return next(err);
-    }
+//     if (!user) {
+//       const err = new Error('Invalid credentials');
+//       err.status = 401;
+//       //err.title = 'Login failed';
+//       //err.errors = ['The provided email is invalid.'];
+//       return next(err);
+//     }
 
-    const token = await setTokenCookie(res, user)
-    const userRes = {
-      id: req.user.id,
-      firstName: req.user.firstName,
-      lastName: req.user.lastName,
-      email: req.user.email,
-      token: token,
-    };
-    return res.json(userRes);
+//     const token = await setTokenCookie(res, user)
+//     user.save()
+//     const userRes = {
+//       id: user.id,
+//       firstName: req.user.firstName,
+//       lastName: req.user.lastName,
+//       email: req.user.email,
+//       token: token,
+//     };
+//     return res.json(userRes);
+//   }
+// );
+
+// Log in c
+router.post('/login', validateLogin, async (req, res, next) => {
+  const { credential, password } = req.body;
+  const user = await User.login({ credential, password });
+
+  if (!user) {
+    const err = new Error('Login failed');
+    err.status = 401;
+    err.title = 'Login failed';
+    err.errors = ['The provided credentials were invalid.'];
+    return next(err);
   }
-);
 
+  const token = await setTokenCookie(res, user);
+  user.save()
+  return res.json({
+    "id": user.id,
+    "firstName": user.firstName,
+    "lastName": user.lastName,
+    "email": user.email,
+    "token": token
+  });
+}
+);
 //restore user
 router.get('/', restoreUser, (req, res) => {
       const { user } = req;
