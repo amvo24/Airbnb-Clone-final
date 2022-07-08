@@ -152,7 +152,7 @@ router.get('/:spotId/reviews', async (req, res) => {
 router.post("/:spotId", requireAuth, validateReview, async (req, res) => {
   const { review, stars } = req.body;
   const spotId = req.params.spotId
-  const spot = await Spot.findByPk(req.params.spotId);\
+  const spot = await Spot.findByPk(req.params.spotId);
   // const err = {
   //   message: "Validation error",
   //   statusCode: 400,
