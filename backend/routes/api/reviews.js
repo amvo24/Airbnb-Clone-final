@@ -62,7 +62,6 @@ router.get('/user-reviews', requireAuth, async (req, res) => {
 //     return res.json(reviews);
 // });
 
-//Create a Review for a Spot based on the Spot's id
 
 router.get('/:spotId/reviews', async (req, res) => {
   const spotId = req.params.spotId;
@@ -92,6 +91,7 @@ router.get('/:spotId/reviews', async (req, res) => {
   });
 });
 
+//Create a Review for a Spot based on the Spot's id
 router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     let { review, stars } = req.body
     const spotId = req.params.spotId

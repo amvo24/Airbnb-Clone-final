@@ -44,6 +44,8 @@ router.get('/', async (req,res) => {
      res.json(spots);
 })
 
+
+
 // GET all spots owned by the current user
 router.get('/userSpots', requireAuth, async (req, res) => {
     const { id } = req.user
@@ -151,9 +153,6 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
 
 
  //delete spot
-
-
-
  router.delete('/:id', async (req, res) => {
     const spots = await Spot.findByPk(req.params.id);
 
@@ -172,5 +171,38 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
     spots.destroy()
     spots.save()
 })
+
+// router.get('/', async (req, res) => {
+
+//   let { page, size } = req.query;
+//   if (!page || size < 1 || isNaN(page)) {
+//       page = 10
+//   }
+//   if (!size || size < 1 || isNaN(size)) {
+//       size = 20
+//   }
+
+//   if (size > 20) {
+//       size = 20
+//   }
+//   if (page > 10) {
+//       page = 0
+//   }
+
+//   page = parseInt(page)
+//   size = parseInt(size)
+
+//   let spot = await Spot.findAll({
+
+//       limit: size,
+//       offset: (page - 1) * size,
+//   });
+//   return res.json({
+//       spot,
+//       page,
+//       size
+//   });
+// })
+
 
 module.exports = router
