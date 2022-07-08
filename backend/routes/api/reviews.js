@@ -38,7 +38,7 @@ router.get('/user-reviews', requireAuth, async (req, res) => {
         ],
       where: { userId: id }
     });
-    res.json(reviews[0])
+    res.json(reviews)
 });
 
 // GET all reviews by a Spot's Id
