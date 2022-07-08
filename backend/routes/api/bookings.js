@@ -126,11 +126,13 @@ router.get('/:spotId', requireAuth, async (req, res) => {
 
 // })
 
+
+//create a booking
 router.post('/spot/:spotId', requireAuth, async (req, res) => {
-  const spotId = req.params.spotId;
-  bookingParams = req.body;
-  bookingParams.spotId = spotId;
-  bookingParams.userId = req.user.id;
+  const{ spotId }= req.params;
+  const {startDate, endDate} = req.body
+
+
 
   let spot = await Spot.findByPk(spotId);
 
@@ -140,14 +142,14 @@ router.post('/spot/:spotId', requireAuth, async (req, res) => {
     });
   }
 
-  if (bookingParams.userId === spot.ownerId) {
+  if (req.user.id === spot.ownerId) {
     return res.status(403).json({
       "message": "Forbidden",
       "statusCode": 403
     });
   }
 
-  if (bookingParams.endDate <= bookingParams.startDate) {
+  if (endDate <= startDate) {
     return res.status(400).json({
       "message": "Validation error",
       "statusCode": 400,
@@ -162,11 +164,11 @@ router.post('/spot/:spotId', requireAuth, async (req, res) => {
       spotId: spotId,
       [Op.and]: [{
         startDate: {
-          [Op.lte]: bookingParams.endDate
+          [Op.lte]: endDate
           },
         }, {
         endDate: {
-          [Op.gte]: bookingParams.startDate
+          [Op.gte]: startDate
           }
         }],
     }
@@ -183,7 +185,7 @@ router.post('/spot/:spotId', requireAuth, async (req, res) => {
     })
   }
 
-  let booking = await Booking.create(bookingParams);
+  let booking = await Booking.create({startDate, endDate, spotId, userId: req.user.id});
   booking = await Booking.findByPk(booking.id);
   return res.json(booking);
 });
@@ -194,7 +196,7 @@ router.post('/spot/:spotId', requireAuth, async (req, res) => {
 router.put('/:id', requireAuth, async (req, res) => {
 
     const {startDate, endDate} = req.body
-    bookingParams = req.body
+
 
     const bookings = await Booking.findOne({
         where: {
@@ -202,24 +204,23 @@ router.put('/:id', requireAuth, async (req, res) => {
         }
       }
     );
+      //404 error done
+    if (!bookings || bookings.userId !== req.user.id) {
+    return res.status(404).json({
+        message: "Booking couldn't be found",
+        statusCode: 404
+      })
+    }
 
-    const today = Date.now()
 
-    if (bookingParams.startDate <= today) {
-      res.status(400).json({
+    if (new Date(bookings.endDate) < new Date() ) {
+      return res.status(400).json({
         "message": "Past bookings can't be modified",
         "statusCode": 400
       })
     }
 
 
-    if (!bookings || bookings.userId !== req.user.id) {
-      res.status(404)
-      res.json({
-        message: "Booking couldn't be found",
-        statusCode: 404
-      })
-    }
 
     bookings.startDate = startDate
     bookings.endDate = endDate
@@ -260,7 +261,8 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
   if (!currentBooking) {
       res.status(404);
       res.json({
-          "message": "Spot does not exist"
+          "message": "Booking could not be found",
+          "statusCode": 404
       })
   }
 
@@ -273,7 +275,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
       })
   }
 
-  if (currentBooking.startDate < Date.now()) {
+  if (new Date(currentBooking.startDate) < Date.now()) {
       res.status(400);
       res.json({
           "message": "You cannot delete a past or current booking",

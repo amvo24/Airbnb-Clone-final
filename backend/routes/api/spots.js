@@ -1,5 +1,6 @@
 const express = require('express');
 const {requireAuth } = require('../../utils/auth');
+const { Op } = require('sequelize');
 const {Spot, Image, User, Review, sequelize} = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -39,10 +40,83 @@ const validateSpots = [
 
 // GET all spots
 router.get('/', async (req,res) => {
-    const spots = await Spot.findAll();
 
-     res.json(spots);
+    let { page, size, maxLat, minLat, minLng, maxLng, maxPrice, minPrice} = req.query;
+    page = Number(page)
+    size = Number(size)
+
+  if (isNaN(page)) {
+      page = 0
+  }
+  if (isNaN(size)) {
+      size = 20
+  }
+
+  if (size > 20) {
+      size = 20
+  }
+  if (page > 10) {
+      page = 10
+  }
+const error = {
+    "message": "Validation Error",
+    "statusCode": 400,
+    "errors": {}
+  }
+
+
+  if (page < 0) {
+    error.errors.page = "Page must be greater than or equal to 0"
+  }
+  if (size < 0) {
+    error.errors.size = "Size must be greater than or equal to 0"
+  }
+  if (+maxLat > 90) {
+    error.errors.maxLat = "Maximum latitude is invalid"
+  }
+  if (+minLat < -90) {
+    error.errors.minLat = "Minimum latitude is invalid"
+  }
+  if (+minLng < -180) {
+    error.errors.minLng = "Maximum longitude is invalid"
+  }
+  if (+maxLng > 180) {
+    error.errors.maxLng = "Minimum longitude is invalid"
+  }
+  if (Number(minPrice) < 0) {
+    error.errors.minPrice = "Minimum price must be greater than 0"
+  }
+  if (Number(maxPrice) < 0) {
+    error.errors.maxPrice = "Maximum price must be greater than 0"
+  }
+
+if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || Number(maxPrice) < 0 || Number(minPrice) < 0) {
+  return res.status(400).json(error)
+}
+  const options = []
+  if (maxLat) {options.push({lat: {[Op.lte]: Number(maxLat)}})}
+  if (minLat) {options.push({lat: {[Op.gte]: Number(minLat)}})}
+  if (maxLng) {options.push({lng: {[Op.lte]: Number(maxLng)}})}
+  if (minLng) {options.push({lng: {[Op.gte]: Number(minLng)}})}
+  if (maxPrice) {options.push({price: {[Op.lte]: Number(maxPrice)}})}
+  if (minPrice) {options.push({price: {[Op.gte]: Number(minPrice)}})}
+
+  let spot = await Spot.findAll({
+    where: {
+    [Op.and]: options
+
+},
+      limit: size || 20,
+      offset: page * size,
+  });
+  return res.json({
+      spot,
+      page,
+      size: size || 20
+  });
+
 })
+
 
 
 

@@ -44,6 +44,7 @@ router.post('/log-in', validateLogin, async (req, res, next) => {
   }
 );
 
+//restore user
 router.get('/', restoreUser, (req, res) => {
       const { user } = req;
       if (user) {

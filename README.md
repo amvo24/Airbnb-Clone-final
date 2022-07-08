@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/users/currentUser
+  * URL: /api/users/current-user
   * Body: none
 
 * Successful Response
@@ -83,8 +83,8 @@ information.
 
     ```json
     {
-      "email": "john.smith@gmail.com",
-      "password": "secret password"
+      "email": "demo@user.io",
+      "password": "password"
     }
     ```
 

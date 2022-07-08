@@ -128,7 +128,7 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
 
     const newReview = await Review.create({
       userId: req.user.id,
-      spotId: req.params.spotId,
+      spotId: spotId,
       review,
       stars,
     })
