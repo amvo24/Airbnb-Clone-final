@@ -11,6 +11,12 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
+      imageableId: {
+        type: Sequelize.INTEGER
+      },
+      imageableType: {
+        type: Sequelize.STRING
+      },
       reviewId: {
         type: Sequelize.INTEGER,
         references: {

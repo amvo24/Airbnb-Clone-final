@@ -50,7 +50,7 @@ const token = await setTokenCookie(res, user);
 });
 
 // Get the Current User
-router.get("/currentUser", requireAuth, async (req, res) => {
+router.get("/current-user", requireAuth, async (req, res) => {
   const user = {
     id: req.user.id,
     firstName: req.user.firstName,

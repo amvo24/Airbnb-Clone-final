@@ -44,7 +44,7 @@ router.get('/', async (req,res) => {
      res.json(spots);
 })
 
-// GET all spots owned by the current user 
+// GET all spots owned by the current user
 router.get('/userSpots', requireAuth, async (req, res) => {
     const { id } = req.user
 
@@ -95,9 +95,9 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
 })
 
 
-  //Create a new Spot !!!!!!! take out in body and put in back end??
+//Create a new Spot
   router.post('/', requireAuth, async (req, res) => {
-   let {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body
+   let { address, city, state, country, lat, lng, name, description, price} = req.body
 
    const newSpot = await Spot.create({
     ownerId: req.user.id,
@@ -113,9 +113,9 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
    })
 
    res.json({message: 'Successfully created spot', newSpot})
- })
+})
 
- // Edit a spot !!!!
+// Edit a spot !!!!
  router.put('/:id', requireAuth, validateSpots, async (req, res) => {
   let {address, city, state, country, lat, lng, name, description, price} = req.body
     const spots = await Spot.findByPk(req.params.id, {
@@ -124,13 +124,17 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
       }
     })
 
-    if(!spots || spots !== req.user) {
+    if (!spots) {
       res.status(404)
-      res.json( {
-        message: "invalid ownerId"
+     return res.json({
+        message: "Spot couldn't be found",
+        statusCode: 404
       })
+    } else if (spots.ownerId !== req.user.id) {
+      return res.status(403).json({message:"Forbidden. You must be owner to edit this spot"})
     }
-         spots.ownerId = ownerId
+
+         //spots.ownerId = ownerId
          spots.address = address
          spots.city = city
          spots.state = state
@@ -143,11 +147,14 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
 
       await spots.save()
       return res.json(spots)
-  })
+})
 
 
  //delete spot
-  router.delete('/:id', async (req, res) => {
+
+
+
+ router.delete('/:id', async (req, res) => {
     const spots = await Spot.findByPk(req.params.id);
 
      res.json({

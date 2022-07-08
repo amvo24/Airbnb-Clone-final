@@ -41,28 +41,57 @@ router.get('/user-reviews', requireAuth, async (req, res) => {
 });
 
 // GET all reviews by a Spot's Id
-router.get('/:spotId/reviews', async (req, res) => {
-    const spotId = req.params.spotId;
+// router.get('/:spotId/reviews', async (req, res) => {
+//     const spotId = req.params.spotId;
 
-    let spot = await Spot.findByPk(spotId);
+//     let spot = await Spot.findByPk(spotId);
 
-    if (!spot) {
-      return res.status(404).json({
-        "message": "Spot does not exist!",
-        "statusCode": 404
-      });
-    }
+//     if (!spot) {
+//       return res.status(404).json({
+//         "message": "Spot does not exist!",
+//         "statusCode": 404
+//       });
+//     }
 
-    let reviews = await Review.findAll({
-      where: {
-        spotId: spotId,
-      }
-    });
+//     let reviews = await Review.findAll({
+//       where: {
+//         spotId: spotId,
+//       }
+//     });
 
-    return res.json(reviews);
-});
+//     return res.json(reviews);
+// });
 
 //Create a Review for a Spot based on the Spot's id
+
+router.get('/:spotId/reviews', async (req, res) => {
+  const spotId = req.params.spotId;
+
+  let spot  = await Spot.findByPk(spotId);
+  //if spot doesnt exist
+  if (!spot) {
+    return res.status(404).json({
+      "message": "Spot does not exist!"
+    });
+  }
+
+  let reviews = await Review.findAll({
+    where: {
+      spotId: spotId,
+    }
+  });
+
+  let user = await User.findByPk(spot.ownerId);
+  let images = await Image.findByPk(spot.id)
+
+
+  return res.json({
+    reviews,
+    user,
+    images
+  });
+});
+
 router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     let { review, stars } = req.body
     const spotId = req.params.spotId
