@@ -70,7 +70,8 @@ router.get('/:spotId/reviews', async (req, res) => {
   //if spot doesnt exist
   if (!spot) {
     return res.status(404).json({
-      "message": "Spot does not exist!"
+      "message": "Spot couldn't be found",
+      "statusCode": 404
     });
   }
 
