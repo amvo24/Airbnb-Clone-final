@@ -230,17 +230,17 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
  router.delete('/:id', async (req, res) => {
     const spots = await Spot.findByPk(req.params.id);
 
+    if(!spots) {
+      return res.json({
+        message: "Spot couldn't be found",
+        statusCode: 404
+      })
+    }
      res.json({
         message: "Successfully deleted",
         statusCode: 200
       })
 
-    if(!spots) {
-       res.json({
-        message: "Spot couldn't be found",
-        statusCode: 404
-      })
-    }
 
     spots.destroy()
     spots.save()
