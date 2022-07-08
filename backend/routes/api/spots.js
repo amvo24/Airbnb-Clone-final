@@ -44,7 +44,7 @@ router.get('/', async (req,res) => {
      res.json(spots);
 })
 
-// GET all spots owned by the current user !!!!
+// GET all spots owned by the current user 
 router.get('/userSpots', requireAuth, async (req, res) => {
     const { id } = req.user
 

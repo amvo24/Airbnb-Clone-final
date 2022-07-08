@@ -44,7 +44,7 @@ router.get('/user-reviews', requireAuth, async (req, res) => {
 router.get('/:spotId/reviews', async (req, res) => {
     const spotId = req.params.spotId;
 
-    let spot  = await Spot.findByPk(spotId);
+    let spot = await Spot.findByPk(spotId);
 
     if (!spot) {
       return res.status(404).json({
