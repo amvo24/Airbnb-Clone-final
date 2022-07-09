@@ -17,6 +17,12 @@ const validateReview = [
     handleValidationErrors
   ];
 
+  //This is a testing only router
+  router.get('/', async (req, res) => {
+    const allReviews = await Review.findAll()
+    res.json(allReviews)
+  })
+
 // GET all reviews of the current user
 router.get('/user-reviews', requireAuth, async (req, res) => {
     const { id } = req.user
