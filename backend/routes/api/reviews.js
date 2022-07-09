@@ -118,12 +118,12 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
         where:{ userId: id, spotId: spotId}
     })
 
-    // if (user) {
-    //   return res.status(403).json({
-    //         "message": "User already has a review for this spot",
-    //         "statusCode": 403
-    //     })
-    // }
+    if (user) {
+      return res.status(403).json({
+            "message": "User already has a review for this spot",
+            "statusCode": 403
+        })
+    }
 
     if (stars > 5 || stars < 0) {
         return res.status(400).json({
