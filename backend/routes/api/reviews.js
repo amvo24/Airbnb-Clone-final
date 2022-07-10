@@ -175,7 +175,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
         const { stars } = req.body
         let reviewId = req.params.reviewId;
         let reviewParams = req.body;
-        let currentUserId = req.user.id;
+        let id = req.user.id;
 
         if (stars > 5 || stars < 0) {
             return res.status(400).json({
