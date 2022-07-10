@@ -58,8 +58,9 @@ router.post('/review/:reviewId', requireAuth, async (req, res) => {
       statusCode: 403
     })
   }
-  
-  let allReviews = await Image.findAll({where: {
+
+  let allReviews = await Image.findAll({
+    where: {
     [Op.and]: [
       {imageableType: "Review"},
       {reviewId: req.params.reviewId}
