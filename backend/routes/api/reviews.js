@@ -129,7 +129,7 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     const reviewExistence = await Review.findAll({
       where: {
         [Op.and]: [
-          { spotId: req.params.id },
+          { spotId: req.params.spotId },
           { userId: req.user.id },
         ],
       },
