@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Image.belongsTo(models.Review, {foreignKey: 'reviewId', onDelete: 'CASCADE', hooks: true})
-      Image.belongsTo(models.Spot, {foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true})
+      Image.belongsTo(models.Review, {foreignKey: 'reviewId', onDelete: 'CASCADE'})
+      Image.belongsTo(models.Spot, {foreignKey: 'spotId', onDelete: 'CASCADE'})
     }
   }
   Image.init({
