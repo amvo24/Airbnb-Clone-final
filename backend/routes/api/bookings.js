@@ -222,7 +222,7 @@ router.put('/:id', requireAuth, async (req, res) => {
         statusCode: 404
       })
     }
-    
+
    if (bookings.userId !== req.user.id) {
     return res.status(403).json({
       "message": "Forbidden",
@@ -278,7 +278,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
   let currentBooking = await Booking.findByPk(bookingId);
   if (!currentBooking) {
       res.status(404);
-      res.json({
+      return res.json({
           "message": "Booking could not be found",
           "statusCode": 404
       })
@@ -287,7 +287,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
   let spot = await Spot.findByPk(currentBooking.spotId)
   if (currentBooking.userId !== currentUserId && spot.ownerId !== currentUserId){
       res.status(403);
-      res.json({
+      return res.json({
           "message": "Forbidden",
           "statusCode": 403
       })
@@ -295,7 +295,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 
   if (new Date(currentBooking.startDate) < Date.now()) {
       res.status(400);
-      res.json({
+      return res.json({
           "message": "You cannot delete a past or current booking",
           "statusCode": 400
       });
