@@ -1,6 +1,7 @@
 const express = require('express');
 const {requireAuth } = require('../../utils/auth');
 const {Spot, Image, User, Review, Booking} = require('../../db/models');
+const {Op} = require('sequelize')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
@@ -11,14 +12,17 @@ router.post('/spots/:spotId', requireAuth, async (req, res) => {
 
   const spotId = req.params.spotId;
 
-  let spot = await Spot.findByPk(spotId);
+  let spot = await Spot.findByPk(spotId, {
+    where: {ownerId: req.userId}
+  });
 
   if (!spot) {
     return res.status(404).json({
       message: "Spot couldn't be found",
-      statusCode: 404
-    });
-  } else if (spot.ownerId !== req.user.id) {
+      statusCode: 404})
+  }
+
+  if (spot.ownerId !== req.user.id) {
      return res.status(403).json({
       message: "Forbidden. Spot must belong to the current user",
       statusCode: 403
@@ -39,27 +43,38 @@ router.post('/spots/:spotId', requireAuth, async (req, res) => {
 //Add an Image to a Review based on the Review's id
 router.post('/review/:reviewId', requireAuth, async (req, res) => {
   const reviewId = req.params.reviewId;
-  const review = await Review.findByPk(reviewId);
-  let allReviews = await Image.findAll({where: {imageableType: "Review"}})
 
-  if (allReviews.length > 10) {
-    return res.status(400).json({
-        message: "Maximum number of images for this resource was reached",
-        statusCode: 400
-    })
-  } else if (!review) {
-    return res.status(404).json({
-      message: "Review couldn't be found",
-      statusCode: 404
-    });
-  } else if (review.userId !== req.user.id) {
+  const review = await Review.findByPk(reviewId);
+  if (!review) {
+      return res.status(404).json({
+        message: "Review couldn't be found",
+        statusCode: 404
+      });
+  }
+
+  if (review.userId !== req.user.id) {
     return res.json ({
       message: "Forbidden",
       statusCode: 403
     })
   }
+  
+  let allReviews = await Image.findAll({where: {
+    [Op.and]: [
+      {imageableType: "Review"},
+      {reviewId: req.params.reviewId}
+    ]}
+  })
+
+  if (allReviews.length > 10) {
+    return res.status(400).json({
+        message: "Maximum number of images for this resource was reached",
+        statusCode: 400})
+  }
+
 
   let { url } = req.body
+
   const newImage = await Image.create({
     imageableId: review.userId,
     imageableType: "Review",
