@@ -6,7 +6,11 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
-
+//GET ALL BOOKINGS FOR TESTING PURPOSES
+router.get('/', async (req, res) => {
+  const allBookings = await Booking.findAll()
+  res.json(allBookings)
+})
 
 
 //GET all of the current users bookings
@@ -21,6 +25,12 @@ router.get('/user-bookings', requireAuth, async (req, res) => {
        ],
        where: { userId: id}
     })
+    if (!bookings) {
+      res.status(404).json({
+        "message": "Sorry, you don't have any current bookings at the moment"
+      })
+    }
+
     res.json(bookings)
 })
 
