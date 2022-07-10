@@ -15,7 +15,7 @@ module.exports = {
         name: 'App Academy',
         description: 'Place where web developers are created',
         price: 123,
-        previewImage: null,
+        previewImage: "image url",
       },
       {
         ownerId: 2,
@@ -28,7 +28,7 @@ module.exports = {
         name: 'Universal Studios',
         description: 'Fun place here',
         price: 150,
-        previewImage: null,
+        previewImage: "image url",
       },
       {
         ownerId: 3,
@@ -41,7 +41,7 @@ module.exports = {
         name: 'random place',
         description: 'japanese place',
         price: 200,
-        previewImage: null,
+        previewImage: "image url",
       }
     ]);
   },
