@@ -225,6 +225,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 // })
 //delete a review
 
+//DELETE A review
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     const reviewId = req.params.reviewId;
     const id = req.user.id
@@ -233,7 +234,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
       where: {id : reviewId}
     })
 
-    if (review.userId !== id ) {
+    if (review.user.id !== id ) {
       res.status(403);
       res.json({
         "message": "Authorization Error"
