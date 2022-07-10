@@ -187,10 +187,15 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
             })
         }
 
+        if (review.userId !== id ) {
+          return res.status(403).json({
+             "message": "Authorization Error"
+           })
+         }
 
         let review = await Review.findByPk(reviewId);
         if(!review) {
-            res.status(404).json({
+          return res.status(404).json({
                 "message": "Review couldn't be found",
                 "statusCode": 404
             })
