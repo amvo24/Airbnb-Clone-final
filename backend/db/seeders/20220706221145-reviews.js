@@ -17,26 +17,6 @@ module.exports = {
         spotId: 1,
         userId: 2
       },
-      {
-
-        review: 'I am scared',
-        stars: 1,
-        spotId: 1,
-        userId: 3
-      },
-      {
-
-        review: '4th review',
-        spotId: 1,
-        userId: 3
-      },
-      {
-        
-        review: '5th review',
-        stars: 1,
-        spotId: 1,
-        userId: 3
-      }
     ])
   },
 

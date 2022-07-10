@@ -113,6 +113,7 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     const spot = await Spot.findOne({
         where: { id: spotId}
     })
+
     if (!spot) {
       return res.status(404).json({
             "message": "Spot couldn't be found",
@@ -121,7 +122,7 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     }
 
     const user = await Review.findOne({
-        where:{ userId: id, spotId: spotId}
+        where:{ userId: req.user.id, spotId: req.params.spotId}
     })
 
     if (user) {
