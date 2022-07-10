@@ -26,7 +26,7 @@ router.get('/user-bookings', requireAuth, async (req, res) => {
        where: { userId: id}
     })
     if (!bookings) {
-      res.status(404).json({
+     return res.status(404).json({
         "message": "Sorry, you don't have any current bookings at the moment"
       })
     }
@@ -214,13 +214,21 @@ router.put('/:id', requireAuth, async (req, res) => {
         }
       }
     );
+
       //404 error done
-    if (!bookings || bookings.userId !== req.user.id) {
+    if (!bookings) {
     return res.status(404).json({
         message: "Booking couldn't be found",
         statusCode: 404
       })
     }
+    
+   if (bookings.userId !== req.user.id) {
+    return res.status(403).json({
+      "message": "Forbidden",
+      "statusCode": 403
+    })
+   }
 
 
     if (new Date(bookings.endDate) < new Date() ) {
