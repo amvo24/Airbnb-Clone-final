@@ -186,13 +186,6 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
                 }
             })
         }
-
-        if (review.userId !== id ) {
-          return res.status(403).json({
-             "message": "Authorization Error"
-           })
-         }
-
         let review = await Review.findByPk(reviewId);
         if(!review) {
           return res.status(404).json({
@@ -200,6 +193,13 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
                 "statusCode": 404
             })
         }
+
+        if (review.userId !== id ) {
+          return res.status(403).json({
+             "message": "Authorization Error"
+           })
+         }
+
 
         review = await Review.update(reviewParams, {
           where: {
