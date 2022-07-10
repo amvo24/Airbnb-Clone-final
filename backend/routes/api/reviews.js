@@ -234,20 +234,19 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
       where: {id : reviewId}
     })
 
-    if (review.user.id !== id ) {
-      res.status(403);
-      res.json({
-        "message": "Authorization Error"
-      })
-    }
-
     if (!review) {
-      res.status(404);
-      res.json({
+     return res.status(404).json({
         "message": "Review couldn't be found",
         "statusCode": 404
       })
     }
+
+    if (review.userId !== id ) {
+     return res.status(403).json({
+        "message": "Authorization Error"
+      })
+    }
+
 
     await review.destroy();
     await review.save();
