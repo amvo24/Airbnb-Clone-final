@@ -46,29 +46,7 @@ router.get('/user-reviews', requireAuth, async (req, res) => {
     res.json(reviews)
 });
 
-// GET all reviews by a Spot's Id
-// router.get('/:spotId/reviews', async (req, res) => {
-//     const spotId = req.params.spotId;
-
-//     let spot = await Spot.findByPk(spotId);
-
-//     if (!spot) {
-//       return res.status(404).json({
-//         "message": "Spot does not exist!",
-//         "statusCode": 404
-//       });
-//     }
-
-//     let reviews = await Review.findAll({
-//       where: {
-//         spotId: spotId,
-//       }
-//     });
-
-//     return res.json(reviews);
-// });
-
-
+//GET all reviews by a spots id
 router.get('/:spotId/reviews', async (req, res) => {
   const spotId = req.params.spotId;
 
@@ -210,25 +188,6 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
         return res.json(review);
 });
 
-// // DELETE a review
-// router.delete('/:reviewId', requireAuth, async (req, res) => {
-//     const reviewId = req.params.reviewId
-//     const review = await Review.findOne({
-//         where: {id: reviewId}
-//     })
-
-//     if(!review) {
-//         res.status(404).json({
-//             "message": "Review couldn't be found",
-//             "statusCode": 404
-//         })
-//     }
-
-//     review.destroy()
-//     review.save()
-
-// })
-//delete a review
 
 //DELETE A review
 router.delete('/:reviewId', requireAuth, async (req, res) => {

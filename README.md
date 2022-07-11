@@ -83,7 +83,7 @@ information.
 
     ```json
     {
-      "email": "demo@user.io",
+      "credential": "demo@user.io",
       "password": "password"
     }
     ```
@@ -97,9 +97,9 @@ information.
     ```json
     {
       "id": 1,
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "john.smith@gmail.com",
+      "firstName": "andrew",
+      "lastName": "vo",
+      "email": "demo@user.io",
       "token": ""
     }
     ```
@@ -838,7 +838,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: users/currentUser/bookings
+  * URL: /api/bookings/user-bookings
   * Body: none
 
 * Successful Response
@@ -883,7 +883,7 @@ Return all the bookings for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /spots/:id/bookings
+  * URL: /api/bookings/:spotId
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the spot.
@@ -952,8 +952,15 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: POST
-  * URL: /spots/:id/bookings
-  * Body: none
+  * URL: /api/bookings/spot/spotId
+  * Body:
+
+    ```json
+    {
+      "startDate": "2021-11-19",
+      "endDate": "2021-11-19"
+    }
+    ```
 
 * Successful Response
   * Status Code: 200
@@ -1011,7 +1018,7 @@ Update and return an existing booking.
 * Require proper authorization: Booking must belong to the current user
 * Request
   * Method: PUT
-  * URL: /bookings/:id
+  * URL: /api/bookings/:id
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1093,7 +1100,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /bookings/:id
+  * URL: /api/bookings/:bookingId
   * Body: none
 
 * Successful Response
@@ -1143,7 +1150,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: /spots/:id/addImage
+  * URL: /api/images/spots/:spotId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1190,7 +1197,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /reviews/:id/addImage
+  * URL: /api/images/review/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1252,7 +1259,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: DELETE
-  * URL: /images/:id
+  * URL: /api/images/:id
   * Body: none
 
 * Successful Response
