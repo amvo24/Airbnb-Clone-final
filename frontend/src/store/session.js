@@ -38,6 +38,24 @@ export const restoreUser = () => async dispatch => {
     const data = await response.json();
     dispatch(setUser(data.user));
     return response;
+};
+
+//thunk action creator
+export const signup = (user) => async (dispatch) => {
+    const { firstName, lastName, username, email, password } = user;
+    const response = await csrfFetch("/api/users/sign-up", {
+      method: "POST",
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        username,
+        email,
+        password,
+      }),
+    });
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
   };
 
 const initialState = { user: null };
