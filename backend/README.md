@@ -1,8 +1,8 @@
 # Airbnb-Clone-final
 
 ## Database Schema Design
+![dbDiagram](https://user-images.githubusercontent.com/98999277/180543189-f551f276-d3af-47e1-a1ee-5114082fe869.png)
 
-![Capture100](https://user-images.githubusercontent.com/98999277/176970196-1e9810fe-0d93-47d1-ad7a-a82082ccc87d.JPG)
 
 ## API Documentation
 
