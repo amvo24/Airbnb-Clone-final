@@ -1,59 +1,68 @@
-// import spots from '..';
+const LOAD_SPOTS = 'spots/load_spots'
+const CREATE_SPOTS = 'spots/create_spots'
+const EDIT_SPOTS = 'spots/edit_spots'
+const DELETE_SPOTS = 'spots/delete_spots'
 
-// const LOAD_SPOTS = "spots/loadSpots";
-// const DELETE_SPOTS = "spots/deleteSpots"
-// const CREATE_SPOTS = "spots/createSpots"
+const loadSpots = (spots) => ({
+    type: LOAD_SPOTS,
+    spots
+});
 
-// //action creator---LOADS STATE
-// export const loadSpots = () => {
-//   return {
-//     type: LOAD_SPOTS,
-//     //?
-//   };
-// };
-// //action creator---DELETES A Spot
-// export const deleteSpots = (id) => {
-//   return {
-//     type: DELETE_SPOTS,
-//     payload: id
-//   };
-// };
-// //action creator---CREATE A Spot
-// export const createSpots = () => {
-//   return {
-//     type: CREATE_SPOTS,
-//     payload: id
-//   };
-// };
+const createSpots = (spots) => ({
+    type: CREATE_SPOTS,
+    spots
+});
 
+const editSpots = (spots) => ({
+    type: EDIT_SPOTS,
+    spots
+});
 
-// //normalization!!!!!!
-// const initialState = {};
-// initialReports.forEach((//??) => {
-//   initialState[????] = ???
-// });
+const deleteSpots = (spots) => ({
+    type: DELETE_SPOTS,
+    spots
+});
 
+//THUNK ACTION CREATORS
+export const getAllSpots = () => async dispatch => {
+    const response = await fetch(`/api/spots`);
 
-// const reportReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     // case LOAD_REPORTS:
-//     //   return { ...state, ...action.initialReports };
-//       case DELETE_SPOTS: {
-//         //COPY OLD STATE HERE, WE ARE CREATING A SHALLOW COPY TO NOT MUTATE THE OG STATE
-//         const newState = {...state}
-//         //DO THE ACTION
-//         delete newState[action.payload]
-//         //RETURN THE COPIED STATE FROM EARIER WHICH IS NOW THE NEW STATE THAT WE DON'T WANT TO MUTATE
-//         return newState;
-//       }
+    if (response.ok) {
+      const spot = await response.json();
+      dispatch(loadSpots(spot));
+    }
+};
 
-//       case CREATE_SPOTS: {
-//         const newState = {...state}
+//????????????????????????????????????????????
+export const getSpotsOwnedByCurrentUser = () => async dispatch => {
+    const response = await fetch(`/api/spots/userSpots`);
 
-//       }
-//     default:
-//       return state;
-//   }
-// };
+    if (response.ok) {
+      const spot = await response.json();
+      dispatch(loadSpots(spot));
+    }
+};
+//???????????????????????????????????????????
+export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
+    const response = await fetch(`/api/spots/${id}`);
 
-// export default reportReducer;
+    if (response.ok) {
+      const spot = await response.json();
+      dispatch(loadSpots(spot));
+    }
+};
+
+export const createNewSpot = () => async dispatch => {
+    const response = await fetch(`/api/spots/`, {
+        method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify()
+    });
+
+    if (response.ok) {
+      const spot = await response.json();
+      dispatch(createSpots(spot));
+    }
+};
