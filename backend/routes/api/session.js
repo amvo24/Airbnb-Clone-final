@@ -37,6 +37,7 @@ router.post('/login', validateLogin, async (req, res, next) => {
   user.save()
   return res.json({
     "id": user.id,
+    "username": user.username,
     "firstName": user.firstName,
     "lastName": user.lastName,
     "email": user.email,

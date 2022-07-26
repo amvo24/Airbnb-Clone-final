@@ -28,8 +28,11 @@ export const getAllSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`);
 
     if (response.ok) {
-      const spot = await response.json();
-      dispatch(loadSpots(spot));
+      const spots = await response.json();
+      dispatch(loadSpots(spots));
+      const all = {}
+      spots.spot.forEach(spot => all[spot.id] = spot)
+      return { ...all }
     }
 };
 
@@ -66,3 +69,38 @@ export const createNewSpot = () => async dispatch => {
       dispatch(createSpots(spot));
     }
 };
+
+export const editSpotById = (id) => async dispatch => {
+  const response = await fetch(`/api/spots/${id}`);
+
+  if (response.ok) {
+    const spot = await response.json();
+    dispatch(editSpots(spot));
+  }
+};
+
+export const deleteSpotById = (id) => async dispatch => {
+  const response = await fetch(`/api/spots/${id}`);
+
+  if (response.ok) {
+    const spot = await response.json();
+    dispatch(deleteSpots(spot));
+  }
+};
+
+const initialState = {}
+
+const spotsReducer = (state = initialState, action) => {
+
+  switch (action.type) {
+    case LOAD_SPOTS:
+        const allSpots = { ...state };
+        action.spots.spot.forEach(spot => allSpots[spot.id] = spot);
+        return { ...allSpots, ...state };
+    default:
+        return state;
+
+}
+};
+
+export default spotsReducer;
