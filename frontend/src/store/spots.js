@@ -1,10 +1,17 @@
+import { csrfFetch } from "./csrf"
 const LOAD_SPOTS = 'spots/load_spots'
+const LOAD_ONE_SPOT = 'spots/load_one_spot'
 const CREATE_SPOTS = 'spots/create_spots'
 const EDIT_SPOTS = 'spots/edit_spots'
 const DELETE_SPOTS = 'spots/delete_spots'
 
 const loadSpots = (spots) => ({
     type: LOAD_SPOTS,
+    spots
+});
+
+const loadOneSpot = (spots) => ({
+    type: LOAD_ONE_SPOT,
     spots
 });
 
@@ -36,7 +43,7 @@ export const getAllSpots = () => async dispatch => {
     }
 };
 
-//????????????????????????????????????????????
+
 export const getSpotsOwnedByCurrentUser = () => async dispatch => {
     const response = await fetch(`/api/spots/userSpots`);
 
@@ -45,29 +52,32 @@ export const getSpotsOwnedByCurrentUser = () => async dispatch => {
       dispatch(loadSpots(spot));
     }
 };
-//???????????????????????????????????????????
+
 export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
     const response = await fetch(`/api/spots/${id}`);
 
     if (response.ok) {
       const spot = await response.json();
-      dispatch(loadSpots(spot));
+      dispatch(loadOneSpot(spot));
     }
+    return response;
 };
 
-export const createNewSpot = () => async dispatch => {
-    const response = await fetch(`/api/spots/`, {
+export const createNewSpot = (spot) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/`, {
         method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify()
+    body: JSON.stringify(spot)
     });
 
     if (response.ok) {
       const spot = await response.json();
       dispatch(createSpots(spot));
+      return spot
     }
+    return response
 };
 
 export const editSpotById = (id) => async dispatch => {
@@ -79,14 +89,14 @@ export const editSpotById = (id) => async dispatch => {
   }
 };
 
-export const deleteSpotById = (id) => async dispatch => {
-  const response = await fetch(`/api/spots/${id}`);
+// export const deleteSpotById = (id) => async dispatch => {
+//   const response = await fetch(`/api/spots/${id}`);
 
-  if (response.ok) {
-    const spot = await response.json();
-    dispatch(deleteSpots(spot));
-  }
-};
+//   if (response.ok) {
+//     const spot = await response.json();
+//     dispatch(deleteSpots(spot));
+//   }
+// };
 
 const initialState = {}
 
@@ -97,6 +107,13 @@ const spotsReducer = (state = initialState, action) => {
         const allSpots = { ...state };
         action.spots.spot.forEach(spot => allSpots[spot.id] = spot);
         return { ...allSpots, ...state };
+    case CREATE_SPOTS:
+        const newState = {...state}
+        newState[action.spot.id] = action.spot
+        return newState
+    case LOAD_ONE_SPOT:
+        const spot = action.spots;
+        return { ...spot, ...state };
     default:
         return state;
 
