@@ -1,6 +1,7 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
@@ -31,20 +32,22 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-      <i className="fas fa-bars nav_bars_icon"></i>
+    <div className="button">
+      <button className="navBar" onClick={openMenu}>
+        <i className="fas fa-bars nav_bars_icon"></i>
         <i className="fas fa-user-circle user_icon"></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-
-        </ul>
+        <div id="menu">
+          <Link to="/spots/create" id="dropdown1">
+            Host your home
+          </Link>
+          <div onClick={logout} id="dropdown2">
+            Log out
+          </div>
+        </div>
       )}
+    </div>
     </>
   );
 }

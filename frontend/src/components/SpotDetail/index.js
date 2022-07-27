@@ -1,19 +1,27 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch} from "react-redux";
 import { useEffect } from "react";
-import { getDetailsOfASpotFromAnId } from "../../store/spots";
+import { getDetailsOfASpotFromAnId, deleteSpotById, editSpotById } from "../../store/spots";
 
 const SpotDetails = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     let { id } = useParams()
     id = Number(id)
-    const spot = useSelector(state => (state.spotInRootReducer[id]));
-    
+    //const spot = useSelector(state => (state.spotInRootReducer[id]));
+    const spot = useSelector(state => (state.spotInRootReducer));
+
 
     useEffect(() => {
     dispatch(getDetailsOfASpotFromAnId(id));
-    }, [dispatch, id]);
+    }, [dispatch]);
+
+    const removeSpot = (e) => {
+      e.preventDefault()
+      dispatch(deleteSpotById(id))
+      history.push('/')
+    }
 
   return (
     <>
@@ -33,6 +41,7 @@ const SpotDetails = () => {
         })}
       </div>
       <div>{spot?.description}</div>
+    <button onClick={removeSpot}>Delete Spot</button>
     </>
   )
 }

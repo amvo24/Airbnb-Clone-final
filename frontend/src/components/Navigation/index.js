@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignupFormModal';
+//import CreateSpotModal from '../CreateSpotModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -18,20 +19,28 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <SignUpFormModal />
+      <div id='nav_right'>
+        <div id='loginButton'> <LoginFormModal /></div>
+        <div id='signUp'><NavLink to="/signup">Sign Up</NavLink> </div>
+      </div>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <nav>
+      <div id="home">
+          <div id='logo'>
+             <NavLink exact to="/">
+                 <img src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg"></img>
+              </NavLink>
+          </div>
+
+          {isLoaded && sessionLinks}
+      </div >
+    </nav >
   );
+
 }
 
 export default Navigation;

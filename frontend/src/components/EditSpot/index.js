@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
-import {createNewSpot} from '../../store/spots'
+import { useHistory, Redirect, useParams } from 'react-router-dom';
+import { editSpotById } from '../../store/spots'
 
 
-const CreateSpot = () => {
+const EditSpot = () => {
     const dispatch = useDispatch();
     const history = useHistory()
-    const user = useSelector((state) => state.session.user)
+    const spot = useSelector((state) => state.spotInRootReducer)
+    let { id } = useParams()
+    id = Number(id)
+
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
@@ -17,17 +19,31 @@ const CreateSpot = () => {
     const [lng, setLng] = useState(1)
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
+    //const [image, setImage] = useState('')
     const [previewImage, setPreviewImage] = useState('')
     const [price, setPrice] = useState(0)
-
     const [errors, setErrors] = useState([])
-    if (!user) return <Redirect to="/" />;
+    const [submitted, setSubmitted] = useState(false)
 
-    const handleSubmit = async (e) => {
+    const updateAddress = (e) => setAddress(e.target.value);
+    const updateCity = (e) => setCity(e.target.value);
+    const updateState = (e) => setState(e.target.value);
+    const updateCountry = (e) => setCountry(e.target.value);
+    const updateLat = (e) => setLat(e.target.value);
+    const updateLng = (e) => setLng(e.target.value);
+    const updateName = (e) => setName(e.target.value);
+    const updateDescription = (e) => setDescription(e.target.value);
+    const updatePrice = (e) => setPrice(e.target.value);
+    const updatePreviewImage = (e) => setPreviewImage(e.target.value);
+
+    //if (!user) return <Redirect to="/" />;
+    if (submitted) return <Redirect to={`/spot/${id}`}/>
+
+    const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([])
 
-        const newSpot = {
+        const editedSpot = {
             name: name,
             address: address,
             city: city,
@@ -40,10 +56,19 @@ const CreateSpot = () => {
             price: price
         }
 
+        //history.push(`/spots/${newSpot.id}`)
         //history.push(`/`)
-        // history.push(`/spots/${newSpot.id}`)
-        return dispatch(createNewSpot(newSpot))
-    }
+        return dispatch(editSpotById(editedSpot, spot.id))
+        .then(async (res) => {
+            console.log("success");
+            setSubmitted(true);
+          })
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          });
+      };
+
 
 
     return (
@@ -59,7 +84,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='Address'
                 value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                onChange={updateAddress}
                 required
                 />
             </label>
@@ -69,7 +94,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='City'
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
+                onChange={updateCity}
                 required
                 />
             </label>
@@ -79,7 +104,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='State'
                 value={state}
-                onChange={(e) => setState(e.target.value)}
+                onChange={updateState}
                 required
                 />
             </label>
@@ -89,7 +114,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='country'
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                onChange={updateCountry}
                 required
                 />
             </label>
@@ -99,7 +124,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='lat'
                 value={lat}
-                onChange={(e) => setLat(e.target.value)}
+                onChange={updateLat}
                 required
                 />
             </label>
@@ -109,7 +134,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='lng'
                 value={lng}
-                onChange={(e) => setLng(e.target.value)}
+                onChange={updateLng}
                 required
                 />
             </label>
@@ -119,7 +144,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='name'
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={updateName}
                 required
                 />
             </label>
@@ -129,7 +154,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='description'
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={updateDescription}
                 required
                 />
             </label>
@@ -139,7 +164,7 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='Preview Image'
                 value={previewImage}
-                onChange={(e) => setPreviewImage(e.target.value)}
+                onChange={updatePreviewImage}
                 required
                 />
             </label>
@@ -149,13 +174,13 @@ const CreateSpot = () => {
                 type="text"
                 placeholder='Price'
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={updatePrice}
                 required
                 />
             </label>
-            <button type="submit">Create Spot</button>
+            <button type="submit">Edit Spot</button>
         </form>
     )
 }
 
-export default CreateSpot
+export default EditSpot
