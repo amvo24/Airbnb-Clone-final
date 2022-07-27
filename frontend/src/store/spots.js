@@ -5,19 +5,21 @@ const CREATE_SPOTS = 'spots/create_spots'
 const EDIT_SPOTS = 'spots/edit_spots'
 const DELETE_SPOTS = 'spots/delete_spots'
 
-const loadSpots = (spots) => ({
+const loadSpots = (payload) => ({
     type: LOAD_SPOTS,
-    spots
-});
+    payload
+  });
 
-const loadOneSpot = (spots) => ({
+
+const loadOneSpot = (payload) => ({
     type: LOAD_ONE_SPOT,
-    spots
+    payload
 });
 
-const createSpots = (spots) => ({
+
+const createSpots = (createdPayload) => ({
     type: CREATE_SPOTS,
-    spots
+    createdPayload
 });
 
 const editSpots = (spots) => ({
@@ -35,32 +37,40 @@ export const getAllSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`);
 
     if (response.ok) {
-      const spots = await response.json();
-      dispatch(loadSpots(spots));
-      const all = {}
-      spots.spot.forEach(spot => all[spot.id] = spot)
-      return { ...all }
+      const dog = await response.json();
+      console.log("THIS IS THE SPOTS", dog)
+      dispatch(loadSpots(dog));
+
+      // const all = {}
+      // dog.appleSpot.forEach(spot => all[spot.id] = dog)
+      // return { ...all }
+
     }
 };
 
 
-export const getSpotsOwnedByCurrentUser = () => async dispatch => {
-    const response = await fetch(`/api/spots/userSpots`);
+// export const getSpotsOwnedByCurrentUser = () => async dispatch => {
+//     const response = await fetch(`/api/spots/userSpots`);
 
-    if (response.ok) {
-      const spot = await response.json();
-      dispatch(loadSpots(spot));
-    }
-};
+//     if (response.ok) {
+//       const spot = await response.json();
+//       dispatch(loadSpots(spot));
+//     }
+// };
 
 export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
     const response = await fetch(`/api/spots/${id}`);
 
     if (response.ok) {
       const spot = await response.json();
+
       dispatch(loadOneSpot(spot));
+
+      const all = {};
+      all[spot.id] = spot
+      return {...all}
+
     }
-    return response;
 };
 
 export const createNewSpot = (spot) => async dispatch => {
@@ -75,19 +85,22 @@ export const createNewSpot = (spot) => async dispatch => {
     if (response.ok) {
       const spot = await response.json();
       dispatch(createSpots(spot));
-      return spot
+
+      const all = {}
+      all[spot.id] = spot
+      return {...all}
     }
-    return response
+
 };
 
-export const editSpotById = (id) => async dispatch => {
-  const response = await fetch(`/api/spots/${id}`);
+// export const editSpotById = (id) => async dispatch => {
+//   const response = await fetch(`/api/spots/${id}`);
 
-  if (response.ok) {
-    const spot = await response.json();
-    dispatch(editSpots(spot));
-  }
-};
+//   if (response.ok) {
+//     const spot = await response.json();
+//     dispatch(editSpots(spot));
+//   }
+// };
 
 // export const deleteSpotById = (id) => async dispatch => {
 //   const response = await fetch(`/api/spots/${id}`);
@@ -101,22 +114,26 @@ export const editSpotById = (id) => async dispatch => {
 const initialState = {}
 
 const spotsReducer = (state = initialState, action) => {
-
   switch (action.type) {
     case LOAD_SPOTS:
-        const allSpots = { ...state };
-        action.spots.spot.forEach(spot => allSpots[spot.id] = spot);
-        return { ...allSpots, ...state };
-    case CREATE_SPOTS:
-        const newState = {...state}
-        newState[action.spot.id] = action.spot
-        return newState
-    case LOAD_ONE_SPOT:
-        const spot = action.spots;
-        return { ...spot, ...state };
+        const newState = {};
+
+        action.payload.appleSpot.forEach(el => newState[el.id] = el);
+        return { ...newState, ...state };
+
+        case CREATE_SPOTS:
+          const newerState = {...state}
+          newerState[action.createdPayload.id] = action.createdPayload
+          return {...newerState}
+
+
+          case LOAD_ONE_SPOT:
+              const newestState = {...state}
+              const spot = action.payload
+              newestState[spot.id] = spot
+              return { ...newestState, ...state };
     default:
         return state;
-
 }
 };
 

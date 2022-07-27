@@ -7,10 +7,9 @@ import './spots.css'
 
 const Spots = () => {
     const dispatch = useDispatch();
-    const spots = useSelector((state) => Object.values(state.spot));
+    const spots = useSelector((state) => Object.values(state.spotInRootReducer));
     //const user = useSelector((state) => Object.values(state.user))
-    console.log("THIS IS YOUR STATE", spots)
-
+    
 
     useEffect(() => {
         dispatch(getAllSpots());

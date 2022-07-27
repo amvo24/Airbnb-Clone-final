@@ -8,8 +8,8 @@ const SpotDetails = () => {
     const dispatch = useDispatch()
     let { id } = useParams()
     id = Number(id)
-    const spot = useSelector(state => state.spot.id);
-    console.log('LOOK HERE FOR SPOT', spot)
+    const spot = useSelector(state => (state.spotInRootReducer[id]));
+    
 
     useEffect(() => {
     dispatch(getDetailsOfASpotFromAnId(id));
