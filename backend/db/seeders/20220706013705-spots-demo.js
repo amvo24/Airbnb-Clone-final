@@ -15,7 +15,7 @@ module.exports = {
         name: 'App Academy',
         description: 'Place where web developers are created',
         price: 123,
-        previewImage: "image url",
+        previewImage: "https://images.unsplash.com/photo-1534450539339-6d1c81ad18e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80",
       },
       {
         ownerId: 2,
@@ -28,7 +28,7 @@ module.exports = {
         name: 'Universal Studios',
         description: 'Fun place here',
         price: 150,
-        previewImage: "image url",
+        previewImage: "https://images.unsplash.com/photo-1618945373370-7bde4f8dd9c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1467&q=80",
       },
       {
         ownerId: 3,
@@ -41,7 +41,7 @@ module.exports = {
         name: 'random place',
         description: 'japanese place',
         price: 200,
-        previewImage: "image url",
+        previewImage: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       }
     ]);
   },
