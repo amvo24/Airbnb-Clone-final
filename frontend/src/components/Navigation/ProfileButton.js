@@ -21,7 +21,6 @@ function ProfileButton({ user }) {
     };
 
     document.addEventListener('click', closeMenu);
-
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
@@ -39,6 +38,7 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <div id="menu">
+          <div>{user.username}</div>
           <Link to="/spots/create" id="dropdown1">
             Host your home
           </Link>

@@ -40,7 +40,7 @@ const CreateSpot = () => {
             price: price
         }
 
-        //history.push(`/`)
+        history.push(`/`)
         // history.push(`/spots/${newSpot.id}`)
         return dispatch(createNewSpot(newSpot))
     }
@@ -137,7 +137,7 @@ const CreateSpot = () => {
                 Preview Image:
                 <input
                 type="text"
-                placeholder='Preview Image'
+                placeholder='url'
                 value={previewImage}
                 onChange={(e) => setPreviewImage(e.target.value)}
                 required

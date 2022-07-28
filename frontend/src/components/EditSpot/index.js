@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
 import { editSpotById } from '../../store/spots'
+import './editspot.css'
 
 
 const EditSpot = () => {
@@ -178,7 +179,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <button type="submit">Edit Spot</button>
+            <button id='submitbutton' type="submit">Edit Spot</button>
         </form>
     )
 }

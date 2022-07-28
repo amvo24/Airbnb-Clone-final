@@ -28,7 +28,7 @@ const Spots = () => {
               </div>
               <div className="spot-info">
                 <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>
-                <p className="spot-price">{`$${spot?.price} / night`}</p>
+                <p className="spot-price">{`$${spot?.price} night`}</p>
               </div>
             </div>
           </Link>

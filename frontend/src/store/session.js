@@ -1,8 +1,9 @@
-// frontend/src/store/session.js
 import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+//here
+const SET_SHOW_LOGIN_MODAL = "/session/setShowLoginModal"
 
 const setUser = (user) => {
   return {
@@ -16,6 +17,14 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+//here
+export const setShowLoginModal = (payload) => {
+  return {
+    type: SET_SHOW_LOGIN_MODAL,
+    payload,
+  };
+}
 
 //thunk action creator
 export const login = (user) => async (dispatch) => {
@@ -67,7 +76,7 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null };
+const initialState = { user: null, showLoginModal: false };
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -79,6 +88,10 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
+      return newState;
+    case SET_SHOW_LOGIN_MODAL:
+      newState = Object.assign({}, state); 
+      newState.showLoginModal = action.payload;
       return newState;
     default:
       return state;

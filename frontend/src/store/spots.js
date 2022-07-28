@@ -87,12 +87,12 @@ export const createNewSpot = (spot) => async dispatch => {
     if (response.ok) {
       const spot = await response.json();
       dispatch(createSpots(spot));
-
-      const all = {}
-      all[spot.id] = spot
-      return {...all}
+      return spot
+      // const all = {}
+      // all[spot.id] = spot
+      // return {...all}
     }
-
+    return response
 };
 
 export const editSpotById = (editedSpot, id) => async dispatch => {
@@ -131,10 +131,10 @@ const spotsReducer = (state = initialState, action) => {
         return { ...newState};}
 
     case CREATE_SPOTS:
-       // const newerState = {...state}
-       // newerState[action.createdPayload.id] = action.createdPayload
-       // return {...newerState}
-      return {...state}
+       const newerState = {...state}
+       newerState[action.createdPayload.id] = action.createdPayload
+       return {...newerState}
+      // return {...state}
 
     case LOAD_ONE_SPOT:{
        const newestState = {...state}

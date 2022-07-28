@@ -1,0 +1,13 @@
+label {
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+
+}
+
+#submitbutton {
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+
+}
