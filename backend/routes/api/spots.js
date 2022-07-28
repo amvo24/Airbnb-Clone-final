@@ -194,7 +194,7 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
 
 // Edit a spot !!!!
  router.put('/:id', requireAuth, validateSpots, async (req, res) => {
-  let {address, city, state, country, lat, lng, name, description, price} = req.body
+  let {address, city, state, country, lat, previewImage, lng, name, description, price} = req.body
     const spots = await Spot.findByPk(req.params.id, {
       where: {
         ownerId: req.params.id
@@ -213,6 +213,7 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
 
          //spots.ownerId = ownerId
          spots.address = address
+         spots.previewImage = previewImage
          spots.city = city
          spots.state = state
          spots.country = country

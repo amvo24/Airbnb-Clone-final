@@ -12,17 +12,17 @@ const EditSpot = () => {
     let { id } = useParams()
     id = Number(id)
 
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
-    const [lat, setLat] = useState(1)
-    const [lng, setLng] = useState(1)
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
+    const [address, setAddress] = useState(spot?.address)
+    const [city, setCity] = useState(spot?.city)
+    const [state, setState] = useState(spot?.state)
+    const [country, setCountry] = useState(spot?.country)
+    const [lat, setLat] = useState(spot?.lat)
+    const [lng, setLng] = useState(spot?.lng)
+    const [name, setName] = useState(spot?.name)
+    const [description, setDescription] = useState(spot?.description)
     //const [image, setImage] = useState('')
-    const [previewImage, setPreviewImage] = useState('')
-    const [price, setPrice] = useState(0)
+    const [previewImage, setPreviewImage] = useState(spot?.previewImage)
+    const [price, setPrice] = useState(spot?.price)
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 
@@ -38,26 +38,27 @@ const EditSpot = () => {
     const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
     //if (!user) return <Redirect to="/" />;
-    if (submitted) return <Redirect to={`/spot/${id}`}/>
+    //if (submitted) return <Redirect to={`/spot/${id}`}/>
 
     const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([])
 
         const editedSpot = {
-            name: name,
-            address: address,
-            city: city,
-            state: state,
-            country: country,
-            lat: lat,
-            lng: lng,
-            previewImage: previewImage,
-            description: description,
-            price: price
+            name,
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            previewImage,
+            description,
+            price,
+            id
         }
 
-        //history.push(`/spots/${newSpot.id}`)
+        history.push(`/spots/${spot.id}`)
         //history.push(`/`)
         return dispatch(editSpotById(editedSpot, spot.id))
         .then(async (res) => {

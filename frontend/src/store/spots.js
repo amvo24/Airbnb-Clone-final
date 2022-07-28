@@ -143,8 +143,9 @@ const spotsReducer = (state = initialState, action) => {
        return { ...spot}}
 
     case EDIT_SPOTS:{
-      return {...state}}
-
+      const newState = {...state}
+      newState[action.updatedPayload.id] = action.updatedPayload
+      return newState}
     case DELETE_SPOTS: {
       const newState = {...state}
       delete newState[action.deletePayload]
