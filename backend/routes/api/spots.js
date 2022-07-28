@@ -173,7 +173,7 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
 
 //Create a new Spot
   router.post('/', requireAuth, validateSpots, async (req, res) => {
-   let { address, city, state, country, lat, lng, name, description, price} = req.body
+   let { address, city, state, country, lat, previewImage, lng, name, description, price} = req.body
 
    const newSpot = await Spot.create({
     ownerId: req.user.id,
@@ -182,6 +182,7 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
     state,
     country,
     lat,
+    previewImage,
     lng,
     name,
     description,
