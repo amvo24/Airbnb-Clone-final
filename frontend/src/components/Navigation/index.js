@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import DemoUser from '../demoUser';
 //import SignUpFormModal from '../SignupFormModal';
 //import CreateSpotModal from '../CreateSpotModal';
 import './Navigation.css';
@@ -22,6 +23,7 @@ function Navigation({ isLoaded }){
       <div id='nav_right'>
         <div id='loginButton'> <LoginFormModal /></div>
         <div id='signUp'><NavLink to="/signup">Sign Up</NavLink> </div>
+        <DemoUser />
       </div>
       {/* <ProfileButton user={sessionUser}/> */}
       </>

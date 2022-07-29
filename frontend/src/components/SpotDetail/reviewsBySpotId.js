@@ -13,19 +13,6 @@ const ReviewsBySpotId = ({id}) => {
   const reviewsVariable = useSelector((state) => Object.values(state.reviewsInRootReducer));
 
 
-  // const spotIdGetter = () => {
-    // for (let spot of reviews) {
-
-    //   let spotId = spot.Spot.id
-    // }
-  // }
-
-
-  //const reviews = useSelector(state => (state.reviews))
-  //const spots = useSelector((state) => Object.values(state.spotInRootReducer));
-
-
-
   useEffect(() => {
       dispatch(getAllReviewsByreviewId(id));
   }, [dispatch])
@@ -34,7 +21,7 @@ const ReviewsBySpotId = ({id}) => {
       <div className='all-reviews-div'>
         <h1>Your Reviews</h1>
         {reviewsVariable.map((reviewState, i) => {
-         
+
           return (
             <div>
             <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p>

@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
           [Op.or]: {
             username: credential,
             email: credential,
-            firstName,
-            lastName,
+            firstName: credential,
+            lastName: credential
           }
         }
       });

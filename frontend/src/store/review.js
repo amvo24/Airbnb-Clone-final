@@ -49,7 +49,7 @@ export const getAllReviewsByreviewId = (spotId) => async dispatch => {
 
     if (response.ok) {
       const payload = await response.json();
-      
+
       dispatch(loadREVIEWSBYSPOTID(payload));
     }
 };
@@ -81,14 +81,14 @@ export const createReviewBasedOnSpotsId = (spotId) => async dispatch => {
 // };
 
 //Delete a Review
-// export const deleteReview = (reviewId) => async dispatch => {
-//     const response = await fetch(`/api/reviews/${reviewId}`);
+export const deleteReview = (reviewId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewId}`);
 
-//     if (response.ok) {
-//       const review = await response.json();
-//       dispatch(deleteREVIEWS(review));
-//     }
-// };
+    if (response.ok) {
+      const review = await response.json();
+      dispatch(deleteREVIEWS(review));
+    }
+};
 
 //NORMALIZE DATA
 
@@ -109,10 +109,8 @@ const reviewReducer = (state = initialState, action) => {
           // newState[review.id] = review
           return {...newState}
           }
-
-
-        case EDIT_REVIEWS:
         case deleteREVIEWS:
+          
         default:
             return state;
     }
