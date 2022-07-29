@@ -9,6 +9,7 @@ import Spots from "./components/Spots"
 import SpotDetails from "./components/SpotDetail";
 import CreateSpot from "./components/CreateSpot"
 import EditSpot from "./components/EditSpot"
+import Reviews from "./components/Reviews"
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/spots/:id">
             <SpotDetails />
+          </Route>
+          <Route path="/user-reviews">
+            <Reviews />
           </Route>
         </Switch>
       )}

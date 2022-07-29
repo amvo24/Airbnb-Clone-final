@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
+  console.log("THIS IS YOUR USER STATE", user.user.username)
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -38,9 +39,13 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <div id="menu">
-          <div>{user.username}</div>
+          <h3>{`Welcome ${user.user.firstName} ${user.user.lastName}! `}</h3>
+          <div>{user.user.email}</div>
           <Link to="/spots/create" id="dropdown1">
             Host your home
+          </Link>
+          <Link to={`/user-reviews`} id="dropdown3">
+            Your Reviews
           </Link>
           <div onClick={logout} id="dropdown2">
             Log out

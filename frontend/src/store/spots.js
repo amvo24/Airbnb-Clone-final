@@ -39,7 +39,7 @@ export const getAllSpots = () => async dispatch => {
 
     if (response.ok) {
       const dog = await response.json();
-
+      // console.log('RES.JSON FROM SPOTS', dog)
       dispatch(loadSpots(dog));
 
       // const all = {}
@@ -146,6 +146,7 @@ const spotsReducer = (state = initialState, action) => {
       const newState = {...state}
       newState[action.updatedPayload.id] = action.updatedPayload
       return newState}
+
     case DELETE_SPOTS: {
       const newState = {...state}
       delete newState[action.deletePayload]

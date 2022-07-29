@@ -9,6 +9,7 @@ const Spots = () => {
     const dispatch = useDispatch();
     const spots = useSelector((state) => Object.values(state.spotInRootReducer));
     //const user = useSelector((state) => Object.values(state.user))
+    
 
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const Spots = () => {
           <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
             <div className={`spot-div spot-div${i}`}>
               <div className="img-div">
-                <img className="spot-img" src={`${spot?.previewImage}`} alt="preview of spot"></img>
+                <img className="spot-img" src={spot.previewImage} alt="preview of spot"></img>
               </div>
               <div className="spot-info">
                 <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>

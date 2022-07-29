@@ -38,6 +38,7 @@ export const login = (user) => async (dispatch) => {
   });
   const data = await response.json();
   dispatch(setUser(data));
+  console.log('THIS IS YOUR DATA BUDDY', data)
   return response;
 };
 
@@ -89,8 +90,9 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;
+
     case SET_SHOW_LOGIN_MODAL:
-      newState = Object.assign({}, state); 
+      newState = Object.assign({}, state);
       newState.showLoginModal = action.payload;
       return newState;
     default:
