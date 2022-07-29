@@ -52,7 +52,9 @@
 
 #dropdown1,
 #dropdown2,
-#dropdown3 {
+#dropdown3,
+#dropdown4
+{
     font-size: 15px;
     color: black;
     font-weight: 500;

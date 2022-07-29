@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllReviewsByCurrentUser } from '../../store/review';
+import { getAllReviewsByCurrentUser, deleteReview } from '../../store/review';
 import { Link } from 'react-router-dom'
 
 const Reviews = () => {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.reviewsInRootReducer));
-    const spots = useSelector((state) => Object.values(state.spotInRootReducer));
-
+    //const spots = useSelector((state) => Object.values(state.spotInRootReducer));
+    // let [obj] = spots
+    //console.log('THIS IS THE REVIEWS AFTER DECON', reviews)
 
 
     useEffect(() => {
         dispatch(getAllReviewsByCurrentUser());
     }, [dispatch])
+
+    const deleteReview = (e) => {
+      e.preventDefualt()
+      dispatch(deleteReview())
+    }
 
     return (
       <div className='all-reviews-div'>

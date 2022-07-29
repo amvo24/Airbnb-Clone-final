@@ -19,7 +19,7 @@ const SpotDetails = () => {
   //console.log('LOOK HERE PLEASE', spot)
   //const spot = useSelector(state => state.spotInRootReducer);
   const currentUser = useSelector(state => (state.session.user));
-  console.log("THIS IS YOUR CURRENT USER", currentUser)
+  // console.log("THIS IS YOUR CURRENT USER", currentUser)
 
   useEffect(() => {
     if (!spot) {
@@ -83,9 +83,9 @@ const SpotDetails = () => {
 
               </div>
         )}
-        {/* <div>
+        <div>
           <ReviewsBySpotId id={id}/>
-        </div> */}
+        </div>
         <div>
         <button onClick={createReview}>Create a Review!</button>
         </div>

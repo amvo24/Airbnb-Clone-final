@@ -39,7 +39,7 @@ export const getAllReviewsByCurrentUser = () => async dispatch => {
 
     if (response.ok) {
       const payload = await response.json();
-      //console.log('THUNK PAYLOAD', payload)
+
       dispatch(loadREVIEWS(payload));
     }
 };
@@ -90,11 +90,11 @@ const initialState = {}
 
 const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
+
         case LOAD_REVIEWS:{
           const newState = {}
           action.payload.forEach(el => newState[el.id] = el);
-          return {...newState}}
-
+          return newState}
 
         case LOAD_REVIEWS_SPOT_ID:{
           const newState = {...state}
@@ -104,13 +104,16 @@ const reviewReducer = (state = initialState, action) => {
           return {...newState}
           }
         case createREVIEWS:{
-          // const newState = {...state}
-          // newState[action.payload.id] = action.payload
-          // return newState
-          return {...state}
+          const newState = {...state}
+          newState[action.payload.id] = action.payload
+          return newState
+          // return {...state}
         }
-        case deleteREVIEWS:
-
+        case deleteREVIEWS:{
+          const newState = {...state}
+          delete newState[action.payload]
+          return newState
+        }
         default:
             return state;
     }

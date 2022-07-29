@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 //here
-const SET_SHOW_LOGIN_MODAL = "/session/setShowLoginModal"
+//const SET_SHOW_LOGIN_MODAL = "/session/setShowLoginModal"
 
 const setUser = (user) => {
   return {
@@ -19,12 +19,12 @@ const removeUser = () => {
 };
 
 //here
-export const setShowLoginModal = (payload) => {
-  return {
-    type: SET_SHOW_LOGIN_MODAL,
-    payload,
-  };
-}
+// export const setShowLoginModal = (payload) => {
+//   return {
+//     type: SET_SHOW_LOGIN_MODAL,
+//     payload,
+//   };
+// }
 
 //thunk action creator
 export const login = (user) => async (dispatch) => {
@@ -37,7 +37,7 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log('THIS IS FUCKING DATA', data)
+  //console.log('THIS IS FUCKING DATA', data)
   dispatch(setUser(data));
   //console.log('THIS IS YOUR DATA BUDDY', data)
   return response;
@@ -78,7 +78,7 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null, showLoginModal: false};
+const initialState = { user: null, };
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -92,10 +92,10 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = null;
       return newState;
 
-    case SET_SHOW_LOGIN_MODAL:
-      newState = Object.assign({}, state);
-      newState.showLoginModal = action.payload;
-      return newState;
+    // case SET_SHOW_LOGIN_MODAL:
+    //   newState = Object.assign({}, state);
+    //   newState.showLoginModal = action.payload;
+    //   return newState;
     default:
       return state;
   }

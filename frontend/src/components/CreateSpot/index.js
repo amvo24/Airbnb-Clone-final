@@ -19,15 +19,16 @@ const CreateSpot = () => {
     const [description, setDescription] = useState('')
     const [previewImage, setPreviewImage] = useState('')
     const [price, setPrice] = useState(0)
-
     const [errors, setErrors] = useState([])
-    if (!user) return <Redirect to="/" />;
+
+    //if (!user) return <Redirect to="/" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
 
         const newSpot = {
+
             name: name,
             address: address,
             city: city,
@@ -41,7 +42,7 @@ const CreateSpot = () => {
         }
 
         //history.push(`/`)
-        history.push(`/spots/${newSpot.id}`)
+        history.push(`/spots/ownerSpots`)
         return dispatch(createNewSpot(newSpot))
     }
 

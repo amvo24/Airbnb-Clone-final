@@ -46,6 +46,9 @@ function ProfileButton({ user }) {
           <Link to="/spots/create" id="dropdown1">
             Host your home
           </Link>
+          <Link to="/spots/ownerSpots" id="dropdown4">
+            Your Listings
+          </Link>
           <Link to={`/user-reviews`} id="dropdown3">
             Your Reviews
           </Link>

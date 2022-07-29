@@ -127,7 +127,8 @@ router.get('/userSpots', requireAuth, async (req, res) => {
       const places = await Spot.findAll({
           where: {ownerId: id}
       });
-  res.json(places[0])
+      
+  res.json(places)
 });
 
 // GET details by spot id

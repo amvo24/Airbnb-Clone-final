@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf"
 const LOAD_SPOTS = 'spots/load_spots'
 const LOAD_ONE_SPOT = 'spots/load_one_spot'
+const LOAD_OWNER_SPOT = 'spots/load_owners_spot'
 const CREATE_SPOTS = 'spots/create_spots'
 const EDIT_SPOTS = 'spots/edit_spots'
 const DELETE_SPOTS = 'spots/delete_spots'
@@ -9,7 +10,12 @@ const DELETE_SPOTS = 'spots/delete_spots'
 const loadSpots = (payload) => ({
     type: LOAD_SPOTS,
     payload
-  });
+});
+
+const loadOwnerSpots = (payload) => ({
+    type: LOAD_OWNER_SPOT,
+    payload
+});
 
 
 const loadOneSpot = (payload) => ({
@@ -51,15 +57,16 @@ export const getAllSpots = () => async dispatch => {
     return {}
 };
 
+//Listings by owner
+export const getSpotsOwnedByCurrentUser = () => async dispatch => {
+    const response = await csrfFetch(`/api/spots/userSpots`);
 
-// export const getSpotsOwnedByCurrentUser = () => async dispatch => {
-//     const response = await fetch(`/api/spots/userSpots`);
-
-//     if (response.ok) {
-//       const spot = await response.json();
-//       dispatch(loadSpots(spot));
-//     }
-// };
+    if (response.ok) {
+      const spot = await response.json();
+      console.log('THIS IS YOUR SPOT PAYLOAD', spot)
+      dispatch(loadOwnerSpots(spot));
+    }
+};
 
 export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${id}`);
@@ -126,14 +133,23 @@ export const deleteSpotById = (id) => async dispatch => {
   }
 };
 
+
+
+
 const initialState = {}
 
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case LOAD_SPOTS: //GET ALL SPOT
       {
         const newState = {};
         action.payload.spots.forEach(el => (newState[el.id] = el));
+        return newState
+      }
+    case LOAD_OWNER_SPOT:{
+        const newState = {}
+        action.payload.forEach(el => newState[el.id] = el);
         return newState
       }
 
@@ -159,7 +175,7 @@ const spotsReducer = (state = initialState, action) => {
 
     case DELETE_SPOTS: {
       const newState = {...state}
-      delete newState[action.res]
+      delete newState[action.deletePayload]
       return newState
     }
     default:
