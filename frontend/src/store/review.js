@@ -70,15 +70,7 @@ export const createReviewBasedOnSpotsId = (spotId) => async dispatch => {
     }
 };
 
-// //Edit a Review
-// export const editReview = (reviewId) => async dispatch => {
-//     const response = await fetch(`/api/reviews/${reviewId}`);
 
-//     if (response.ok) {
-//       const review = await response.json();
-//       dispatch(editREVIEWS(review));
-//     }
-// };
 
 //Delete a Review
 export const deleteReview = (reviewId) => async dispatch => {
@@ -110,7 +102,7 @@ const reviewReducer = (state = initialState, action) => {
           return {...newState}
           }
         case deleteREVIEWS:
-          
+
         default:
             return state;
     }

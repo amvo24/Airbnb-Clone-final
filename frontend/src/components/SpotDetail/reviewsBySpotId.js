@@ -18,12 +18,11 @@ const ReviewsBySpotId = ({id}) => {
   }, [dispatch])
 
     return (
-      <div className='all-reviews-div'>
+      <div className='all-reviews-div' key={id}>
         <h1>Your Reviews</h1>
         {reviewsVariable.map((reviewState, i) => {
-
           return (
-            <div>
+            <div key={reviewState.id}>
             <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p>
             <p className='user'>{`${reviewState.stars} stars`}</p>
             <p className='actual-review'>{`${reviewState.review}`}</p>

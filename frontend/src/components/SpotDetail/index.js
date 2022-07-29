@@ -10,13 +10,19 @@ const SpotDetails = () => {
   const dispatch = useDispatch()
   let { id } = useParams()
   id = Number(id)
-  const spot = useSelector(state => (state.spotInRootReducer));
-  
+
+  const spot = useSelector(state => state.spotInRootReducer[id]);
+  //console.log('PRE-RENDER')
 
   const currentUser = useSelector(state => (state.session.user));
+
   useEffect(() => {
-  dispatch(getDetailsOfASpotFromAnId(id));
-  }, [dispatch]);
+    if (!spot) {
+      dispatch(getDetailsOfASpotFromAnId(id));
+      }
+    }, [dispatch, id, spot]);
+
+
 
   const removeSpot = (e) => {
     e.preventDefault()
@@ -32,6 +38,8 @@ const SpotDetails = () => {
 
 
   return (
+    spot &&
+    <>
     <div>
       <h1>{spot?.name}</h1>
       <div>
@@ -49,17 +57,17 @@ const SpotDetails = () => {
         {currentUser &&
           currentUser.user &&
           currentUser.user.id === spot.ownerId && (
-        <div>
+              <div>
               <button onClick={removeSpot}>Delete Spot</button>
               <button onClick={editSpot}>Edit Spot</button>
-        </div>
+              </div>
         )}
         <div>
           <ReviewsBySpotId id={id}/>
         </div>
       </div>
   </div>
-
+  </>
 
   )
 }

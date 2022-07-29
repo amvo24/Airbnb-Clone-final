@@ -6,9 +6,9 @@ const EDIT_SPOTS = 'spots/edit_spots'
 const DELETE_SPOTS = 'spots/delete_spots'
 
 //action creator
-const loadSpots = (dog) => ({
+const loadSpots = (payload) => ({
     type: LOAD_SPOTS,
-    dog
+    payload
   });
 
 
@@ -36,17 +36,19 @@ const deleteSpots = (deletePayload) => ({
 //THUNK ACTION CREATORS
 export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`);
-
     if (response.ok) {
-      const dog = await response.json();
-      // console.log('RES.JSON FROM SPOTS', dog)
-      dispatch(loadSpots(dog));
+      const payload = await response.json();
+      //console.log('RES.JSON FROM SPOTS', payload)
+      // const spots = {...payload}
+      //console.log('WHAT IS THIS', spots)
+      dispatch(loadSpots(payload));
 
-      // const all = {}
-      // dog.appleSpot.forEach(spot => all[spot.id] = dog)
-      // return { ...all }
+      const all = {}
+      payload.spots.forEach(spot => all[spot.id] = payload)
+      return { ...all }
 
     }
+    return {}
 };
 
 
@@ -66,7 +68,7 @@ export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
       const spot = await response.json();
 
       dispatch(loadOneSpot(spot));
-
+      return spot
       // const all = {};
       // all[spot.id] = spot
       // return {...all}
@@ -125,22 +127,25 @@ const initialState = {}
 
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_SPOTS:
-        {const newState = {};
-        action.dog.appleSpot.forEach(el => newState[el.id] = el);
-        return { ...newState};}
+    case LOAD_SPOTS: //GET ALL SPOT
+      {
+        const newState = {...state};
+        action.payload.spots.forEach(el => (newState[el.id] = el));
+        return {...newState}
+      }
 
     case CREATE_SPOTS:
        const newerState = {...state}
        newerState[action.createdPayload.id] = action.createdPayload
-       return {...newerState}
+       return newerState
       // return {...state}
 
     case LOAD_ONE_SPOT:{
        const newestState = {...state}
-       const spot = action.payload
-       newestState[spot.id] = spot
-       return { ...spot}}
+      //  const spot = action.payload
+       newestState[action.payload.id] = action.payload
+       return newestState
+      }
 
     case EDIT_SPOTS:{
       const newState = {...state}
@@ -149,8 +154,8 @@ const spotsReducer = (state = initialState, action) => {
 
     case DELETE_SPOTS: {
       const newState = {...state}
-      delete newState[action.deletePayload]
-      return {...newState}
+      delete newState[action.res]
+      return newState
     }
     default:
         return state;

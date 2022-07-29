@@ -101,7 +101,7 @@ if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || N
   if (maxPrice) {options.push({price: {[Op.lte]: Number(maxPrice)}})}
   if (minPrice) {options.push({price: {[Op.gte]: Number(minPrice)}})}
 
-  let appleSpot = await Spot.findAll({
+  let spots = await Spot.findAll({
     where: {
     [Op.and]: options
 
@@ -109,8 +109,8 @@ if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || N
       limit: size || 20,
       offset: page * size,
   });
-  return res.json({
-      appleSpot,
+  res.json({
+      spots,
       page,
       size: size || 20
   });
@@ -167,7 +167,7 @@ spotData.numReviews = reviewsAggData.numReviews
 spotData.avgStarRating = reviewsAggData.avgStarRating
 
 
-  res.json(spotData)
+res.json(spotData)
 })
 
 
