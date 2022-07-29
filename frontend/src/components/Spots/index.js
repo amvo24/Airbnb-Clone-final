@@ -23,7 +23,7 @@ const Spots = () => {
       <div className="all-spots-div">
       {spots.map((spot, index) => (
         <div key={index}>
-          <NavLink to={`/spots/${spot?.id}`} className="spot-link" key={spot.id}>
+          <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot.id}>
             <div className={`spot-div spot-div${index}`}>
               <div className="img-div">
                 <img className="spot-img" src={spot.previewImage} alt="preview of spot"></img>
@@ -33,7 +33,7 @@ const Spots = () => {
                 <p className="spot-price">{`$${spot?.price} night`}</p>
               </div>
             </div>
-          </NavLink>
+          </Link>
           </div>
       ))}
     </div>

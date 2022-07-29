@@ -40,8 +40,8 @@ const CreateSpot = () => {
             price: price
         }
 
-        history.push(`/`)
-        // history.push(`/spots/${newSpot.id}`)
+        //history.push(`/`)
+        history.push(`/spots/${newSpot.id}`)
         return dispatch(createNewSpot(newSpot))
     }
 

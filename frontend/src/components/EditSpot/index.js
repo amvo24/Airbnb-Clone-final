@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
 import { editSpotById } from '../../store/spots'
@@ -8,21 +8,22 @@ import './editspot.css'
 const EditSpot = () => {
     const dispatch = useDispatch();
     const history = useHistory()
-    const spot = useSelector((state) => state.spotInRootReducer)
     let { id } = useParams()
     id = Number(id)
+    const spot = useSelector((state) => state.spotInRootReducer)
+    //console.log('THIS IS MY SPOT STATE', spot)
 
-    const [address, setAddress] = useState(spot?.address)
-    const [city, setCity] = useState(spot?.city)
-    const [state, setState] = useState(spot?.state)
-    const [country, setCountry] = useState(spot?.country)
-    const [lat, setLat] = useState(spot?.lat)
-    const [lng, setLng] = useState(spot?.lng)
-    const [name, setName] = useState(spot?.name)
-    const [description, setDescription] = useState(spot?.description)
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [country, setCountry] = useState('')
+    const [lat, setLat] = useState('')
+    const [lng, setLng] = useState('')
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
     //const [image, setImage] = useState('')
-    const [previewImage, setPreviewImage] = useState(spot?.previewImage)
-    const [price, setPrice] = useState(spot?.price)
+    const [previewImage, setPreviewImage] = useState('')
+    const [price, setPrice] = useState(0)
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 
@@ -40,27 +41,30 @@ const EditSpot = () => {
     //if (!user) return <Redirect to="/" />;
     //if (submitted) return <Redirect to={`/spot/${id}`}/>
 
+    useEffect(() => {
+
+    })
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([])
 
         const editedSpot = {
-            name,
-            address,
-            city,
-            state,
-            country,
-            lat,
-            lng,
-            previewImage,
-            description,
-            price,
-            id
+            name: name,
+            address: address,
+            city: city,
+            state: state,
+            country: country,
+            lat: lat,
+            lng: lng,
+            previewImage: previewImage,
+            description: description,
+            price: price
         }
 
-        history.push(`/spots/${spot.id}`)
+        history.push(`/spots/${id}`)
         //history.push(`/`)
-        return dispatch(editSpotById(editedSpot, spot.id))
+        return dispatch(editSpotById(editedSpot, id))
         .then(async (res) => {
             console.log("success");
             setSubmitted(true);

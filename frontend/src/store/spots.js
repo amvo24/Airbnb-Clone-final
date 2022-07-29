@@ -66,13 +66,11 @@ export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
-
       dispatch(loadOneSpot(spot));
-      return spot
       // const all = {};
       // all[spot.id] = spot
       // return {...all}
-
+      return spot
     }
     return response
 };
@@ -102,14 +100,19 @@ export const editSpotById = (editedSpot, id) => async dispatch => {
   = editedSpot
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: 'PUT',
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({name, address, city, state, country, lat, lng, previewImage, description, price})
   });
 
   if (response.ok) {
     const updatedPayload = await response.json();
+    //console.log("THIS SHOULD BE YOUR UPDATED PAYLOAD", updatedPayload)
     dispatch(editSpots(updatedPayload));
   }
 };
+
 
 export const deleteSpotById = (id) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${id}`, {
@@ -129,9 +132,9 @@ const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_SPOTS: //GET ALL SPOT
       {
-        const newState = {...state};
+        const newState = {};
         action.payload.spots.forEach(el => (newState[el.id] = el));
-        return {...newState}
+        return newState
       }
 
     case CREATE_SPOTS:
@@ -150,7 +153,9 @@ const spotsReducer = (state = initialState, action) => {
     case EDIT_SPOTS:{
       const newState = {...state}
       newState[action.updatedPayload.id] = action.updatedPayload
-      return newState}
+      return newState
+      // return {...state}
+    }
 
     case DELETE_SPOTS: {
       const newState = {...state}

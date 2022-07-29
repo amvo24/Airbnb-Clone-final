@@ -7,7 +7,7 @@ const Reviews = () => {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => Object.values(state.reviewsInRootReducer));
     const spots = useSelector((state) => Object.values(state.spotInRootReducer));
-    
+
 
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const Reviews = () => {
         <h1>Your Reviews</h1>
         {reviews.map((reviewState, i) => {
           return (
-            <div>
+            <div key={reviewState.id}>
             <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p>
             <p className='user'>{`${reviewState.stars} stars`}</p>
             <p className='actual-review'>{`${reviewState.review}`}</p>

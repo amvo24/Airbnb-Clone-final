@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
-  console.log("THIS IS YOUR USER", user)
+  //console.log("THIS IS YOUR USER", user)
 
 
   const dispatch = useDispatch();

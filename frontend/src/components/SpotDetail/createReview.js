@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import {createReviewBasedOnSpotsId} from '../../store/review'
+import './createReview.css'
 
 
-const CreateReview = ({id}) => {
+const CreateReview = () => {
     const dispatch = useDispatch();
     const history = useHistory()
-
+    let { id } = useParams()
+    id = Number(id)
     const user = useSelector((state) => state.session.user)
 
     const [review, setReview] = useState('')
     const [stars, setStars] = useState('')
     const [errors, setErrors] = useState([])
 
-    if (!user) return <Redirect to="/" />;
+    // if (!user) return <Redirect to="/" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -27,12 +29,13 @@ const CreateReview = ({id}) => {
         }
 
         history.push(`/spots/${id}`)
+        //history.push(`/`)
         return dispatch(createReviewBasedOnSpotsId(newReview, id))
     }
 
 
     return (
-        <form onSubmit={handleSubmit} className='createSpotForm'>
+        <form onSubmit={handleSubmit} className='createReview'>
             <ul>
                 {errors.map((error, id) => (
                     <li key={id}>{error}</li>

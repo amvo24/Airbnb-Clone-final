@@ -37,8 +37,9 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
+  console.log('THIS IS FUCKING DATA', data)
   dispatch(setUser(data));
-  console.log('THIS IS YOUR DATA BUDDY', data)
+  //console.log('THIS IS YOUR DATA BUDDY', data)
   return response;
 };
 
@@ -46,7 +47,7 @@ export const login = (user) => async (dispatch) => {
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(setUser(data.user));
     return response;
 };
 
@@ -64,7 +65,7 @@ export const signup = (user) => async (dispatch) => {
       }),
     });
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(setUser(data.user));
     return response;
 };
 
@@ -77,7 +78,7 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null, showLoginModal: false };
+const initialState = { user: null, showLoginModal: false};
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
