@@ -7,10 +7,7 @@ import './reviewsBySpotId.css'
 
 const ReviewsBySpotId = ({id}) => {
   const dispatch = useDispatch();
-  // let { id } = useParams()
-  // id = Number(id)
-
-  //makes it an array of objects
+ 
   const reviewsVariable = useSelector((state) => Object.values(state.reviewsInRootReducer));
 
 
@@ -20,7 +17,7 @@ const ReviewsBySpotId = ({id}) => {
 
     return (
       <div className='all-reviews-div' key={id}>
-        <h1 className='title'>Your Reviews</h1>
+        <h1 className='title'>Reviews</h1>
         {reviewsVariable.map((reviewState, i) => {
           return (
             <div key={reviewState.id}>

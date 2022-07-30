@@ -8,6 +8,8 @@ import './spots.css'
 const Spots = () => {
     const dispatch = useDispatch();
     const spots = useSelector((state) => Object.values(state.spotInRootReducer));
+    const reviews = useSelector((state) => Object.values(state.reviewsInRootReducer))
+    // console.log('LOOK HERE', reviews)
 
     //const user = useSelector((state) => Object.values(state.user))
 
@@ -23,14 +25,15 @@ const Spots = () => {
       <div className="all-spots-div">
       {spots.map((spot, index) => (
         <div key={index}>
-          <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot.id}>
+          <Link to={`/spots/${spot.id}`} className="spot-link" key={spot.id}>
             <div className={`spot-div spot-div${index}`}>
               <div className="img-div">
                 <img className="spot-img" src={spot.previewImage} alt="preview of spot"></img>
               </div>
               <div className="spot-info">
-                <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>
-                <p className="spot-price">{`$${spot?.price} night`}</p>
+                <p className="spot-city-state">{`${spot.city}, ${spot.state}`}</p>
+                {/* <p className="avg-stars">{reviews}</p> */}
+                <p className="spot-price">{`$${spot.price} night`}</p>
               </div>
             </div>
           </Link>

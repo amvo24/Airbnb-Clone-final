@@ -1,41 +1,48 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllReviewsByCurrentUser, deleteReview } from '../../store/review';
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import { getAllReviewsByCurrentUser, removeReview } from '../../store/review';
+
 
 const Reviews = () => {
-    const dispatch = useDispatch();
-    const reviews = useSelector((state) => Object.values(state.reviewsInRootReducer));
-    //const spots = useSelector((state) => Object.values(state.spotInRootReducer));
-    // let [obj] = spots
-    //console.log('THIS IS THE REVIEWS AFTER DECON', reviews)
+  const history = useHistory()
+  const dispatch = useDispatch();
+  const reviews = useSelector((state) => Object.values(state.reviewsInRootReducer));
+
+  // let reviewsAmt = useRef(reviews.length)
 
 
-    useEffect(() => {
-        dispatch(getAllReviewsByCurrentUser());
-    }, [dispatch])
+  const deleteReview = (e, reviewId) => {
+    e.preventDefault()
+    dispatch(removeReview(reviewId)).then(dispatch(getAllReviewsByCurrentUser()))
+    history.push('/user-reviews')
+  }
 
-    const deleteReview = (e) => {
-      e.preventDefualt()
-      dispatch(deleteReview())
-    }
+  useEffect(() => {
+      dispatch(getAllReviewsByCurrentUser())
+    }, [dispatch ])
 
-    return (
-      <div className='all-reviews-div'>
-        <h1>Your Reviews</h1>
-        {reviews.map((reviewState, i) => {
-          return (
-            <div key={reviewState.id}>
-            <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p>
-            <p className='user'>{`${reviewState.stars} stars`}</p>
-            <p className='actual-review'>{`${reviewState.review}`}</p>
-            </div>
-          )
-        })
-        }
-      </div>
-    )
+  return (
 
+    <div className='all-reviews-div'>
+      <h1>Reviews</h1>
+      {reviews.map((reviewState) => {
+        return (
+          <div key={reviewState.id}>
+          <div className='review-div'>
+          <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p>
+          <p className='user'>{`${reviewState.stars} stars`}</p>
+          <p className='actual-review'>{`${reviewState.review}`}</p>
+          </div>
+          <div className="deleteButton">
+            <button onClick={e => deleteReview(e, reviewState.id)}>Delete Review</button>
+          </div>
+          </div>
+        )
+      })
+      }
+    </div>
+  )
 
 };
 

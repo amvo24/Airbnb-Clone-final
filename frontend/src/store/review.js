@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf"
 const LOAD_REVIEWS = 'reviews/load_reviews'
 const LOAD_REVIEWS_SPOT_ID = 'reviews/load_reviews_by_spot_id'
 const CREATE_REVIEWS = 'reviews/create_reviews'
-const EDIT_REVIEWS = 'reviews/edit_reviews'
+
 const DELETE_REVIEWS = 'reviews/delete_reviews'
 
 //ACTION CREATOR
@@ -21,10 +21,6 @@ const createREVIEWS = (payload) => ({
     payload
 });
 
-// const editREVIEWS = (payload) => ({
-//     type: EDIT_REVIEWS,
-//     payload
-// });
 
 const deleteREVIEWS = (payload) => ({
     type: DELETE_REVIEWS,
@@ -75,8 +71,11 @@ export const createReviewBasedOnSpotsId = (review, spotId) => async dispatch => 
 
 
 //Delete a Review
-export const deleteReview = (reviewId) => async dispatch => {
-    const response = await fetch(`/api/reviews/${reviewId}`);
+export const removeReview = (reviewId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE",
+    body: JSON.stringify({reviewId})
+  });
 
     if (response.ok) {
       const review = await response.json();
@@ -84,7 +83,7 @@ export const deleteReview = (reviewId) => async dispatch => {
     }
 };
 
-//NORMALIZE DATA
+
 
 const initialState = {}
 
@@ -97,7 +96,7 @@ const reviewReducer = (state = initialState, action) => {
           return newState}
 
         case LOAD_REVIEWS_SPOT_ID:{
-          const newState = {...state}
+          const newState = {}
           action.payload.reviews.forEach(el => newState[el.id] = el)
           // const review = action.payload
           // newState[review.id] = review
