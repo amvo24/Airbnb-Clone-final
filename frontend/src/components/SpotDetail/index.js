@@ -14,6 +14,7 @@ const SpotDetails = () => {
   let { id } = useParams()
   id = Number(id)
 
+//THIS IS A TEST TO SEE IF CHANGES HERE PERSIST TO THE MAIN BRANCH
 
   const spot = useSelector(state => state.spotInRootReducer[id]);
   //console.log('THIS IS SPOT DATA IN YOUR COMPONENT ', spot)
