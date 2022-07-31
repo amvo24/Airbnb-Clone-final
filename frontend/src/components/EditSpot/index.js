@@ -69,7 +69,7 @@ const EditSpot = () => {
         //history.push(`/`)
         return dispatch(editSpotById(editedSpot, id))
         .then(async (res) => {
-            console.log("success");
+            //console.log("success");
             setSubmitted(true);
           })
         .catch(async (res) => {

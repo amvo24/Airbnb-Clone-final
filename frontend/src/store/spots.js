@@ -63,7 +63,7 @@ export const getSpotsOwnedByCurrentUser = () => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
-      console.log('THIS IS YOUR SPOT PAYLOAD', spot)
+      //console.log('THIS IS YOUR SPOT PAYLOAD', spot)
       dispatch(loadOwnerSpots(spot));
     }
 };
@@ -73,7 +73,7 @@ export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
-      console.log('THIS IS SPOT IN YOUR THUNK', spot)
+      //console.log('THIS IS SPOT IN YOUR THUNK', spot)
       dispatch(loadOneSpot(spot));
       const all = {};
       all[spot.id] = spot

@@ -16,7 +16,7 @@ const SpotDetails = () => {
 
 
   const spot = useSelector(state => state.spotInRootReducer[id]);
-  console.log('THIS IS SPOT DATA IN YOUR COMPONENT ', spot)
+  //console.log('THIS IS SPOT DATA IN YOUR COMPONENT ', spot)
   //const spot = useSelector(state => state.spotInRootReducer);
   const currentUser = useSelector(state => (state.session.user));
   // console.log("THIS IS YOUR CURRENT USER", currentUser)
@@ -29,7 +29,7 @@ const SpotDetails = () => {
 
   useEffect(() => {
       dispatch(getDetailsOfASpotFromAnId(id));
-    }, [dispatch, id]);
+  }, [dispatch, id]);
 
 
 
@@ -57,8 +57,7 @@ const SpotDetails = () => {
 
 
   return (
-    spot && (
-      <>
+    spot &&
     <div>
       <h1 className="detailName">{spot.name}</h1>
       <div>
@@ -95,8 +94,6 @@ const SpotDetails = () => {
         </div> */}
       </div>
   </div>
-  </>
-    )
   )
 }
 
