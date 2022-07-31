@@ -248,14 +248,16 @@ res.json(spotData)
         statusCode: 404
       })
     }
+
+   await spots.destroy()
+
      res.json({
         message: "Successfully deleted",
         statusCode: 200
       })
 
 
-    spots.destroy()
-    spots.save()
+    // spots.save()
 })
 
 
