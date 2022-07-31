@@ -1,25 +1,27 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import ReviewsBySpotId from './reviewsBySpotId'
-import { getDetailsOfASpotFromAnId, deleteSpotById, editSpotById } from "../../store/spots";
-import { createReviewBasedOnSpotsId } from "../../store/review"
+import ReviewsBySpotId from "./reviewsBySpotId";
+import {
+  getDetailsOfASpotFromAnId,
+  deleteSpotById,
+  editSpotById,
+} from "../../store/spots";
+import { createReviewBasedOnSpotsId } from "../../store/review";
 import CreateReview from "./createReview";
-import './spotDetail.css'
+import "./spotDetail.css";
 
 const SpotDetails = () => {
-  const history = useHistory()
-  const dispatch = useDispatch()
-  let { id } = useParams()
-  id = Number(id)
+  const history = useHistory();
+  const dispatch = useDispatch();
+  let { id } = useParams();
+  id = Number(id);
 
-
-
-  const spot = useSelector(state => state.spotInRootReducer[id]);
+  const spot = useSelector((state) => state.spotInRootReducer[id]);
   //console.log('THIS IS SPOT DATA IN YOUR COMPONENT ', spot)
   //const spot = useSelector(state => state.spotInRootReducer);
-  const currentUser = useSelector(state => (state.session.user));
+  const currentUser = useSelector((state) => state.session.user);
   // console.log("THIS IS YOUR CURRENT USER", currentUser)
 
   // useEffect(() => {
@@ -29,16 +31,14 @@ const SpotDetails = () => {
   //   }, [dispatch, id]);
 
   useEffect(() => {
-      dispatch(getDetailsOfASpotFromAnId(id));
+    dispatch(getDetailsOfASpotFromAnId(id));
   }, [dispatch, id]);
 
-
-
   const removeSpot = (e) => {
-    e.preventDefault()
-    dispatch(deleteSpotById(id))
-    history.push('/')
-  }
+    e.preventDefault();
+    dispatch(deleteSpotById(id));
+    history.push("/");
+  };
   // const editSpot = (e) => {
   //   e.preventDefault()
   //   //dispatch(editSpotById(id))
@@ -50,52 +50,62 @@ const SpotDetails = () => {
   };
 
   const createReview = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     //dispatch(createReviewBasedOnSpotsId(id))
-    history.push(`/create-review/${id}`)
-  }
-
-
+    history.push(`/create-review/${id}`);
+  };
 
   return (
-    spot &&
-    <div>
-      <h1 className="detailName">{spot.name}</h1>
-      <div>
-          <img className="previewImage" src={spot.previewImage} alt="spot"></img>
-      </div>
-      <div className="spotDetails">
-        <span>{spot?.avgStarRating}</span>
-        <span>{`${spot.beds} beds`}</span>
-        <span>{` ${spot.numReviews} reviews`}</span>
-        <span>{` ${spot?.city}, ${spot?.state}, ${spot?.country}   `}</span>
-        {/* <span>{spot.description}</span> */}
-      </div>
-      <div>
-        {spot?.description}
-      </div>
-      <div>
-        {currentUser &&
-          // currentUser &&
-          currentUser.id === spot.ownerId && (
-              <div>
-              <button onClick={removeSpot}>Delete Spot</button>
-              <button onClick={editSpot}>Edit Spot</button>
-
+    spot && (
+      <div className="main-div">
+        <h1 className="detailName">{spot.name}</h1>
+        <div className="image-div">
+          <img
+            className="previewImage"
+            src={spot.previewImage}
+            alt="spot"
+          ></img>
+        </div>
+        <div className="bottom-container">
+          <h2 className="spotDetails-title">Spot Details</h2>
+          <div className="spotDetails">
+            <div className="top-info">
+              <div className="stars">{`${spot?.avgStarRating} avg stars`}</div>
+              <span className="space-span">·</span>
+              <div className="bed">{`${spot.beds} beds`}</div>
+              <span className="space-span">·</span>
+              <div className="num-reviews">{`${spot.numReviews} reviews`}</div>
+              <span className="space-span">·</span>
+              <div className="address">{` ${spot?.city}, ${spot?.state}, ${spot?.country}`}</div>
+            </div>
+            <h2 className="description-title">Description</h2>
+            <div className="description">{spot?.description}</div>
+          </div>
+          <div className="both-buttons">
+            {currentUser &&
+              // currentUser &&
+              currentUser.id === spot.ownerId && (
+                <div className="owner-options">
+                <h2>Owner Options</h2>
+                <div>
+                  <button onClick={removeSpot}>Delete Spot</button>
+                  <button onClick={editSpot}>Edit Spot</button>
+                </div>
+                </div>
+              )}
+            <div className="reviews">
+              <div className="review-component">
+              <ReviewsBySpotId id={id} />
               </div>
-        )}
-        <div>
-          <ReviewsBySpotId id={id}/>
+              <div className="review button">
+                <button onClick={createReview}>Create a Review!</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-        <button onClick={createReview}>Create a Review!</button>
-        </div>
-        {/* <div>
-          <CreateReview id={id}/>
-        </div> */}
       </div>
-  </div>
-  )
-}
+    )
+  );
+};
 
 export default SpotDetails;

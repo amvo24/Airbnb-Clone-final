@@ -28,6 +28,7 @@ const Reviews = () => {
     <div className='all-reviews-div'>
       <h1>Reviews</h1>
       {reviews.map((reviewState) => {
+        {console.log(reviewState)}
         return (
           <div key={reviewState.id}>
           <div className='review-div'>
