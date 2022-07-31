@@ -93,14 +93,14 @@ const SpotDetails = () => {
                 </div>
                 </div>
               )}
-            <div className="reviews">
+          </div>
+          <div className="reviews">
               <div className="review-component">
               <ReviewsBySpotId id={id} />
               </div>
               <div className="review button">
                 <button onClick={createReview}>Create a Review!</button>
               </div>
-            </div>
           </div>
         </div>
       </div>
