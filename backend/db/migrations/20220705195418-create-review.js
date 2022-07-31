@@ -30,6 +30,15 @@ module.exports = {
           key: 'id'
         }
       },
+      //if need be delete firstName and lastName below
+      firstName: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

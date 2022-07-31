@@ -32,7 +32,7 @@ const Reviews = () => {
         return (
           <div key={reviewState.id}>
           <div className='review-div'>
-          {/* <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p> */}
+          <p className='stars'>{`${reviewState.firstName} ${reviewState.lastName}`}</p>
           <p className='user'>{`${reviewState.stars} stars`}</p>
           <p className='actual-review'>{`${reviewState.review}`}</p>
           </div>

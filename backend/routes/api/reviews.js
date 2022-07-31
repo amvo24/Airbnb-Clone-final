@@ -87,6 +87,8 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     let { review, stars } = req.body
     const spotId = req.params.spotId
     const id = req.user.id
+    const firstName = req.user.firstName
+    const lastName = req.user.lastName
 
     const spot = await Spot.findOne({
         where: { id: spotId}
@@ -111,6 +113,7 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
           { userId: req.user.id },
         ],
       },
+
     })
 
     if (reviewExistence.length >= 1) {
@@ -140,6 +143,8 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     const newReview = await Review.create({
       userId: id,
       spotId: spotId,
+      firstName: firstName,
+      lastName: lastName,
       review,
       stars,
     })
