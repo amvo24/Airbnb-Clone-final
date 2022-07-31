@@ -2,3 +2,10 @@
     display: flex;
     justify-content: center;
 }
+
+.full-user-review {
+    display: flex;
+    flex-direction: column;
+    border: 5px solid rgb(135, 135, 135);
+    padding: 5px;
+}
