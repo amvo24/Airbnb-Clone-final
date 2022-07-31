@@ -145,7 +145,7 @@ router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
     })
 
 
-    res.json({ message: 'Successfully created spot', newReview})
+    res.json({newReview})
 })
 
 // Edit a review

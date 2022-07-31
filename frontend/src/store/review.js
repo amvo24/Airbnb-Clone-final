@@ -63,8 +63,9 @@ export const createReviewBasedOnSpotsId = (review, spotId) => async dispatch => 
 
     if (response.ok) {
       const review = await response.json();
+      // console.log("LOOK HERE FOR .JSON RESPONSE REVIEW", review)
       dispatch(createREVIEWS(review));
-      return review
+      // return review
     }
 };
 
