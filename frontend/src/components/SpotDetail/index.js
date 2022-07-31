@@ -62,7 +62,7 @@ const SpotDetails = () => {
     <div>
       <h1 className="detailName">{spot.name}</h1>
       <div>
-              <img className="previewImage" src={spot.previewImage} alt="spot"></img>
+          <img className="previewImage" src={spot.previewImage} alt="spot"></img>
       </div>
       <div className="spotDetails">
         <span>{spot?.avgStarRating}</span>

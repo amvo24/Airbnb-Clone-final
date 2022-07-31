@@ -29,7 +29,9 @@ const CreateSpot = () => {
 
 
     const handleSubmit = async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
+
+        
         // const validateErrors = []
         // if (address.length < 1 || city.length < 1 || country.length < 1 || state.length < 1) validateErrors.push('You must include all address fields.');
         // if (lat.length < 1 || lng.length < 1) validateErrors.push('You must include a latitude and longitude.');
@@ -95,7 +97,7 @@ const CreateSpot = () => {
                 placeholder='City'
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -105,7 +107,7 @@ const CreateSpot = () => {
                 placeholder='State'
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -115,7 +117,7 @@ const CreateSpot = () => {
                 placeholder='country'
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -125,7 +127,7 @@ const CreateSpot = () => {
                 placeholder='lat'
                 value={lat}
                 onChange={(e) => setLat(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -135,7 +137,7 @@ const CreateSpot = () => {
                 placeholder='lng'
                 value={lng}
                 onChange={(e) => setLng(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -145,7 +147,7 @@ const CreateSpot = () => {
                 placeholder='name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -155,7 +157,7 @@ const CreateSpot = () => {
                 placeholder='beds'
                 value={beds}
                 onChange={(e) => setBeds(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -165,7 +167,7 @@ const CreateSpot = () => {
                 placeholder='description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -175,7 +177,7 @@ const CreateSpot = () => {
                 placeholder='url'
                 value={previewImage}
                 onChange={(e) => setPreviewImage(e.target.value)}
-                // required
+                required
                 />
             </label>
             <label>
@@ -185,7 +187,7 @@ const CreateSpot = () => {
                 placeholder='Price'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
-                // required
+                required
                 />
             </label>
             <button type="submit">Create Spot</button>
