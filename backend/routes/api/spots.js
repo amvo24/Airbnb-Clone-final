@@ -110,10 +110,12 @@ if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || N
     where: {
     [Op.and]: options
 
-},
+    },
       limit: size || 20,
       offset: page * size,
   });
+
+
   res.json({
       spots,
       page,
@@ -197,7 +199,7 @@ res.json(spotData)
     price
    })
 
-   res.json({message: 'Successfully created spot', newSpot})
+   res.json(newSpot)
 })
 
 // Edit a spot !!!!
