@@ -104,13 +104,13 @@ const reviewReducer = (state = initialState, action) => {
           // newState[review.id] = review
           return newState
           }
-        case createREVIEWS:{
+        case CREATE_REVIEWS:{
           const newState = {...state}
           newState[action.payload.id] = action.payload
           return newState
           // return {...state}
         }
-        case deleteREVIEWS:{
+        case DELETE_REVIEWS:{
           const newState = {...state}
           delete newState[action.payload]
           return newState
