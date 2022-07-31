@@ -156,7 +156,7 @@ router.get('/:id', async (req,res) => {
     res.status(404)
     res.json({message: "Spot couldn't be found", statusCode: 404})
   }
-  
+
   const reviewsAggData = await Spot.findByPk(req.params.id, {
     include: {
         model: Review,
@@ -180,7 +180,7 @@ res.json(spotData)
 
 //Create a new Spot
   router.post('/', requireAuth, validateSpots, async (req, res) => {
-   let { address, city, state, country, lat, previewImage, lng, name, description, price} = req.body
+   let { address, city, state, country, lat, previewImage, lng, name, beds, description, price} = req.body
 
    const newSpot = await Spot.create({
     ownerId: req.user.id,
@@ -192,6 +192,7 @@ res.json(spotData)
     previewImage,
     lng,
     name,
+    beds,
     description,
     price
    })

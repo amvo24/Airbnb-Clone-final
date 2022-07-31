@@ -17,12 +17,10 @@ const loadOwnerSpots = (payload) => ({
     payload
 });
 
-
 const loadOneSpot = (payload) => ({
     type: LOAD_ONE_SPOT,
     payload
 });
-
 
 const createSpots = (createdPayload) => ({
     type: CREATE_SPOTS,
@@ -94,6 +92,7 @@ export const createNewSpot = (spot) => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
+      console.log("LOOK HERE FOR A CREATED SPOT", spot)
       dispatch(createSpots(spot));
       return spot
       // const all = {}

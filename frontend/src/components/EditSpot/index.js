@@ -163,7 +163,7 @@ const EditSpot = () => {
                 type="text"
                 placeholder='beds'
                 value={beds}
-                onChange={setBeds}
+                onChange={updateBeds}
                 required
                 />
             </label>
