@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
 import {createNewSpot} from '../../store/spots'
 
 
@@ -16,6 +16,7 @@ const CreateSpot = () => {
     const [country, setCountry] = useState('')
     const [lat, setLat] = useState(1)
     const [lng, setLng] = useState(1)
+    // const [checkInput, setCheckInput] = useState(true)
     const [name, setName] = useState('')
     const [beds, setBeds] = useState(1)
     const [description, setDescription] = useState('')
@@ -25,9 +26,29 @@ const CreateSpot = () => {
 
     //if (!user) return <Redirect to="/" />;
 
+
+
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        setErrors([])
+        // e.preventDefault()
+        // const validateErrors = []
+        // if (address.length < 1 || city.length < 1 || country.length < 1 || state.length < 1) validateErrors.push('You must include all address fields.');
+        // if (lat.length < 1 || lng.length < 1) validateErrors.push('You must include a latitude and longitude.');
+        // if (typeof(lat) !== Number || typeof(lng) !== Number) validateErrors.push('Latitude and Longitude fields must be an INTEGER.');
+        // if (name.length < 1) validateErrors.push('You must include a name for your Airbnb.');
+        // if (beds.length < 1) validateErrors.push('You must include how many beds are available for your Airbnb.');
+        // if (typeof(beds) !== Number) validateErrors.push('Beds field must be an INTEGER.');
+        // if (description.length < 1) validateErrors.push('You must include a description for your Airbnb.');
+        // if (price.length < 1) {
+        //     validateErrors.push('You must include a price.')
+        // } else if (price.length > 0) {
+        //     if (Number(price) === 0) {
+        //         validateErrors.push('Price must be more that $0')
+        //     }
+        // }
+        // if (validateErrors.length > 0) {
+        //     setErrors(validateErrors);
+        //     return;
+        // }
 
         const newSpot = {
 
@@ -74,7 +95,7 @@ const CreateSpot = () => {
                 placeholder='City'
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -84,7 +105,7 @@ const CreateSpot = () => {
                 placeholder='State'
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -94,7 +115,7 @@ const CreateSpot = () => {
                 placeholder='country'
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -104,7 +125,7 @@ const CreateSpot = () => {
                 placeholder='lat'
                 value={lat}
                 onChange={(e) => setLat(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -114,7 +135,7 @@ const CreateSpot = () => {
                 placeholder='lng'
                 value={lng}
                 onChange={(e) => setLng(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -124,7 +145,7 @@ const CreateSpot = () => {
                 placeholder='name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -134,7 +155,7 @@ const CreateSpot = () => {
                 placeholder='beds'
                 value={beds}
                 onChange={(e) => setBeds(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -144,7 +165,7 @@ const CreateSpot = () => {
                 placeholder='description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -154,7 +175,7 @@ const CreateSpot = () => {
                 placeholder='url'
                 value={previewImage}
                 onChange={(e) => setPreviewImage(e.target.value)}
-                required
+                // required
                 />
             </label>
             <label>
@@ -164,7 +185,7 @@ const CreateSpot = () => {
                 placeholder='Price'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
-                required
+                // required
                 />
             </label>
             <button type="submit">Create Spot</button>
