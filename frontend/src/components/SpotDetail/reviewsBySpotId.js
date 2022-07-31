@@ -22,7 +22,8 @@ const ReviewsBySpotId = ({id}) => {
           // {console.log("THIS IS YOUR REVIEW STATE IN JSX", reviewState)}
           return (
             <div key={i}>
-            {/* <p className='stars'>{`${reviewState.firstName} ${reviewState.lastName}`}</p> */}
+            <p className='fullName'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p>
+            {/* <p className='stars'>{`${reviewState.createdAt}`}</p> */}
             <p className='user'>{`${reviewState.stars} stars`}</p>
             <p className='actual-review'>{`${reviewState.review}`}</p>
             </div>
