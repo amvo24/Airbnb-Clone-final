@@ -9,6 +9,7 @@ const CreateSpot = () => {
     const dispatch = useDispatch();
     const history = useHistory()
     const user = useSelector((state) => state.session.user)
+
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
@@ -16,6 +17,7 @@ const CreateSpot = () => {
     const [lat, setLat] = useState(1)
     const [lng, setLng] = useState(1)
     const [name, setName] = useState('')
+    const [beds, setBeds] = useState(1)
     const [description, setDescription] = useState('')
     const [previewImage, setPreviewImage] = useState('')
     const [price, setPrice] = useState(0)
@@ -37,6 +39,7 @@ const CreateSpot = () => {
             lat: lat,
             lng: lng,
             previewImage: previewImage,
+            beds: beds,
             description: description,
             price: price
         }
@@ -121,6 +124,16 @@ const CreateSpot = () => {
                 placeholder='name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
+                />
+            </label>
+            <label>
+                How Many Beds?:
+                <input
+                type="text"
+                placeholder='beds'
+                value={beds}
+                onChange={(e) => setBeds(e.target.value)}
                 required
                 />
             </label>

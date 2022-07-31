@@ -42,6 +42,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      beds: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       description: {
         type: Sequelize.STRING,
         allowNull: false,

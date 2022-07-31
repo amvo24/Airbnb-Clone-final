@@ -54,7 +54,7 @@ export const getAllSpots = () => async dispatch => {
       return { ...all }
 
     }
-    return {}
+
 };
 
 //Listings by owner
@@ -73,13 +73,14 @@ export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
+      console.log('THIS IS SPOT IN YOUR THUNK', spot)
       dispatch(loadOneSpot(spot));
-      // const all = {};
-      // all[spot.id] = spot
-      // return {...all}
-      return spot
+      const all = {};
+      all[spot.id] = spot
+      return {...all}
+      // return spot
     }
-    return response
+    // return response
 };
 
 export const createNewSpot = (spot) => async dispatch => {
@@ -160,7 +161,7 @@ const spotsReducer = (state = initialState, action) => {
       // return {...state}
 
     case LOAD_ONE_SPOT:{
-       const newestState = {...state}
+       const newestState = {} // I ALTERED THIS
       //  const spot = action.payload
        newestState[action.payload.id] = action.payload
        return newestState

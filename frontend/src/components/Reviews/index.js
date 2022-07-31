@@ -9,18 +9,19 @@ const Reviews = () => {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => Object.values(state.reviewsInRootReducer));
 
-  // let reviewsAmt = useRef(reviews.length)
-
-
-  const deleteReview = (e, reviewId) => {
-    e.preventDefault()
-    dispatch(removeReview(reviewId)).then(dispatch(getAllReviewsByCurrentUser()))
-    history.push('/user-reviews')
-  }
-
   useEffect(() => {
       dispatch(getAllReviewsByCurrentUser())
     }, [dispatch ])
+
+
+
+  const deleteReview = (reviewId) => async (e) => {
+    e.preventDefault()
+    await dispatch(removeReview(reviewId))
+    await (dispatch(getAllReviewsByCurrentUser()))
+    history.push('/user-reviews')
+  }
+
 
   return (
 
@@ -35,7 +36,7 @@ const Reviews = () => {
           <p className='actual-review'>{`${reviewState.review}`}</p>
           </div>
           <div className="deleteButton">
-            <button onClick={e => deleteReview(e, reviewState.id)}>Delete Review</button>
+            <button onClick={deleteReview(reviewState.id)}>Delete Review</button>
           </div>
           </div>
         )

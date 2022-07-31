@@ -16,20 +16,20 @@ const SpotDetails = () => {
 
 
   const spot = useSelector(state => state.spotInRootReducer[id]);
-  //console.log('LOOK HERE PLEASE', spot)
+  console.log('THIS IS SPOT DATA IN YOUR COMPONENT ', spot)
   //const spot = useSelector(state => state.spotInRootReducer);
   const currentUser = useSelector(state => (state.session.user));
   // console.log("THIS IS YOUR CURRENT USER", currentUser)
 
-  useEffect(() => {
-    if (!spot) {
-      dispatch(getDetailsOfASpotFromAnId(id));
-      }
-    }, [dispatch, id, spot]);
-
   // useEffect(() => {
+  //   if (!spot) {
   //     dispatch(getDetailsOfASpotFromAnId(id));
+  //     }
   //   }, [dispatch, id]);
+
+  useEffect(() => {
+      dispatch(getDetailsOfASpotFromAnId(id));
+    }, [dispatch, id]);
 
 
 
@@ -50,7 +50,7 @@ const SpotDetails = () => {
 
   const createReview = (e) => {
     e.preventDefault()
-    dispatch(createReviewBasedOnSpotsId(id))
+    //dispatch(createReviewBasedOnSpotsId(id))
     history.push(`/create-review/${id}`)
   }
 
@@ -66,7 +66,8 @@ const SpotDetails = () => {
       </div>
       <div className="spotDetails">
         <span>{spot?.avgStarRating}</span>
-        <span>{` ${spot?.numReviews} reviews`}</span>
+        <span>{`${spot.beds} beds`}</span>
+        <span>{` ${spot.numReviews} reviews`}</span>
         <span>{` ${spot?.city}, ${spot?.state}, ${spot?.country}   `}</span>
         {/* <span>{spot.description}</span> */}
       </div>

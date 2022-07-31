@@ -33,6 +33,7 @@ const Spots = () => {
               <div className="spot-info">
                 <p className="spot-city-state">{`${spot.city}, ${spot.state}`}</p>
                 {/* <p className="avg-stars">{reviews}</p> */}
+                <p className="spot-price">{`${spot.beds} beds`}</p>
                 <p className="spot-price">{`$${spot.price} night`}</p>
               </div>
             </div>

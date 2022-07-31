@@ -102,6 +102,11 @@ if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || N
   if (minPrice) {options.push({price: {[Op.gte]: Number(minPrice)}})}
 
   let spots = await Spot.findAll({
+    include: [
+      {
+        model: Review
+      }
+    ],
     where: {
     [Op.and]: options
 
@@ -127,7 +132,7 @@ router.get('/userSpots', requireAuth, async (req, res) => {
       const places = await Spot.findAll({
           where: {ownerId: id}
       });
-      
+
   res.json(places)
 });
 
@@ -151,6 +156,7 @@ router.get('/:id', async (req,res) => {
     res.status(404)
     res.json({message: "Spot couldn't be found", statusCode: 404})
   }
+  
   const reviewsAggData = await Spot.findByPk(req.params.id, {
     include: {
         model: Review,

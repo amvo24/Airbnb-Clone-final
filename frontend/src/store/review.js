@@ -93,14 +93,15 @@ const reviewReducer = (state = initialState, action) => {
         case LOAD_REVIEWS:{
           const newState = {}
           action.payload.forEach(el => newState[el.id] = el);
-          return newState}
+          return newState
+        }
 
         case LOAD_REVIEWS_SPOT_ID:{
           const newState = {}
           action.payload.reviews.forEach(el => newState[el.id] = el)
           // const review = action.payload
           // newState[review.id] = review
-          return {...newState}
+          return newState
           }
         case createREVIEWS:{
           const newState = {...state}

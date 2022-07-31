@@ -20,6 +20,7 @@ const EditSpot = () => {
     const [lat, setLat] = useState('')
     const [lng, setLng] = useState('')
     const [name, setName] = useState('')
+    const [beds, setBeds] = useState(1)
     const [description, setDescription] = useState('')
     //const [image, setImage] = useState('')
     const [previewImage, setPreviewImage] = useState('')
@@ -35,6 +36,7 @@ const EditSpot = () => {
     const updateLng = (e) => setLng(e.target.value);
     const updateName = (e) => setName(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
+    const updateBeds = (e) => setBeds(e.target.value);
     const updatePrice = (e) => setPrice(e.target.value);
     const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
@@ -58,6 +60,7 @@ const EditSpot = () => {
             lat: lat,
             lng: lng,
             previewImage: previewImage,
+            beds: beds,
             description: description,
             price: price
         }
@@ -151,6 +154,16 @@ const EditSpot = () => {
                 placeholder='name'
                 value={name}
                 onChange={updateName}
+                required
+                />
+            </label>
+            <label>
+                How Many Beds?:
+                <input
+                type="text"
+                placeholder='beds'
+                value={beds}
+                onChange={setBeds}
                 required
                 />
             </label>
