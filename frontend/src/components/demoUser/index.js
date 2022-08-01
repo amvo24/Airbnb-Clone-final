@@ -8,7 +8,7 @@ export default function DemoUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const credential = "demo@demo.com";
+    const credential = "demo@user.io";
     // const firstName = "andrew";
     // const lastName = "vo";
     const password = "password";
