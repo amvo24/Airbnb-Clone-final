@@ -11,7 +11,7 @@ const EditSpot = () => {
     let { id } = useParams()
     id = Number(id)
     const spot = useSelector((state) => state.spotInRootReducer)
-    //console.log('THIS IS MY SPOT STATE', spot)
+    
 
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')

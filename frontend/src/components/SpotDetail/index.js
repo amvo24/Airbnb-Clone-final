@@ -19,10 +19,10 @@ const SpotDetails = () => {
   id = Number(id);
 
   const spot = useSelector((state) => state.spotInRootReducer[id]);
-  //console.log('THIS IS SPOT DATA IN YOUR COMPONENT ', spot)
+  
   //const spot = useSelector(state => state.spotInRootReducer);
   const currentUser = useSelector((state) => state.session.user);
-  // console.log("THIS IS YOUR CURRENT USER", currentUser)
+  //
 
   // useEffect(() => {
   //   if (!spot) {

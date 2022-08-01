@@ -42,9 +42,9 @@ export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`);
     if (response.ok) {
       const payload = await response.json();
-      //console.log('RES.JSON FROM SPOTS', payload)
+      
       // const spots = {...payload}
-      //console.log('WHAT IS THIS', spots)
+
       dispatch(loadSpots(payload));
 
       const all = {}
@@ -61,7 +61,7 @@ export const getSpotsOwnedByCurrentUser = () => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
-      //console.log('THIS IS YOUR SPOT PAYLOAD', spot)
+
       dispatch(loadOwnerSpots(spot));
     }
 };
@@ -71,7 +71,7 @@ export const getDetailsOfASpotFromAnId = (id) => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
-      //console.log('THIS IS SPOT IN YOUR THUNK', spot)
+
       dispatch(loadOneSpot(spot));
       const all = {};
       all[spot.id] = spot
@@ -92,7 +92,7 @@ export const createNewSpot = (spot) => async dispatch => {
 
     if (response.ok) {
       const spot = await response.json();
-      console.log("LOOK HERE FOR A CREATED SPOT", spot)
+
       dispatch(createSpots(spot));
       return spot
       // const all = {}
@@ -115,7 +115,7 @@ export const editSpotById = (editedSpot, id) => async dispatch => {
 
   if (response.ok) {
     const updatedPayload = await response.json();
-    //console.log("THIS SHOULD BE YOUR UPDATED PAYLOAD", updatedPayload)
+
     dispatch(editSpots(updatedPayload));
   }
 };
@@ -144,7 +144,7 @@ const spotsReducer = (state = initialState, action) => {
     case LOAD_SPOTS: //GET ALL SPOT
       {
         const newState = {};
-        
+
         action.payload.spots.forEach(el => (newState[el.id] = el));
         return newState
       }

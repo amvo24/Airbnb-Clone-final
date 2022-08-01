@@ -10,7 +10,7 @@ const Spots = () => {
   const reviews = useSelector((state) =>
     Object.values(state.reviewsInRootReducer)
   );
-  // console.log('LOOK HERE', reviews)
+
 
   //const user = useSelector((state) => Object.values(state.user))
 

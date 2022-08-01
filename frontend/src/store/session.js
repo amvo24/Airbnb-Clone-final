@@ -37,9 +37,9 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  //console.log('THIS IS FUCKING DATA', data)
+
   dispatch(setUser(data));
-  //console.log('THIS IS YOUR DATA BUDDY', data)
+  
   return response;
 };
 
