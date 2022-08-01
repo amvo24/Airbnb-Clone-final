@@ -249,7 +249,7 @@ res.json(spotData)
       })
     }
 
-   await spots.destroy()
+    spots.destroy()
 
      res.json({
         message: "Successfully deleted",

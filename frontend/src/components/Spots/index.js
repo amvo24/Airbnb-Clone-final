@@ -16,7 +16,7 @@ const Spots = () => {
 
   useEffect(() => {
     dispatch(getAllSpots());
-  }, [dispatch]);
+  }, [dispatch, spots]);
 
   return (
     <div className="all-spots-div">

@@ -8,10 +8,10 @@ export default function DemoUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const credential = "user2@user.io";
+    const credential = "demo@demo.com";
     // const firstName = "andrew";
     // const lastName = "vo";
-    const password = "password3";
+    const password = "password";
     return dispatch(sessionActions.login({ credential, password }));
   };
 
