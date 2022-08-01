@@ -11,7 +11,7 @@ const Reviews = () => {
 
   useEffect(() => {
       dispatch(getAllReviewsByCurrentUser())
-    }, [dispatch ])
+    }, [dispatch, JSON.stringify(reviews)])
 
 
 

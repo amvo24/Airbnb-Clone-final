@@ -13,7 +13,7 @@ const ReviewsBySpotId = ({id}) => {
 
   useEffect(() => {
       dispatch(getAllReviewsByreviewId(id));
-  }, [dispatch])
+  }, [dispatch, JSON.stringify(reviewsVariable)])
 
     return (
       <div className='reviews-root-div' key={id}>

@@ -15,6 +15,7 @@ import "./spotDetail.css";
 const SpotDetails = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+
   let { id } = useParams();
   id = Number(id);
 
@@ -74,7 +75,6 @@ const SpotDetails = () => {
 
           <div className="both-buttons">
             {currentUser &&
-              // currentUser &&
               currentUser.id === spot.ownerId && (
                 <div className="owner-options">
                 <h2 className="owner-options-title">Owner Options</h2>

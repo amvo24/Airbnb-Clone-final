@@ -105,7 +105,13 @@ if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || N
     include: [
       {
         model: Review
-      }
+      },
+      //added the association below to compormise with CSS feature
+      {
+        model: User,
+        as: 'Owner',
+        attributes: ['id', 'firstName', 'lastName']
+    }
     ],
     where: {
     [Op.and]: options

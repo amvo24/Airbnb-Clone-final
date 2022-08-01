@@ -1,3 +1,25 @@
+.signUpForm {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+/* .label {
+  display: flex;
+  flex-direction: column;
+} */
+
+.input {
+  height: 40px;
+  border: #D3D3D3 1.5px solid;
+  width: 100%;
+  border-radius: 5px;
+  color: black;
+}
+
+
 .signupButton {
     background-color: #FFFFFF;
   border: 1px solid rgb(209,213,219);
