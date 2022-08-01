@@ -36,7 +36,7 @@ const SpotsOwnedByUser = () => {
                 <p className='listingPrice'>{`Priced at $${spotState.price} a night`}</p>
             </div>
             </div>
-            {/* <div className='line'></div> */}
+            
             </div>
           )
         })

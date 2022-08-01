@@ -18,7 +18,7 @@
     justify-content: space-evenly;
     margin-bottom: 0px;
     margin-right: 50%;
-    
+
 }
 
 
@@ -37,5 +37,7 @@
 .airbnb-details {
     display: flex;
     flex-direction: column;
-    margin-top: 20%;
+    margin-top: 9%;
+    font-weight: bold;
+
 }
