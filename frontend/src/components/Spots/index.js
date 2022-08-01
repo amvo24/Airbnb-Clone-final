@@ -23,7 +23,7 @@ const Spots = () => {
       {spots.map((spot, index) => (
         <div key={index}>
           <Link to={`/spots/${spot.id}`} className="spot-link" key={spot.id}>
-            <div className={`spot-div spot-div${index}`}>
+            <div className={`spot-div`}>
               <div className="img-div">
                 <img className="spot-img"src={spot.previewImage} alt="preview of spot"></img>
               </div>
@@ -41,31 +41,7 @@ const Spots = () => {
     </div>
   );
 
-  // return (
-  //   <div className="spotsPage">
-  //     {spots &&
-  //       spots.map((spot) => (
-  //         <NavLink to={`/spots/${spot.id}`} key={spot.id}>
-  //             {/* <div key={spot.id}> */}
-  //             <div className="eachSpot">
-  //               <img
-  //                 className="spotImg"
-  //                 src={spot.previewImage}
-  //                 alt={spot.name}
-  //               ></img>
-  //               <h3 className="spotName">{spot.name}</h3>
-  //               <h4 className="spotLocation">
-  //                 {spot.city}, {spot.state}
-  //               </h4>
-  //               <p className="spotAddress">{spot.address}</p>
-  //               <p className="spotDetails">{spot.description}</p>
-  //               <p className="spotPrice"> ${spot.price} night</p>
-  //             </div>
-  //         {/* </div> */}
-  //           </NavLink>
-  //       ))}
-  //   </div>
-  // );
+
 };
 
 export default Spots;

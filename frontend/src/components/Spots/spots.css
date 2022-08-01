@@ -10,8 +10,9 @@
   .all-spots-div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    place-items: center;
-    margin-left: 1%;
+    /* place-items: center; */
+    margin-left: 7%;
+    margin-top: 1%;
 
   }
 
@@ -25,7 +26,7 @@
     height: 310px;
     width: 370px;
     display: flex;
-    /* margin: auto; */
+    /* margin-top: 50px; */
   }
 
   .spot-img {
