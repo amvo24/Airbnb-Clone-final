@@ -90,7 +90,7 @@ const SpotDetails = () => {
 
 
             <div className="top-info">
-              <div className="stars">{`${spot?.avgStarRating} avg stars`}</div>
+              <div className="stars">{`${spot?.avgStarRating.toFixed(1)} avg stars`}</div>
               <span className="space-span">·</span>
               <div className="bed">{`${spot.beds} beds`}</div>
               <span className="space-span">·</span>

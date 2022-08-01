@@ -25,7 +25,7 @@ const ReviewsBySpotId = ({id}) => {
             <div className='reviews-container' key={i}>
               <div className='full-user-review'>
               <p className='fullNameReview'>{`${reviewState.firstName} ${reviewState.lastName}`}</p>
-              <p className='userReview'>{`${reviewState.stars.toFixed(1)} stars`}</p>
+              <p className='userReview'>{`${reviewState.stars} stars`}</p>
               <p className='actual-review'>{`${reviewState.review}`}</p>
             </div>
             </div>
