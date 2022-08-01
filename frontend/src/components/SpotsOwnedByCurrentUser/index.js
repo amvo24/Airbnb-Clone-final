@@ -20,6 +20,8 @@ const SpotsOwnedByUser = () => {
       dispatch(deleteReview())
     }
 
+    
+
     return (
       <div className='all-Airbnbs-div'>
         <h1 className='listing-title'>Your AirBnbs</h1>
@@ -36,7 +38,7 @@ const SpotsOwnedByUser = () => {
                 <p className='listingPrice'>{`Priced at $${spotState.price} a night`}</p>
             </div>
             </div>
-            
+
             </div>
           )
         })
