@@ -35,15 +35,19 @@ const CreateReview = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} className='createReview'>
+        <div className='createreviewrootdiv'>
+            <h1 className='createreviewtitle354'>{`Leave A Review Down Below!`}</h1>
+        <div className='createReviewDiv33'>
+        <form className="createSpotForm" onSubmit={handleSubmit}>
             <ul>
                 {errors.map((error, id) => (
                     <li key={id}>{error}</li>
                 ))}
             </ul>
-            <label>
+            <label className='label'>
                 Leave Your Review Here:
-                <input
+                <textarea
+                id="reviewInput"
                 type="text"
                 placeholder='Review'
                 value={review}
@@ -51,9 +55,10 @@ const CreateReview = () => {
                 required
                 />
             </label>
-            <label>
+            <label className='label'>
                 Stars:
-                <input
+                <textarea
+                id="reviewInput"
                 type="text"
                 placeholder='Stars'
                 value={stars}
@@ -62,8 +67,10 @@ const CreateReview = () => {
                 />
             </label>
 
-            <button type="submit">Create Review</button>
+            <button className='createButtonforReviews' type="submit">Create Review</button>
         </form>
+        </div>
+        </div>
     )
 }
 

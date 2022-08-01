@@ -11,7 +11,7 @@ const EditSpot = () => {
     let { id } = useParams()
     id = Number(id)
     const spot = useSelector((state) => state.spotInRootReducer)
-    
+
 
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
@@ -43,9 +43,9 @@ const EditSpot = () => {
     //if (!user) return <Redirect to="/" />;
     //if (submitted) return <Redirect to={`/spot/${id}`}/>
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    })
+    // })
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -81,13 +81,15 @@ const EditSpot = () => {
 
 
     return (
+        <div className='createSpotPage'>
+        <h1 className='create-title-name'>Edit Your AirBnb Below!</h1>
         <form onSubmit={handleSubmit} className='createSpotForm'>
             <ul>
                 {errors.map((error, id) => (
                     <li key={id}>{error}</li>
                 ))}
             </ul>
-            <label>
+            <label className="label">
                 Address:
                 <input
                 type="text"
@@ -97,7 +99,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 City:
                 <input
                 type="text"
@@ -107,7 +109,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 State:
                 <input
                 type="text"
@@ -117,7 +119,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Country:
                 <input
                 type="text"
@@ -127,7 +129,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Latitude:
                 <input
                 type="text"
@@ -137,7 +139,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Longitude:
                 <input
                 type="text"
@@ -147,7 +149,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Name:
                 <input
                 type="text"
@@ -157,7 +159,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 How Many Beds?:
                 <input
                 type="text"
@@ -167,7 +169,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Description:
                 <input
                 type="text"
@@ -177,7 +179,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Preview Image:
                 <input
                 type="text"
@@ -187,7 +189,7 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Price:
                 <input
                 type="text"
@@ -197,8 +199,9 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <button id='submitbutton' type="submit">Edit Spot</button>
+            <button className='editbutton28376' type="submit">Edit Spot</button>
         </form>
+        </div>
     )
 }
 

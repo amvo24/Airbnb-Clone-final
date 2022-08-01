@@ -64,6 +64,7 @@
     flex-direction: row;
     align-content: space-between;
     margin-right: 20%;
+    margin-top: 10px;
 }
 
 .space-span {
@@ -77,5 +78,3 @@
     flex-direction: column;
     justify-content: center;
 }
-
-

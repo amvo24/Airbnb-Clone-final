@@ -1,0 +1,51 @@
+.createSpotForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 80%;
+}
+
+#reviewInput {
+    border: #D3D3D3 1.5px solid;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.createButtonforReviews {
+    background: linear-gradient(to bottom right, #e82855, #ce0e78);
+    color: white;
+    font-weight: 500;
+    height: 30px;
+    width: 150px;
+    border-radius: 5px;
+    margin-bottom: 5%;
+}
+
+.createButtonforReviews:hover {
+  cursor: pointer;
+  background: #e82855;
+
+}
+.createreviewtitle354 {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: -5%;
+}
+
+
+.createReviewDiv33 {
+    border-radius: 30px;;
+    border: gray solid;
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    margin: auto;
+    margin-top: 10%;
+
+
+
+}
