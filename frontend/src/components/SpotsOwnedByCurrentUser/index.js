@@ -13,7 +13,7 @@ const SpotsOwnedByUser = () => {
 
     useEffect(() => {
         dispatch(getSpotsOwnedByCurrentUser());
-    }, [dispatch])
+    }, [dispatch, JSON.stringify(spots)])
 
     const deleteReview = (e) => {
       e.preventDefualt()
