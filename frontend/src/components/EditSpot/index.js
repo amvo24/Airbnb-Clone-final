@@ -10,21 +10,21 @@ const EditSpot = () => {
     const history = useHistory()
     let { id } = useParams()
     id = Number(id)
-    const spot = useSelector((state) => state.spotInRootReducer)
+    const spot = useSelector((state) => state.spotInRootReducer[id])
 
 
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
-    const [lat, setLat] = useState('')
-    const [lng, setLng] = useState('')
-    const [name, setName] = useState('')
-    const [beds, setBeds] = useState(1)
-    const [description, setDescription] = useState('')
+    const [address, setAddress] = useState(spot?.address)
+    const [city, setCity] = useState(spot?.city)
+    const [state, setState] = useState(spot?.state)
+    const [country, setCountry] = useState(spot?.country)
+    const [lat, setLat] = useState(spot?.lat)
+    const [lng, setLng] = useState(spot?.lng)
+    const [name, setName] = useState(spot?.name)
+    const [beds, setBeds] = useState(spot?.beds)
+    const [description, setDescription] = useState(spot?.description)
     //const [image, setImage] = useState('')
-    const [previewImage, setPreviewImage] = useState('')
-    const [price, setPrice] = useState(0)
+    const [previewImage, setPreviewImage] = useState(spot?.previewImage)
+    const [price, setPrice] = useState(spot?.price)
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 
@@ -40,12 +40,26 @@ const EditSpot = () => {
     const updatePrice = (e) => setPrice(e.target.value);
     const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
-    //if (!user) return <Redirect to="/" />;
-    //if (submitted) return <Redirect to={`/spot/${id}`}/>
+    const validations = () => {
+        const errors = [];
+        if (!address) errors.push("Please enter an address");
+        if (!city) errors.push("Please enter a city");
+        if (!state) errors.push("Please enter a state");
+        if (!country) errors.push("Please enter a country");
+        if (!previewImage) errors.push("Please include a preview image");
+        if (name.length < 2)
+          errors.push("Please enter a name with a length greater than 2");
+        if (!description) errors.push("Please include a description");
+        if (!previewImage) errors.push("Please include a preview image!");
+        if (name.length > 25)
+          errors.push("Please include a name with a length that is less than 25");
+        if (previewImage.length > 255)
+          errors.push(
+            "Please include a different image URL that is less than 255 characters"
+          );
+        return errors;
+      };
 
-    // useEffect(() => {
-
-    // })
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -65,12 +79,17 @@ const EditSpot = () => {
             price: price
         }
 
-        history.push(`/spots/${id}`)
+        const validationErrors = validations();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+
         //history.push(`/`)
         return dispatch(editSpotById(editedSpot, id))
-        .then(async (res) => {
-            //console.log("success");
-            setSubmitted(true);
+        .then(() => {
+            history.push(`/spots/${id}`)
           })
         .catch(async (res) => {
             const data = await res.json();
@@ -82,7 +101,7 @@ const EditSpot = () => {
 
     return (
         <div className='createSpotPage'>
-        <h1 className='create-title-name'>Edit Your AirBnb Below!</h1>
+        {/* <h1 className='create-title-name'>Edit Your AirBnb Below!</h1> */}
         <form onSubmit={handleSubmit} className='createSpotForm'>
             <ul>
                 {errors.map((error, id) => (

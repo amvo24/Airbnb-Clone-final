@@ -33,7 +33,7 @@ const SpotDetails = () => {
 
   useEffect(() => {
     dispatch(getDetailsOfASpotFromAnId(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, JSON.stringify(spot)]);
 
   const removeSpot = (e) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ const SpotDetails = () => {
         <div className="bottom-container">
           <div className="spotDetails">
             <div className="Owner-stuff-top-row">
-            <h2 className="owner-title">{`Entire home hosted by ${spot.Owner.firstName}`}</h2>
+            <h2 className="owner-title">{`Entire home hosted by ${spot?.Owner?.firstName}`}</h2>
 
           <div className="both-buttons">
             {currentUser &&
