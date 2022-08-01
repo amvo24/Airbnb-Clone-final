@@ -28,30 +28,26 @@ const CreateSpot = () => {
     //if (!user) return <Redirect to="/" />;
 
 
+  const validations = () => {
+    const errors = [];
+    if (!address) errors.push("Please enter an address");
+    if (!city) errors.push("Please enter a city");
+    if (!state) errors.push("Please enter a state");
+    if (!country) errors.push("Please enter a country");
+    if (!previewImage) errors.push("Please include a preview image");
+    if (name.length < 2)
+      errors.push("Please enter a name with a length greater than 2");
+    if (!description) errors.push("Please include a description");
+    if (!previewImage) errors.push("Please include a preview image!");
+    if (name.length > 25)
+      errors.push("Please include a name with a length that is less than 25");
+    if (previewImage.length > 255) (errors.push("Please include a different image URL that is less than 255 characters"))
+    return errors;
+  };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-
-        // const validateErrors = []
-        // if (address.length < 1 || city.length < 1 || country.length < 1 || state.length < 1) validateErrors.push('You must include all address fields.');
-        // if (lat.length < 1 || lng.length < 1) validateErrors.push('You must include a latitude and longitude.');
-        // if (typeof(lat) !== Number || typeof(lng) !== Number) validateErrors.push('Latitude and Longitude fields must be an INTEGER.');
-        // if (name.length < 1) validateErrors.push('You must include a name for your Airbnb.');
-        // if (beds.length < 1) validateErrors.push('You must include how many beds are available for your Airbnb.');
-        // if (typeof(beds) !== Number) validateErrors.push('Beds field must be an INTEGER.');
-        // if (description.length < 1) validateErrors.push('You must include a description for your Airbnb.');
-        // if (price.length < 1) {
-        //     validateErrors.push('You must include a price.')
-        // } else if (price.length > 0) {
-        //     if (Number(price) === 0) {
-        //         validateErrors.push('Price must be more that $0')
-        //     }
-        // }
-        // if (validateErrors.length > 0) {
-        //     setErrors(validateErrors);
-        //     return;
-        // }
 
         const newSpot = {
 
@@ -68,9 +64,23 @@ const CreateSpot = () => {
             price: price
         }
 
+        const validationErrors = validations();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors)
+      return;
+    }
+
         //history.push(`/`)
-        history.push(`/spots/ownerSpots`)
         return dispatch(createNewSpot(newSpot))
+        .then(async (res) => {
+
+            history.push(`/spots/ownerSpots`)
+        })
+        .catch(async (res) => {
+            const data = await res.json()
+            if (data && data.errors) setErrors(data.errors)
+
+        })
     }
 
 
