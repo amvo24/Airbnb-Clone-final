@@ -23,9 +23,10 @@
     height: 100%;
 }
 
-.title {
+.title23 {
     display: flex;
     margin-top: 2%;
+    margin-right: 40%;
 }
 
 .owner-options-title {
@@ -62,10 +63,15 @@
 .review-button-div {
     display: flex;
     flex-direction: row-reverse;
-    margin-top: 2%;
+    /* margin-top: 20%; */
     margin-bottom: -5.5%;
 
 }
+
+.mini-review-top-bar {
+    margin-top: 2%;
+}
+
 
 .removeSpotButton {
     background-color: #FFFFFF;

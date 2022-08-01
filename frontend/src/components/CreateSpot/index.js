@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 //import { Redirect } from 'react-router-dom';
 import {createNewSpot} from '../../store/spots'
+import './CreateSpot.css'
 
 
 const CreateSpot = () => {
@@ -31,7 +32,7 @@ const CreateSpot = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        
+
         // const validateErrors = []
         // if (address.length < 1 || city.length < 1 || country.length < 1 || state.length < 1) validateErrors.push('You must include all address fields.');
         // if (lat.length < 1 || lng.length < 1) validateErrors.push('You must include a latitude and longitude.');
@@ -74,13 +75,15 @@ const CreateSpot = () => {
 
 
     return (
+        <div className='createSpotPage'>
+            <h1 className='create-title-name'>Enter Your AirBnb's Specifications Below!</h1>
         <form onSubmit={handleSubmit} className='createSpotForm'>
             <ul>
                 {errors.map((error, id) => (
                     <li key={id}>{error}</li>
                 ))}
             </ul>
-            <label>
+            <label className="label">
                 Address:
                 <input
                 type="text"
@@ -90,7 +93,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 City:
                 <input
                 type="text"
@@ -100,7 +103,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 State:
                 <input
                 type="text"
@@ -110,7 +113,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Country:
                 <input
                 type="text"
@@ -120,7 +123,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Latitude:
                 <input
                 type="text"
@@ -130,7 +133,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Longitude:
                 <input
                 type="text"
@@ -140,7 +143,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Name:
                 <input
                 type="text"
@@ -150,7 +153,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 How Many Beds?:
                 <input
                 type="text"
@@ -160,7 +163,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Description:
                 <input
                 type="text"
@@ -170,7 +173,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Preview Image:
                 <input
                 type="text"
@@ -180,7 +183,7 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <label>
+            <label className="label">
                 Price:
                 <input
                 type="text"
@@ -190,8 +193,9 @@ const CreateSpot = () => {
                 required
                 />
             </label>
-            <button type="submit">Create Spot</button>
+            <button className='createspotbutton' type="submit">Create Spot</button>
         </form>
+        </div>
     )
 }
 

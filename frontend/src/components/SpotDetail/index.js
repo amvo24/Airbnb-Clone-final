@@ -6,7 +6,7 @@ import ReviewsBySpotId from "./reviewsBySpotId";
 import {
   getDetailsOfASpotFromAnId,
   deleteSpotById,
-  editSpotById,
+
 } from "../../store/spots";
 import { createReviewBasedOnSpotsId } from "../../store/review";
 import CreateReview from "./createReview";
@@ -87,6 +87,8 @@ const SpotDetails = () => {
               )}
           </div>
             </div>
+
+
             <div className="top-info">
               <div className="stars">{`${spot?.avgStarRating} avg stars`}</div>
               <span className="space-span">·</span>
@@ -94,8 +96,10 @@ const SpotDetails = () => {
               <span className="space-span">·</span>
               <div className="num-reviews">{`${spot.numReviews} reviews`}</div>
               <span className="space-span">·</span>
-              <div className="address">{` ${spot?.city}, ${spot?.state}, ${spot?.country}`}</div>
+              <div className="address4">{` ${spot?.city}, ${spot?.state}, ${spot?.country}`}</div>
             </div>
+
+
           <span className="greyline"></span>
           {/* <h2 className="spotDetails-title">Spot Details</h2> */}
             <h2 className="description-title">Description</h2>
@@ -103,11 +107,14 @@ const SpotDetails = () => {
           </div>
           <span className="greyline"></span>
           <div className="reviews">
+              <div className="review-component">
+                <div className="mini-review-top-bar">
               <div className="review-button-div">
                 <button className="reviewButton" onClick={createReview}>Create a Review!</button>
               </div>
-              <div className="review-component">
+
               <ReviewsBySpotId id={id} />
+                </div>
               </div>
           </div>
         </div>

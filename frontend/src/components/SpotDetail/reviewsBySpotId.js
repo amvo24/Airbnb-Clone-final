@@ -17,7 +17,7 @@ const ReviewsBySpotId = ({id}) => {
 
     return (
       <div className='reviews-root-div' key={id}>
-        <h1 className='title'>Reviews for this spot</h1>
+        <h1 className='title23'>Reviews for this spot</h1>
         <div className='all-reviews-div'>
         {reviewsVariable.map((reviewState, i) => {
 
