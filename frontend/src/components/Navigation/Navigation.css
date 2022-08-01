@@ -58,6 +58,7 @@
     font-size: 15px;
     color: black;
     font-weight: 500;
+    margin-top: -5px;
 }
 
 #nav_right {
@@ -69,6 +70,9 @@
     position: relative;
 }
 
+#dropdown2 {
+    margin-bottom: 8px;
+}
 
 
 
@@ -100,4 +104,18 @@
 
  #logo > a >img {
     height: 50px;
+ }
+
+ .profileName {
+    margin-bottom: -5%;
+ }
+
+ .userEmail {
+    margin-bottom: -5%;
+ }
+
+ .profile-button {
+    margin-right: 6%;
+    position: static;
+
  }

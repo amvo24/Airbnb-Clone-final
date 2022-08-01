@@ -5,8 +5,6 @@ import { Link, useHistory } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
-  //console.log("THIS IS YOUR USER", user)
-
 
   const dispatch = useDispatch();
   const history = useHistory()
@@ -36,15 +34,15 @@ function ProfileButton({ user }) {
 
   return (
     <>
-    <div className="button">
+    <div className="profile-button">
       <button className="navBar" onClick={openMenu}>
         <i className="fas fa-bars nav_bars_icon"></i>
         <i className="fas fa-user-circle user_icon"></i>
       </button>
       {showMenu && (
         <div id="menu">
-          <h3>{`Welcome ${user.firstName} ${user.lastName}! `}</h3>
-          <div>{user.email}</div>
+          <h3 className="profileName">{`Welcome ${user.firstName} ${user.lastName}! `}</h3>
+          <div className="userEmail">{user.email}</div>
           <Link to="/spots/create" id="dropdown1">
             Host your home
           </Link>
