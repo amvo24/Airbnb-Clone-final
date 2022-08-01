@@ -16,25 +16,24 @@ const ReviewsBySpotId = ({id}) => {
   }, [dispatch])
 
     return (
-      <div className='all-reviews-div' key={id}>
+      <div className='reviews-root-div' key={id}>
         <h1 className='title'>Reviews for this spot</h1>
+        <div className='all-reviews-div'>
         {reviewsVariable.map((reviewState, i) => {
-       
+
           return (
             <div className='reviews-container' key={i}>
               <div className='full-user-review'>
-              <p className='fullName'>{`${reviewState.firstName} ${reviewState.lastName}`}</p>
-
-              <p className='user'>{`${reviewState.stars} stars`}</p>
+              <p className='fullNameReview'>{`${reviewState.firstName} ${reviewState.lastName}`}</p>
+              <p className='userReview'>{`${reviewState.stars} stars`}</p>
               <p className='actual-review'>{`${reviewState.review}`}</p>
             </div>
             </div>
           )
         })
         }
-        {/* <div>
-        <CreateReview id={id}/>
-        </div> */}
+        </div>
+
       </div>
     )
 

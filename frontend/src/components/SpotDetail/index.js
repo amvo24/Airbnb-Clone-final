@@ -19,7 +19,7 @@ const SpotDetails = () => {
   id = Number(id);
 
   const spot = useSelector((state) => state.spotInRootReducer[id]);
-  
+
   //const spot = useSelector(state => state.spotInRootReducer);
   const currentUser = useSelector((state) => state.session.user);
   //
@@ -59,6 +59,7 @@ const SpotDetails = () => {
     spot && (
       <div className="main-div">
         <h1 className="detailName">{spot.name}</h1>
+        <div className="address1">{` ${spot?.city}, ${spot?.state}, ${spot?.country}`}</div>
         <div className="image-div">
           <img
             className="previewImage"
@@ -67,8 +68,25 @@ const SpotDetails = () => {
           ></img>
         </div>
         <div className="bottom-container">
-          <h2 className="spotDetails-title">Spot Details</h2>
           <div className="spotDetails">
+            <div className="Owner-stuff-top-row">
+            <h2 className="owner-title">{`Entire home hosted by ${spot.Owner.firstName}`}</h2>
+
+          <div className="both-buttons">
+            {currentUser &&
+              // currentUser &&
+              currentUser.id === spot.ownerId && (
+                <div className="owner-options">
+                <h2 className="owner-options-title">Owner Options</h2>
+                <div>
+                  <button className="removeSpotButton" onClick={removeSpot}>Delete Spot</button>
+                  <span className="space-span"></span>
+                  <button className="editSpotButton" onClick={editSpot}>Edit Spot</button>
+                </div>
+                </div>
+              )}
+          </div>
+            </div>
             <div className="top-info">
               <div className="stars">{`${spot?.avgStarRating} avg stars`}</div>
               <span className="space-span">·</span>
@@ -78,28 +96,18 @@ const SpotDetails = () => {
               <span className="space-span">·</span>
               <div className="address">{` ${spot?.city}, ${spot?.state}, ${spot?.country}`}</div>
             </div>
+          <span className="greyline"></span>
+          {/* <h2 className="spotDetails-title">Spot Details</h2> */}
             <h2 className="description-title">Description</h2>
             <div className="description">{spot?.description}</div>
           </div>
-          <div className="both-buttons">
-            {currentUser &&
-              // currentUser &&
-              currentUser.id === spot.ownerId && (
-                <div className="owner-options">
-                <h2>Owner Options</h2>
-                <div>
-                  <button onClick={removeSpot}>Delete Spot</button>
-                  <button onClick={editSpot}>Edit Spot</button>
-                </div>
-                </div>
-              )}
-          </div>
+          <span className="greyline"></span>
           <div className="reviews">
+              <div className="review-button-div">
+                <button className="reviewButton" onClick={createReview}>Create a Review!</button>
+              </div>
               <div className="review-component">
               <ReviewsBySpotId id={id} />
-              </div>
-              <div className="review button">
-                <button onClick={createReview}>Create a Review!</button>
               </div>
           </div>
         </div>

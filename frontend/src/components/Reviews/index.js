@@ -25,10 +25,10 @@ const Reviews = () => {
 
   return (
 
-    <div className='all-reviews-div'>
+    <div className='user-reviews-div'>
       <h1>Reviews</h1>
       {reviews.map((reviewState) => {
-      
+
         return (
           <div key={reviewState.id}>
           <div className='review-div'>

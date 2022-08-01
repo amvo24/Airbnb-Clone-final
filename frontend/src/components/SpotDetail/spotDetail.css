@@ -1,17 +1,31 @@
 
-/* .main-div {
-    /* border-bottom: .5px solid #D3D3D3; */
-/* } */
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    margin-right: 15%;
+}
 
-/* .spot-title {
 
-} */
+.Owner-stuff-top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: -2%;
+}
 
 .detailName {
     font-size: 50px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 15%;
+
+}
+
+.address1 {
+    display: flex;
+    margin-left: 15%;
+    margin-top: -1%;
+    margin-bottom: 2%;
 }
 
 .previewImage {
@@ -25,17 +39,24 @@
     position:static;
 }
 
-.bottom-container {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-}
 
+/* .owner-title {
+
+} */
+
+.greyline {
+    border-bottom: 1px solid #D3D3D3;
+    margin-top: 2%;
+
+}
 
 .spotDetails {
     display: flex;
     flex-direction: column;
-    /* margin: auto; */
+    margin-top: 6%;
+    /* margin-left: 8%;
+    margin-right: 8%; */
+
 }
 
 .top-info {
