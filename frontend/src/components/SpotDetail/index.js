@@ -3,11 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ReviewsBySpotId from "./reviewsBySpotId";
-import {
-  getDetailsOfASpotFromAnId,
-  deleteSpotById,
-
-} from "../../store/spots";
+import { getDetailsOfASpotFromAnId, deleteSpotById,} from "../../store/spots";
 import { createReviewBasedOnSpotsId } from "../../store/review";
 import CreateReview from "./createReview";
 import "./spotDetail.css";
