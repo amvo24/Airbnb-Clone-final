@@ -6,7 +6,6 @@
     margin-right: 15%;
 }
 
-
 .Owner-stuff-top-row {
     display: flex;
     flex-direction: row;
@@ -28,21 +27,61 @@
     margin-bottom: 2%;
 }
 
-.previewImage {
-    /* float: left; */
-    width: 300px;
-    height: 300px;
-    background-size: cover;
-    border-radius: 33px;
-    margin: auto;
+.image-div {
+    /* background-color: blueviolet; */
+    /* height: 45rem; */
     display: flex;
-    position:static;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 67%;
+    margin-left: 15%;
+}
+
+.ImageGridTop {
+    /* background-color: red; */
+    DISPLAY: FLEX;
+    FLEX-DIRECTION: column;
+    padding-left: .7%;
+    gap: 2%;
+}
+
+#this{
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.imageGridBottom {
+    /* background-color: yellow; */
+    /* height: 50%; */
+    DISPLAY: FLEX;
+    FLEX-DIRECTION: column;
+    padding-left: .7%;
+    gap: 2%;
 }
 
 
-/* .owner-title {
+.previewImage {
+    width: 50%;
+    display: flex;
+    position:static;
+    object-fit: cover;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
 
-} */
+.previewImage12 {
+    width: 100%;
+    height: 100%;
+}
+
+.bottom-container {
+    /* background-color: chartreuse; */
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+    height: 50rem;
+
+}
 
 .greyline {
     border-bottom: 1px solid #D3D3D3;
@@ -53,10 +92,262 @@
 .spotDetails {
     display: flex;
     flex-direction: column;
-    margin-top: 6%;
+    /* margin-top: 6%; */
+    /* background-color: blue; */
+    width: 60%;
+    /* height: 100%; */
     /* margin-left: 8%;
     margin-right: 8%; */
+}
 
+.Spot-Info-Card {
+    /* background-color: chartreuse; */
+    width: 40%;
+    /* height: 50rem; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+}
+
+.both-buttons {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    width: 80%;
+    height: 18%;
+}
+
+.removeSpotButton:hover {
+    background-color: rgba(198, 198, 198, 0.749);
+}
+
+.editSpotButton:hover {
+    background-color: rgba(198, 198, 198, 0.749);
+
+}
+
+.RareFindDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.RareFindMsg {
+    /* background-color: aqua; */
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: center;
+    margin-left: 5%;
+    width: 80%;
+    font-size: larger;
+}
+
+.diamondSVG {
+    /* background-color: bisque; */
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-card_234 {
+    border: 1px solid rgb(221, 221, 221);
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    width: 80%;
+    height: 60%;
+    /* background-color: aqua; */
+    border-radius: 12px;
+    margin-top: 5%;
+    cursor: pointer;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+.info-card_234:hover {
+    background-color: rgba(94, 93, 93, 0.226);
+}
+
+.topOfInfoCard_234 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70%;
+    width: 100%;
+    /* background-color: rgb(255, 0, 234); */
+}
+
+.info-card-first-line {
+    display: flex;
+    flex-direction: row;
+}
+
+.info-card-price {
+    font-size: larger;
+    font-weight: bold;
+    padding: 25px;
+    margin-left: -20%;
+    margin-right: 20%;
+}
+
+.avgStarDiv {
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    margin-top: 4px;
+
+}
+
+.AVGStarSVG {
+    margin-top: 6px;
+    margin-right: 5px;
+    /* padding: 5px; */
+}
+
+.info-card-avgStar {
+    font-weight: bold;
+    margin-right: -15px;
+
+}
+
+.space-span-infoCard {
+    font-weight: bold;
+    font-size: larger;
+    margin-top: 9.5%;
+    margin-right: 7px;
+}
+
+.info-card-reviews {
+    /* font-weight: bold; */
+    text-decoration: underline;
+    margin-top: 10.5%;
+}
+
+.Check-in-dates {
+    /* background-color: blue; */
+    border-radius: 12px;
+    /* padding: 20px; */
+    border: 1px solid rgb(190, 190, 190);
+    width: 80%;
+    height: 30%;
+
+}
+
+.InnOutTop {
+    /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    border-bottom: 1px solid rgb(190, 190, 190);
+
+}
+
+.CheckIn {
+    width: 50%;
+    border-right: 1px solid rgb(221, 221, 221);
+    padding: 5px;
+    font-size: small;
+
+}
+
+.Checkout {
+    padding: 5px;
+    font-size: small;
+
+}
+
+.GuestsDropdown {
+    padding: 5px;
+    font-size: small;
+
+}
+
+.Reserve-Button {
+    margin-top: 6%;
+    width: 80%;
+    height: 15%;
+    border-radius: 10px;
+    border: none;
+    /* background-color: rgba(255, 0, 0, 0.831); */
+    background: linear-gradient(to bottom right, #e82855, #ce0e78);
+    background: #e82855;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+
+}
+.Reserve-Button:hover {
+    background-color: rgba(171, 0, 0, 0.831);
+}
+
+.Wont-be-charged {
+    margin-top: 5%;
+}
+
+.Bottom-of-infoCard {
+    display: flex;
+    flex-direction: row;
+    /* margin-top: 3%; */
+    height: 30%;
+    /* background-color: coral; */
+}
+
+.left-side-calculation {
+    /* margin-left: -50%; */
+    /* background-color: aqua; */
+    width: 70%;
+    margin-left: 10%;
+}
+
+.amount-per-night {
+    font-size: larger;
+    text-decoration: underline;
+    margin-bottom: 5%;
+
+}
+
+.Service-fee {
+    text-decoration: underline;
+    font-size: larger;
+    /* border-bottom: 1px solid rgb(221, 221, 221); */
+    margin-bottom: 8%;
+
+}
+
+.B4-Taxes {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.GreyLine_123 {
+    border-bottom: 1px solid rgb(221, 221, 221);
+
+}
+
+.right-side-calc {
+    /* margin-right: 50%; */
+    /* background-color: blue; */
+    margin-left: 1%;
+}
+
+.per-night-res {
+    font-size: larger;
+    margin-bottom: 20%;
+}
+
+.service-res {
+    font-size: larger;
+    margin-bottom: 50%;
+}
+
+.b4-taxes-res {
+    font-size: larger;
 }
 
 .top-info {
@@ -65,6 +356,7 @@
     align-content: space-between;
     margin-right: 20%;
     margin-top: 10px;
+    /* background-color: cyan; */
 }
 
 .space-span {
