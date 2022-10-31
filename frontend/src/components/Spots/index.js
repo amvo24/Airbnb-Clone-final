@@ -28,6 +28,10 @@ const Spots = () => {
                 <img className="spot-img"src={spot.previewImage} alt="preview of spot"></img>
               </div>
               <div className="spot-info">
+                <div className="spot-info-first-line">
+                  <div className="spot-info-name">{spot.name}</div>
+                <div className="Spot-info-AvgStar">{spot?.avgStarRating}</div>
+                </div>
                 <div className="spot-city-state">{`${spot.city}, ${spot.state}`}</div>
                 <div className="spot-beds">{`${spot.beds} beds`}</div>
                 <div className="spot-price">{`$${spot.price} night`}</div>

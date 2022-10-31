@@ -1,9 +1,14 @@
 
-.bottom-container {
+.bottom-container_1290 {
     display: flex;
     flex-direction: column;
     margin-left: 15%;
     margin-right: 15%;
+     /* background-color: chartreuse; */
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+    height: 50rem;
 }
 
 .Owner-stuff-top-row {
@@ -27,6 +32,7 @@
     margin-bottom: 2%;
 }
 
+/* ---------- IMAGE CSS -------------- */
 .image-div {
     /* background-color: blueviolet; */
     /* height: 45rem; */
@@ -74,35 +80,83 @@
     height: 100%;
 }
 
-.bottom-container {
-    /* background-color: chartreuse; */
-    display: flex;
-    flex-direction: row;
-    margin-top: 3%;
-    height: 50rem;
+.bottom-container_1290 {
 
+
+}
+
+/* ---------- IMAGE CSS -------------- */
+
+
+
+/* ---------- LEFT SIDE DETAILS CSS -------------- */
+
+.spotDetails {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    /* background-color: #ce0e78; */
 }
 
 .greyline {
     border-bottom: 1px solid #D3D3D3;
     margin-top: 2%;
-
 }
 
-.spotDetails {
+.QuickDetailsContainer {
     display: flex;
     flex-direction: column;
-    /* margin-top: 6%; */
-    /* background-color: blue; */
-    width: 60%;
-    /* height: 100%; */
-    /* margin-left: 8%;
-    margin-right: 8%; */
+    margin-top: 5%;
+}
+
+.QuickDetails_234897 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3%;
+}
+
+.Text_92348 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+}
+
+.Text_92348_top {
+    font-weight: 600;
+    font-size: larger;
+    margin-bottom: 1%;
+}
+
+.Text_92348_bottom {
+    color: gray;
+}
+
+.AirCoverContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+.AirCoverimg {
+    height: 50%;
+    width: 20%;
+    margin-bottom: 2%;
+}
+
+.AirCoverDesc {
+    font-size: larger;
+    margin-bottom: 3%;
+}
+
+.description_0978 {
+    margin-bottom: 6%;
+    font-size: larger;
 }
 
 .Spot-Info-Card {
     /* background-color: chartreuse; */
     width: 40%;
+    height: 100%;
     /* height: 50rem; */
     display: flex;
     flex-direction: column;
@@ -110,6 +164,8 @@
     align-items: center;
 
 }
+
+/* ----- OWNER OPTION & RARE FIND CARD -------- */
 
 .both-buttons {
     display: flex;
@@ -155,18 +211,18 @@
     align-items: center;
 }
 
+
+/* -------- BOOK SPOT CARD ------------ */
+
 .info-card_234 {
     border: 1px solid rgb(221, 221, 221);
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
     width: 80%;
-    height: 60%;
+    height: 70%;
     /* background-color: aqua; */
     border-radius: 12px;
     margin-top: 5%;
     cursor: pointer;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
 }
 
 .info-card_234:hover {
@@ -185,14 +241,16 @@
 .info-card-first-line {
     display: flex;
     flex-direction: row;
+    /* background-color: #e82855; */
+    width: 100%;
 }
 
 .info-card-price {
     font-size: larger;
     font-weight: bold;
     padding: 25px;
-    margin-left: -20%;
-    margin-right: 20%;
+    margin-left: 3%;
+    margin-right: 19%;
 }
 
 .avgStarDiv {
@@ -200,6 +258,7 @@
     flex-direction: row;
     padding: 25px;
     margin-top: 4px;
+    /* background-color: #28e828; */
 
 }
 
@@ -211,21 +270,22 @@
 
 .info-card-avgStar {
     font-weight: bold;
-    margin-right: -15px;
+    /* margin-right: -15px; */
 
 }
 
 .space-span-infoCard {
     font-weight: bold;
     font-size: larger;
-    margin-top: 9.5%;
+    /* margin-top: 9.5%; */
     margin-right: 7px;
 }
 
 .info-card-reviews {
     /* font-weight: bold; */
     text-decoration: underline;
-    margin-top: 10.5%;
+    /* margin-top: 10.5%; */
+    color: gray;
 }
 
 .Check-in-dates {
@@ -343,12 +403,16 @@
 
 .service-res {
     font-size: larger;
-    margin-bottom: 50%;
+    margin-bottom: 80%;
 }
 
 .b4-taxes-res {
     font-size: larger;
 }
+
+/* -------- END OF BOOK SPOT CARD ------------ */
+
+
 
 .top-info {
     display: flex;
@@ -365,8 +429,7 @@
     margin: 0px 6px 0px;
 }
 
-.reviews {
+/* .reviewSection_982347 {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+    flex-direction: row;
+} */

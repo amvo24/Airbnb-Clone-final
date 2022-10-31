@@ -1,63 +1,119 @@
-/* .reviews-roots-div {
-    display: flex;
-    justify-content: center;
-} */
-
-.all-reviews-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.reviews-root-div {
+    margin-left: 15%;
+    margin-right: 18%;
+    /* margin-top: 4.5%; */
+    /* background-color: brown; */
 }
 
+.ReviewTitle {
+    display: flex;
+    flex-direction: row;
+    /* margin-top: 1%; */
+    /* background-color: aqua; */
+}
+
+.ReviewTitleAVG {
+    font-size: xx-large;
+}
+
+.ReviewTitleNumReviews {
+    font-size: xx-large;
+}
+
+.ReviewTitleSVG {
+    margin-top: 1.1%;
+}
+
+.ReviewTitleSpace-span {
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.ReviewTitleRightOfSVG {
+    display: flex;
+    flex-direction: row;
+    margin-left: .5%;
+    font-weight: 500;
+}
+
+.all-reviews-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    /* grid-template-rows: 1fr 1fr; */
+    /* align-items: center; */
+    /* justify-content: space-around; */
+    /* background-color: rgb(127, 131, 255); */
+    height: auto;
+}
 
 .reviews-container {
     display: flex;
     justify-content: center;
     width: 70%;
     margin: auto;
+    /* background-color: brown; */
 
 }
 
 .full-user-review {
-    width: 70%;
     height: 100%;
+    /* background-color: brown; */
+    border-radius: 40px;;
+    /* border: gray solid; */
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 10em;
+    margin-top: 7%;
 }
 
-.title23 {
-    display: flex;
-    margin-top: 2%;
-    margin-right: 40%;
-}
 
 .owner-options-title {
     display: flex;
     margin-left: 15px;
 }
 
-.full-user-review {
-    border-radius: 40px;;
-    margin-top: 40px;
-    border: gray solid;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    gap: 20px;
-    width: 300px;
-    height: 250px;
-}
 
 .fullNameReview {
-    margin-left: 10%;
-    margin-top: 10%;
+    margin-left: 5%;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.UserReviewTopLine {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+
+.ReviewStarNum {
+    display: flex;
+    flex-direction: row;
+    /* background-color: brown; */
+    margin-left: 5%;
+}
+
+.ReviewTitleSVG12 {
+    margin-top: 45%;
+}
+
+.ReviewCreatedAt {
+    margin-left: 5%;
 }
 
 .userReview {
-    margin-left: 10%;
-    margin-top: -10%;
+    margin-left: 5%;
+    font-size: larger;
+    font-weight: 500;
+
 }
 
 .actual-review {
-    margin-left: 10%;
+    margin-left: 5%;
+    margin-top: 3%;
 }
 
 .review-button-div {
@@ -134,4 +190,9 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    margin-left: 71.6%;
+}
+
+.reviewButton:hover {
+    background-color: rgba(155, 154, 154, 0.555);
 }
