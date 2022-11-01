@@ -124,7 +124,7 @@ const SpotDetails = () => {
                   ></path>
                 </svg>
                 <div className="Text_92348">
-                  <div className="Text_92348_top">{`${spot.Owner.firstName} is a Superhost`}</div>
+                  <div className="Text_92348_top">{`${spot?.Owner?.firstName} is a Superhost`}</div>
                   <div className="Text_92348_bottom">
                     Superhosts are experienced, highly rated hosts who are
                     committed to providing great stays for guests.
