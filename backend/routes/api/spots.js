@@ -18,8 +18,8 @@ const validateSpots = [
     .withMessage('State is required'),
   check('name')
     .exists({ checkFalsy: true })
-    .isLength({ max: 50 })
-    .withMessage('Name must be less than 50 characters'),
+    .isLength({ max: 200 })
+    .withMessage('Name must be less than 200 characters'),
   check('country')
     .exists({checkFalsy: true})
     .withMessage('Country is required'),
