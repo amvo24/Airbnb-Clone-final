@@ -39,8 +39,8 @@ const CreateSpot = () => {
       errors.push("Please enter a name with a length greater than 2");
     if (!description) errors.push("Please include a description");
     if (!previewImage) errors.push("Please include a preview image!");
-    if (name.length > 25)
-      errors.push("Please include a name with a length that is less than 25");
+    if (name.length > 200)
+      errors.push("Please include a name with a length that is less than 200");
     if (previewImage.length > 255) (errors.push("Please include a different image URL that is less than 255 characters"))
     return errors;
   };
