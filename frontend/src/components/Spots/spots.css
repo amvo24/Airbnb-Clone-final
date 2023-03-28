@@ -44,7 +44,7 @@
   }
 
   .spot-div:hover {
-    background-color: rgba(128, 128, 128, 0.244);
+    /* background-color: rgba(128, 128, 128, 0.244); */
   }
 
   .img-div {
