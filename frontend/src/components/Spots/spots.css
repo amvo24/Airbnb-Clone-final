@@ -8,14 +8,18 @@
       sans-serif;
   }
 
+  .middle_container {
+    padding: 2%;
+  }
+
   .all-spots-div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     /* background-color: aqua; */
     height: 80%;
     width: 100%;
-
+    /* padding: 10%; */
   }
 
   .spot-div-2345 {
@@ -43,9 +47,9 @@
     justify-content: center;
   }
 
-  .spot-div:hover {
-    /* background-color: rgba(128, 128, 128, 0.244); */
-  }
+  /* .spot-div:hover {
+    background-color: rgba(128, 128, 128, 0.244);
+  } */
 
   .img-div {
     height: 50%;
