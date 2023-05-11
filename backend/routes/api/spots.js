@@ -111,7 +111,12 @@ if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || N
         model: User,
         as: 'Owner',
         attributes: ['id', 'firstName', 'lastName']
-    }
+      },
+      {
+        model: Image,
+        as: 'images',
+        attributes: ['url']
+      },
     ],
     where: {
     [Op.and]: options
@@ -138,7 +143,14 @@ router.get('/userSpots', requireAuth, async (req, res) => {
     const { id } = req.user
 
       const places = await Spot.findAll({
-          where: {ownerId: id}
+          where: {ownerId: id},
+          include: [
+            {
+              model: Image,
+              as: 'images',
+              attributes: ['url']
+            }
+          ]
       });
 
   res.json(places)
