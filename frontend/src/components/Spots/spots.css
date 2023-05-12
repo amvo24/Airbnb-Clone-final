@@ -1,4 +1,3 @@
-
 * {
     font-family: Circular,
       -apple-system,
@@ -9,17 +8,73 @@
   }
 
   .middle_container {
-    padding: 2%;
+    /* padding: 2%; */
+    /* background-color: brown; */
+    margin-left: 50px;
+    margin-right: 50px;
   }
 
-  .all-spots-div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+  .DisplayTotalPriceContainer {
+    /* background-color: rebeccapurple; */
+    width: 100%;
+    /* height: 30%; */
+    display: flex;
+    justify-content: center;
+  }
+
+  .DisplayTotalPrice {
+    width: 50%;
+    height: 60px;
+    border: 1.5px solid grey;
+    /* background-color: green; */
+    border-radius: 12px;
+    border-color: #DDDDDD;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .DisplayTotalPriceLeftSide {
+    display: flex;
+    align-items: center;
+    /* background-color: blue; */
+    width: 60%;
+    margin-left: 2%;
+  }
+
+  .DisplayTotalPriceText {
+    font-weight: bold;
+  }
+
+  .DisplayTotalPriceLine {
+    border-right: 1px solid;
+    height: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .DisplayTotalPricerightSide {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     /* background-color: aqua; */
+    width: 36%;
+    margin-right: 2%;
+  }
+
+  .all-spots-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     height: 80%;
     width: 100%;
-    /* padding: 10%; */
+    /* gap: 20px; */
+    /* grid-column-gap: 10px; */
+    grid-row-gap: 40px;
+    margin-top: 20px;
+    /* background-color: red; */
+
+
   }
 
   .spot-div-2345 {
@@ -39,21 +94,16 @@
 
   .spot-div {
     /* background-color: blue; */
-    height: 100%;
-    width: 100%;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
 
-  /* .spot-div:hover {
-    background-color: rgba(128, 128, 128, 0.244);
-  } */
 
   .img-div {
-    height: 50%;
-    width: 80%;
+    height: 290px;
+    width: 285px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +112,7 @@
   }
 
   .spot-img {
-    float: left;
+    /* float: left; */
     width: 100%;
     height: 100%;
     object-fit: cover;

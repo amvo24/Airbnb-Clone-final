@@ -20,7 +20,19 @@ const Spots = () => {
 
   return (
     <div className="middle_container">
-      <div className="all-spots-div">
+      <div className="DisplayTotalPriceContainer">
+        <div className="DisplayTotalPrice">
+          <div className="DisplayTotalPriceLeftSide">
+            <div className="DisplayTotalPriceText">Display total price</div>
+            <div className="DisplayTotalPriceLine"></div>
+            <div className="DisplayTotalPriceDescript">Includes all fees, before taxes</div>
+          </div>
+          <div className="DisplayTotalPricerightSide">
+            <div className="DisplayTotalPriceButton">Button</div>
+          </div>
+        </div>
+      </div>
+      <div className="all-spots-grid">
         {spots.map((spot, index) => (
           <div className="spot-div-2345" key={index}>
             <Link to={`/spots/${spot.id}`} className="spot-link" key={spot.id}>
@@ -30,7 +42,7 @@ const Spots = () => {
                 </div>
                 <div className="spot-info">
                   <div className="spot-info-first-line">
-                    <div className="spot-info-name">{spot.name}</div>
+                  {/* <div className="spot-info-name">{spot.name}</div> */}
                   <div className="Spot-info-AvgStar">{spot?.avgStarRating}</div>
                   </div>
                   <div className="spot-city-state">{`${spot.city}, ${spot.state}`}</div>

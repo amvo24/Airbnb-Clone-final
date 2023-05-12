@@ -4,7 +4,8 @@
 }
 
 .NavBar_234 {
-    height: 50%;
+    /* height: 100px; */
+    /* background-color: red; */
 }
 
 .navBar {
@@ -92,14 +93,14 @@
 }
 
 #home {
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     border-bottom: .5px solid #D3D3D3;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     font-size: 18px;
-    height: 20%;
+    height: 80px;
     /* gap: 10px; */
 }
 
