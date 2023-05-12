@@ -77,7 +77,7 @@ const SpotDetails = () => {
             <div className="image3_20389">
               <img
                 className="previewImage12"
-                id="this"
+                id="top_20934"
                 src={spot.images[2]?.url}
                 alt="spot"
               ></img>
@@ -85,7 +85,7 @@ const SpotDetails = () => {
             <div className="image4_20389">
               <img
                 className="previewImage12"
-                id="this"
+                id="bottom_92738"
                 src={spot.images[0]?.url}
                 alt="spot"
               ></img>
@@ -206,7 +206,6 @@ const SpotDetails = () => {
             <h2 className="description-title">Description</h2>
             <div className="description_0978">{spot?.description}</div>
             <span className="greyline"></span>
-
           </div>
           <div className="Spot-Info-Card">
             <div className="both-buttons">
