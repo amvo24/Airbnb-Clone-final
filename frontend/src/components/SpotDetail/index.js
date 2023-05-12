@@ -58,30 +58,38 @@ const SpotDetails = () => {
             alt="spot"
           ></img>
           <div className="ImageGridTop">
-            <img
-              className="previewImage12"
-              src={spot.previewImage}
-              alt="spot"
-            ></img>
-            <img
-              className="previewImage12"
-              src={spot.previewImage}
-              alt="spot"
-            ></img>
+            <div className="image1_20389">
+              <img
+                className="previewImage12"
+                src={spot.images[3]?.url}
+                alt="spot"
+              ></img>
+            </div>
+            <div className="image2_20389">
+              <img
+                className="previewImage12"
+                src={spot.images[1]?.url}
+                alt="spot"
+              ></img>
+            </div>
           </div>
           <div className="imageGridBottom">
-            <img
-              className="previewImage12"
-              id="this"
-              src={spot.previewImage}
-              alt="spot"
-            ></img>
-            <img
-              className="previewImage12"
-              id="this"
-              src={spot.previewImage}
-              alt="spot"
-            ></img>
+            <div className="image3_20389">
+              <img
+                className="previewImage12"
+                id="this"
+                src={spot.images[2]?.url}
+                alt="spot"
+              ></img>
+            </div>
+            <div className="image4_20389">
+              <img
+                className="previewImage12"
+                id="this"
+                src={spot.images[0]?.url}
+                alt="spot"
+              ></img>
+            </div>
           </div>
         </div>
         <div className="bottom-container_1290">

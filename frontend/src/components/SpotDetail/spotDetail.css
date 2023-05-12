@@ -35,34 +35,55 @@
 /* ---------- IMAGE CSS -------------- */
 .image-div {
     /* background-color: blueviolet; */
-    /* height: 45rem; */
+    height: 27rem;
     display: flex;
     /* justify-content: center; */
     /* align-items: center; */
-    width: 67%;
+    /* width: 67%; */
     margin-left: 15%;
+    margin-right: 15%;
 }
 
 .ImageGridTop {
-    /* background-color: red; */
-    DISPLAY: FLEX;
-    FLEX-DIRECTION: column;
-    padding-left: .7%;
-    gap: 2%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+    /* padding-left: .7%; */
+    /* gap: 2%; */
 }
+
+.imageGridBottom {
+    background-color: yellow;
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* padding-left: .7%; */
+    /* gap: 2%; */
+}
+
 
 #this{
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
 }
 
-.imageGridBottom {
-    /* background-color: yellow; */
-    /* height: 50%; */
-    DISPLAY: FLEX;
-    FLEX-DIRECTION: column;
-    padding-left: .7%;
-    gap: 2%;
+.image1_20389 {
+    
+}
+
+.image2_20389 {
+
+}
+
+.image3_20389 {
+
+}
+
+.image4_20389 {
+
 }
 
 
@@ -78,10 +99,7 @@
 .previewImage12 {
     width: 100%;
     height: 100%;
-}
-
-.bottom-container_1290 {
-
+    object-fit: cover;
 
 }
 
