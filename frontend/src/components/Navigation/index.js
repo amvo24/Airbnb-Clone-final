@@ -44,7 +44,7 @@ function Navigation({ isLoaded }){
               xmlns="http://www.w3.org/2000/svg"
               width="102"
               height="32"
-              className='logo_svg_23452'
+              className="logo_svg_23452"
               // style="display:block"
             >
               <path
@@ -58,7 +58,49 @@ function Navigation({ isLoaded }){
             </svg>
           </NavLink>
         </div>
-
+        <div className="BookingsBar">
+          <div className='BookingsBarContainer1'>
+            <div className='AnywhereText_8236'>Anywhere</div>
+          </div>
+          <div className='BookingsBarContainer2'>
+            <div className='AnyweekText_23907'>Any week</div>
+          </div>
+          <div className='BookingsBarContainer3'>
+            <div className='AddguestsText_20386'>Add guests</div>
+            <div className='BookingsBarSVGContainer'>
+              <div className='BookingsBarSVG'>
+                <svg
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="presentation"
+                  focusable="false"
+                  style={{
+                    display: "block",
+                    fill: "none",
+                    height: "13px",
+                    width: "13px",
+                    stroke: "currentColor",
+                    strokeWidth: "4",
+                    overflow: "visible",
+                    color: "white",
+                  }}
+                  width="32"
+                  height="32"
+                >
+                  <g fill="none" stroke="currentColor" strokeWidth="4">
+                    <path
+                      d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
+                      fill="none"
+                      strokeWidth="4"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
         {isLoaded && sessionLinks}
       </div>
     </div>

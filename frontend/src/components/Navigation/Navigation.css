@@ -109,26 +109,117 @@
     width: 20%;
     display: flex;
     align-items: center;
+    /* justify-content: center; */
+    margin-left: 63px;
+    /* background-color: red; */
+
+}
+
+.BookingsBar {
+    border: 1px solid #d3d3d3;
+    height: 50px;
+    width: 350px;
+    border-radius: 30px;
+    display: flex;
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
+}
+
+.BookingsBar:hover {
+
+}
+
+
+.BookingsBarContainer1 {
+    /* background-color: purple; */
+    width: 30%;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+
+}
+
+.BookingsBarContainer2 {
+    /* background-color: blue; */
+    width: 30%;
+    display: flex;
+    align-items: center;
     justify-content: center;
- }
+}
+
+.BookingsBarContainer3 {
+    /* background-color: purple; */
+    display: flex;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.AnywhereText_8236 {
+    font-size: 14px;
+    font-weight: 600;
+    border-right: 1px solid #d3d3d3;
+    /* background-color: red; */
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AnyweekText_23907 {
+    font-size: 14px;
+    font-weight: 600;
+    border-right: 1px solid #d3d3d3;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+}
+
+.AddguestsText_20386 {
+    font-size: 14px;
+    /* background-color: green; */
+    color: grey;
+    height: 50%;
+    display: flex;
+    align-items: center ;
+}
+
+.BookingsBarSVGContainer {
+    background-color: #ff385c;
+    height:  30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.BookingsBarSVG {
+    /* background-color: red; */
+}
 
  #logo > a >img {
     height: 50px;
- }
+}
 
  .logo_svg_23452 {
     /* background-color: blue */
- }
+}
 
  .profileName {
     margin-bottom: -5%;
- }
+}
 
  .userEmail {
     margin-bottom: -5%;
- }
+}
 
  .profile-button {
     margin-right: 6%;
 
- }
+}
