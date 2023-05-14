@@ -1,9 +1,10 @@
 const express = require('express');
 const {requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
-const {Spot, Image, User, Review, sequelize} = require('../../db/models');
+const {Spot, Image, User, Review, Booking, sequelize} = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const booking = require('../../db/models/booking');
 const router = express.Router();
 
 const validateSpots = [
@@ -169,7 +170,14 @@ router.get('/:id', async (req,res) => {
           model: User,
           as: 'Owner',
           attributes: ['id', 'firstName', 'lastName']
-      }]
+      },
+      {
+        model: Booking,
+        as: 'Bookings',
+        attributes: ['startDate', 'endDate', 'id', 'userId', 'createdAt', 'updatedAt']
+
+      }
+    ]
   });
 
   if (!spots) {
