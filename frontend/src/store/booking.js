@@ -163,13 +163,13 @@ const bookingReducer = (state = initialState, action) => {
        return newestState
       }
 
-    case EDIT_SPOTS:{
+    case EDIT_BOOKINGS:{
       const newState = {...state}
       newState[action.updatedPayload.id] = action.updatedPayload
       return newState
     }
 
-    case DELETE_SPOTS: {
+    case DELETE_BOOKINGS: {
       const newState = {...state}
       delete newState[action.deletePayload]
       return newState
