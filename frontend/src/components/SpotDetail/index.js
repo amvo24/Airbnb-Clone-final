@@ -207,6 +207,7 @@ const SpotDetails = () => {
             <div className="description_0978">{spot?.description}</div>
             <span className="greyline"></span>
           </div>
+          {/* ----- CODE FOR RARE FIND CARD ----- */}
           <div className="Spot-Info-Card">
             <div className="both-buttons">
               {(currentUser && currentUser.id === spot.ownerId && (
@@ -268,6 +269,7 @@ const SpotDetails = () => {
                 </div>
               )}
             </div>
+            {/* ----- CODE FOR BOOKING CARD ----- */}
             <div onClick={AlertFunc} className="info-card_234">
               <div className="topOfInfoCard_234">
                 <div className="info-card-first-line">

@@ -40,9 +40,10 @@ const deleteSpots = (deletePayload) => ({
 //THUNK ACTION CREATORS
 export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`);
+    
     if (response.ok) {
       const payload = await response.json();
-      
+
       // const spots = {...payload}
 
       dispatch(loadSpots(payload));
