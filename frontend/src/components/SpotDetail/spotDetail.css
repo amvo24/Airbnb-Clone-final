@@ -249,9 +249,9 @@
     cursor: pointer;
 }
 
-.info-card_234:hover {
+/* .info-card_234:hover {
     background-color: rgba(94, 93, 93, 0.226);
-}
+} */
 
 .topOfInfoCard_234 {
     display: flex;
@@ -343,6 +343,14 @@
     padding: 5px;
     font-size: small;
 
+}
+
+/* BOOKING MODAL CSS  */
+
+.bookingsModal_0238 {
+    background-color: red;
+    height: 600px;
+    width: 600px;
 }
 
 .GuestsDropdown {

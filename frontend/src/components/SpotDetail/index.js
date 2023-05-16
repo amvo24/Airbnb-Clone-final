@@ -1,11 +1,13 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReviewsBySpotId from "./reviewsBySpotId";
 import { getDetailsOfASpotFromAnId, deleteSpotById } from "../../store/spots";
 import { createReviewBasedOnSpotsId } from "../../store/review";
 import CreateReview from "./createReview";
+import {BookingModal} from "../../context/BookingModal"
+import BModal from "./BookingModal";
 import "./spotDetail.css";
 
 const SpotDetails = () => {
@@ -15,6 +17,28 @@ const SpotDetails = () => {
   id = Number(id);
   const spot = useSelector((state) => state.spotInRootReducer[id]);
   const currentUser = useSelector((state) => state.session.user);
+
+  const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // const openMenu = () => {
+  //   if (showModal) return;
+  //   setShowModal(true);
+  // };
+
+  // useEffect(() => {
+  //   if (!showModal) return;
+
+  //   const closeMenu = () => {
+  //     setShowModal(false);
+  //   };
+  //   document.addEventListener("click", closeMenu);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showModal]);
 
   useEffect(() => {
     dispatch(getDetailsOfASpotFromAnId(id));
@@ -270,7 +294,7 @@ const SpotDetails = () => {
               )}
             </div>
             {/* ----- CODE FOR BOOKING CARD ----- */}
-            <div onClick={AlertFunc} className="info-card_234">
+            <div className="info-card_234">
               <div className="topOfInfoCard_234">
                 <div className="info-card-first-line">
                   <div className="info-card-price">{`$${spot.price} night`}</div>
@@ -304,10 +328,15 @@ const SpotDetails = () => {
                   </div>
                 </div>
                 <div className="Check-in-dates">
-                  <div className="InnOutTop">
+                  <div className="InnOutTop"onClick={toggleMenu}>
                     <div className="CheckIn">CHECK-IN</div>
                     <div className="Checkout">CHECKOUT</div>
                   </div>
+                  {isOpen  && (
+                    <BModal onClose={() => setShowModal(false)}>
+                      {/* contnent here */}
+                    </BModal>
+                  )}
                   <div className="GuestsDropdown">GUESTS</div>
                 </div>
                 <button className="Reserve-Button">Reserve</button>
@@ -330,6 +359,7 @@ const SpotDetails = () => {
                   }`}</div>
                 </div>
               </div>
+
             </div>
           </div>
           {/* <span className="greyline"></span> */}
