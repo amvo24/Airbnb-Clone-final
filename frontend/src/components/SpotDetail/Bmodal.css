@@ -1,21 +1,170 @@
-#bmodal {
-    background-color: blue;
-    position: absolute;
-    top: 110vh;
-    right: 0;
-    bottom: 0;
-    left: 100vh;
-    width: 700px;
-    height: 500px;
-    /* background-color: rgba(0, 0, 0, 0.7); */
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    /* z-index: 9999;  */
-  }
+#bmodalContainer {
+  background-color: red;
+  position: absolute;
+  top: 105vh;
+  right: 0;
+  bottom: 0;
+  left: 95.5vh;
+  width: 720px;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);;
 
-  #bmodal > div {
-    background-color: red;
-    padding: 20px;
-    border-radius: 4px;
-  }
+}
+
+.bmodalContent {
+  /* background-color: blue; */
+  width: 90%;
+  height: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+
+.bmodalTop {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: row;
+  height: 20%;
+}
+
+.bmodalTopLeft {
+  /* background-color: aquamarine; */
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+justify-content: center;}
+
+.bmodalNumberofNights {
+  /* background-color: antiquewhite; */
+}
+
+.bmodalDatesRange {
+
+}
+
+.bmodalTopRight {
+  width: 55%;
+  /* background-color: blueviolet; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.bModalInnOutBar {
+  display: flex;
+  flex: row;
+  width: 340.14px;
+  height: 58.8px;
+  /* background-color: yellow; */
+  margin-top: 4px;
+
+}
+
+.bmodalCheckinContainer {
+  background-color: aquamarine;
+  width: 50%;
+  font-size: small;
+  padding: 5px;
+}
+
+
+.bmodalCheckoutContainer {
+  background-color: aquamarine;
+  width: 50%;
+  font-size: small;
+  padding: 5px;
+
+}
+
+
+.bmodalMainCalendarContainer {
+  display: flex;
+  flex-direction: row;
+  height: 65%;
+}
+
+
+.bmodalLeftCalendarContainer {
+  width: 50%;
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.bmodalTopOfCalendar {
+  /* background-color: azure; */
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+
+}
+
+
+.bmodalActualCalendar {
+  /* background-color: coral; */
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.bmodalRightCalendarContainer {
+  width: 50%;
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+
+.bmodalTopOfCalendar {
+
+}
+
+
+.bmodalActualCalendar {
+
+}
+
+
+.bmodalBottom {
+  display: flex;
+  flex-direction: row;
+  /* background-color: aquamarine; */
+  height: 15%;
+  align-items: center;
+}
+
+
+.bmodalBottomLeft {
+  /* background-color: rgb(192, 122, 16); */
+  width: 50%;
+}
+
+.bmodalBottomRight {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.bmodalClearDates {
+  /* background-color: darkgreen; */
+  width: 50%;
+
+}
+
+.bmodalCloseButton {
+  /* background-color: darksalmon; */
+  width: 50%;
+
+}

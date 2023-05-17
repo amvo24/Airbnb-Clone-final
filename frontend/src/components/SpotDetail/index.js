@@ -17,28 +17,11 @@ const SpotDetails = () => {
   id = Number(id);
   const spot = useSelector((state) => state.spotInRootReducer[id]);
   const currentUser = useSelector((state) => state.session.user);
-
-  const [showModal, setShowModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  // const openMenu = () => {
-  //   if (showModal) return;
-  //   setShowModal(true);
-  // };
-
-  // useEffect(() => {
-  //   if (!showModal) return;
-
-  //   const closeMenu = () => {
-  //     setShowModal(false);
-  //   };
-  //   document.addEventListener("click", closeMenu);
-  //   return () => document.removeEventListener("click", closeMenu);
-  // }, [showModal]);
 
   useEffect(() => {
     dispatch(getDetailsOfASpotFromAnId(id));
@@ -55,20 +38,11 @@ const SpotDetails = () => {
     history.push(`/spots/edit/${id}`);
   };
 
-  // const createReview = (e) => {
-  //   e.preventDefault();
-  //   //dispatch(createReviewBasedOnSpotsId(id))
-  //   history.push(`/create-review/${id}`);
-  // };
-
   let serviceFee = 100;
   const calculationFunc = (pricePerNight) => {
     return pricePerNight * 6;
   };
 
-  const AlertFunc = (e) => {
-    alert("This feature is coming soon!");
-  };
 
   return (
     spot && (
@@ -327,14 +301,15 @@ const SpotDetails = () => {
                   <div className="info-card-reviews">{`${spot.numReviews} reviews`}</div>
                   </div>
                 </div>
+                {/* CODE FOR MODAL */}
                 <div className="Check-in-dates">
                   <div className="InnOutTop"onClick={toggleMenu}>
                     <div className="CheckIn">CHECK-IN</div>
                     <div className="Checkout">CHECKOUT</div>
                   </div>
                   {isOpen  && (
-                    <BModal onClose={() => setShowModal(false)}>
-                      {/* contnent here */}
+                    <BModal onClose={() => setIsOpen(false)}>
+
                     </BModal>
                   )}
                   <div className="GuestsDropdown">GUESTS</div>
