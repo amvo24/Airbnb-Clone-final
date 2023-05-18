@@ -23,7 +23,7 @@ function BModal({ onClose }) {
       <div className="bmodalContent">
         <div className="bmodalTop">
           <div className="bmodalTopLeft">
-            <div className="bmodalNumberofNights">{`Number Nights`}</div>
+            <div className="bmodalNumberofNights">{`2 nights`}</div>
             <div className="bmodalDatesRange">Jun 20, 2023 - Jun 22, 2023</div>
           </div>
           <div className="bmodalTopRight">

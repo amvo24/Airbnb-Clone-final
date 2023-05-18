@@ -1,5 +1,6 @@
 #bmodalContainer {
-  background-color: red;
+  /* background-color: red; */
+  background-color: white;
   position: absolute;
   top: 105vh;
   right: 0;
@@ -33,14 +34,19 @@
   width: 45%;
   display: flex;
   flex-direction: column;
-justify-content: center;}
+  justify-content: center;
+}
+
 
 .bmodalNumberofNights {
   /* background-color: antiquewhite; */
+  font-size: x-large;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .bmodalDatesRange {
-
+  color: gray;
 }
 
 .bmodalTopRight {
@@ -59,20 +65,23 @@ justify-content: center;}
   width: 340.14px;
   height: 58.8px;
   /* background-color: yellow; */
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 12px;
   margin-top: 4px;
 
 }
 
 .bmodalCheckinContainer {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   width: 50%;
   font-size: small;
   padding: 5px;
+  border-right: 1px solid rgb(221, 221, 221);
 }
 
 
 .bmodalCheckoutContainer {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   width: 50%;
   font-size: small;
   padding: 5px;
