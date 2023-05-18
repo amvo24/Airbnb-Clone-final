@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from "react";
+import DatePicker from "react-multi-date-picker"
+import { Calendar } from "react-multi-date-picker"
+import "react-multi-date-picker/styles/colors/red.css"
 import "./Bmodal.css";
 
-function BModal({ onClose }) {
+function BModal({ onClose, onStartDateChange, onEndDateChange }) {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -9,6 +12,14 @@ function BModal({ onClose }) {
       if (!modalRef.current.contains(event.target)) {
         onClose();
       }
+    };
+
+    const handleStartDateSelection = (date) => {
+      onStartDateChange(date);
+    };
+
+    const handleEndDateSelection = (date) => {
+      onEndDateChange(date);
     };
 
     document.addEventListener("click", handleOutsideClick);
@@ -34,22 +45,20 @@ function BModal({ onClose }) {
           </div>
         </div>
         <div className="bmodalMainCalendarContainer">
-          <div className="bmodalLeftCalendarContainer">
-            <div className="bmodalTopOfCalendar">TOP OF CALENDAR</div>
-            <div className="bmodalActualCalendar">CALENDAR</div>
-          </div>
-          <div className="bmodalRightCalendarContainer">
-            <div className="bmodalTopOfCalendar">TOP OF CALENDAR</div>
-            <div className="bmodalActualCalendar">CALENDAR</div>
-          </div>
+          <Calendar
+            numberOfMonths={2}
+            className="red"
+            
+          />
         </div>
         <div className="bmodalBottom">
           <div className="bmodalBottomLeft">
-            empty for now
           </div>
           <div className="bmodalBottomRight">
-              <div className="bmodalClearDates">CLEAR DATES</div>
-              <div className="bmodalCloseButton">CLOSE</div>
+              <button className="bmodalClearDates">Clear dates</button>
+              <button className="bmodalCloseButton">
+                <div className='bmodalCloseButtonText'>Close</div>
+              </button>
           </div>
         </div>
       </div>

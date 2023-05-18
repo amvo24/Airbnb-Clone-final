@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import ReviewsBySpotId from "./reviewsBySpotId";
 import { getDetailsOfASpotFromAnId, deleteSpotById } from "../../store/spots";
-import { createReviewBasedOnSpotsId } from "../../store/review";
-import CreateReview from "./createReview";
-import {BookingModal} from "../../context/BookingModal"
+import { createNewBooking } from '../../store/booking';
 import BModal from "./BookingModal";
 import "./spotDetail.css";
 
@@ -19,6 +17,17 @@ const SpotDetails = () => {
   const currentUser = useSelector((state) => state.session.user);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -26,6 +35,11 @@ const SpotDetails = () => {
   useEffect(() => {
     dispatch(getDetailsOfASpotFromAnId(id));
   }, [dispatch, id, JSON.stringify(spot)]);
+
+  // create booking
+  useEffect(() => {
+    dispatch(createNewBooking(id));
+  }, [dispatch]);
 
   const removeSpot = (e) => {
     e.preventDefault();
@@ -309,7 +323,8 @@ const SpotDetails = () => {
                   </div>
                   {isOpen  && (
                     <BModal onClose={() => setIsOpen(false)}>
-
+                      onStartDateChange={handleStartDateChange}
+                      onEndDateChange={handleEndDateChange}
                     </BModal>
                   )}
                   <div className="GuestsDropdown">GUESTS</div>
